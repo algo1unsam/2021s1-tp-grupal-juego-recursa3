@@ -1,8 +1,11 @@
 import wollok.game.*
 import pepita.*
+import configuraciones.*
 
 program juego {
 	game.title("Juego Base de los RECURSA3")
 	game.addVisual(pepita)
+	game.height(configuraciones.altura())
+	game.width(configuraciones.ancho())
 	game.start()
 }
