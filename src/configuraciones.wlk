@@ -1,7 +1,11 @@
+import wollok.game.*
+
 object configuraciones {
 
 	const property altura = 14
 	const property ancho = 25
+	var estadoActual = estadoMenuInicio
+	
 	
 	method configurarTeclas() {
 	
@@ -17,3 +21,21 @@ object configuraciones {
 	
 	}
 }
+
+class Estado{
+	method alPresionarUp(){}
+	method alPresionarDown(){}
+	method alPresionarRight(){}
+	method alPresionarLeft(){}
+	method alPresionarE(){}
+	method alPresionarEnter(){}
+	method alPresionar1(){}
+	method alPresionar2(){}
+	method alPresionar3(){}
+}
+
+object estadoMenuInicio inherits Estado{
+	override method alPresionarEnter() {
+	}
+}
+
