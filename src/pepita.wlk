@@ -9,6 +9,7 @@ object pepita {
 	}
 
 	method image() {
+		"Esto es una imagen"
 		return "pepita.png"
 	}
 
