@@ -1,7 +1,5 @@
-const ancho = 19
-const altura = 13
-
 object configuraciones {
-	
+	const property ancho = 19
+	const property altura = 13
 	
 }
