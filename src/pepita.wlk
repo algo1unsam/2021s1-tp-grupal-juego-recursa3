@@ -1,5 +1,7 @@
 import wollok.game.*
 
+import direcciones.*
+
 object pepita {
 
 	method position() {
