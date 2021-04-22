@@ -7,5 +7,6 @@ program juego {
 	game.addVisual(pepita)
 	game.height(configuraciones.altura())
 	game.width(configuraciones.ancho())
+	configuraciones.configurarTeclas()
 	game.start()
 }
