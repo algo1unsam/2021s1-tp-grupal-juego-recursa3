@@ -1,3 +1,4 @@
+// esto vamos a ver si anda
 object configuraciones {
 
 	const property altura = 14
