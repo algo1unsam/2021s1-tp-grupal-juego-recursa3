@@ -1,4 +1,6 @@
 import wollok.game.*
+import direcciones.*
+import personaje.*
 
 // esto vamos a ver si anda
 
@@ -6,7 +8,7 @@ object configuraciones {
 
 	const property altura = 14
 	const property ancho = 25
-	var estadoActual = estadoMenuInicio
+	var estadoActual = estadoJuego
 	
 	
 	method configurarTeclas() {
@@ -15,6 +17,10 @@ object configuraciones {
 	keyboard.down().onPressDo({estadoActual.alPresionarDown()})
 	keyboard.right().onPressDo({estadoActual.alPresionarRight()})
 	keyboard.left().onPressDo({estadoActual.alPresionarLeft()})
+	keyboard.w().onPressDo({estadoActual.alPresionarUp()})
+	keyboard.s().onPressDo({estadoActual.alPresionarDown()})
+	keyboard.d().onPressDo({estadoActual.alPresionarRight()})
+	keyboard.a().onPressDo({estadoActual.alPresionarLeft()})
 	keyboard.e().onPressDo({estadoActual.alPresionarE()})
 	keyboard.enter().onPressDo({estadoActual.alPresionarEnter()})
 	keyboard.num1().onPressDo({estadoActual.alPresionar1()})
@@ -36,8 +42,21 @@ class Estado{
 	method alPresionar3(){}
 }
 
-object estadoMenuInicio inherits Estado{
-	override method alPresionarEnter() {
+object estadoJuego inherits Estado{
+	override method alPresionarUp() {
+		jugador.moverse(arriba)
+	}
+	override method alPresionarDown() {
+		jugador.moverse(abajo)
+	}
+	override method alPresionarRight() {
+		jugador.moverse(derecha)
+	}
+	override method alPresionarLeft() {
+		jugador.moverse(izquierda)
+	}
+	override method alPresionarE() {
+		
 	}
 }
 

@@ -1,10 +1,10 @@
 import wollok.game.*
-import pepita.*
 import configuraciones.*
+import personaje.*
 
 program juego {
 	game.title("Juego Base de los RECURSA3")
-	game.addVisual(pepita)
+	game.addVisual(jugador)
 	game.height(configuraciones.altura())
 	game.width(configuraciones.ancho())
 	configuraciones.configurarTeclas()
