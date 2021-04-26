@@ -5,7 +5,7 @@ class personaje {
 	var property position =  game.center()
 
 	method image() {
-		return "pepita.png"
+		return "personajes/personaje.png"
 	}
 	
 	method moverse(direccion) {
@@ -15,9 +15,6 @@ class personaje {
 	method moverHaciaSiSePuede(personaje, direccion) {
 		if(direccion.puedeIr(personaje)){
 			self.moverHacia(personaje, direccion)
-		}
-		else {
-			personaje.error("No es por ahi man")
 		}
 	}
 	

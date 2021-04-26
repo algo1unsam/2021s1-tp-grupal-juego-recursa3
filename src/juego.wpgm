@@ -1,12 +1,15 @@
 import wollok.game.*
 import configuraciones.*
 import personaje.*
+import niveles.*
 
 program juego {
 	game.title("Juego Base de los RECURSA3")
-	game.addVisual(jugador)
+
 	game.height(configuraciones.altura())
 	game.width(configuraciones.ancho())
 	configuraciones.configurarTeclas()
+	nivel1.cargarNivel()
+	game.addVisual(jugador)
 	game.start()
 }

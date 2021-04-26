@@ -28,6 +28,14 @@ object configuraciones {
 	keyboard.num3().onPressDo({estadoActual.alPresionar3()})
 	
 	}
+	
+	method cambiarEstado(nuevoEstado) {
+			estadoActual = nuevoEstado
+	}
+	
+	method configurarColisiones() {
+		game.onCollideDo(jugador, {algo => algo.teEncontro()})
+	}	
 }
 
 class Estado{
