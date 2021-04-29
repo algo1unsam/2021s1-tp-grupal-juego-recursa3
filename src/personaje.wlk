@@ -1,7 +1,7 @@
 import wollok.game.*
 import direcciones.*
 
-class personaje {
+class Personaje {
 	var property position =  game.center()
 
 	method image() {
@@ -31,7 +31,7 @@ class personaje {
 }
 
 
-object jugador inherits personaje (position = game.at(3,1)) {
+object jugador inherits Personaje (position = game.at(3,1)) {
 	
 	var property energia = 100
 	var property orientacion = derecha
