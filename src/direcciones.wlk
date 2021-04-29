@@ -6,7 +6,7 @@ object arriba {
 	
 	method posicion(posicion) = posicion.up(1)
 	
-	method puedeIr(personaje) = personaje.position().y() < (configuraciones.altura() - 3) and self.posicion(personaje.position()).allElements().all({elemento => elemento.esAtravesable()})
+	method puedeIr(personaje) = personaje.position().y() < (configuraciones.altura() - 2) and self.posicion(personaje.position()).allElements().all({elemento => elemento.esAtravesable()})
 	
 	method orientar(personaje, posicion){
 	}
@@ -43,7 +43,7 @@ object izquierda {
 	
 	method posicion(posicion) = posicion.left(1)
 	
-	method puedeIr(personaje) = personaje.position().x() > 3 and self.posicion(personaje.position()).allElements().all({elemento => elemento.esAtravesable()})
+	method puedeIr(personaje) = personaje.position().x() > 1 and self.posicion(personaje.position()).allElements().all({elemento => elemento.esAtravesable()})
 	
 	method orientar(personaje, posicion) {
 		personaje.orientacion(self)

@@ -7,7 +7,7 @@ import personaje.*
 object configuraciones {
 
 	const property altura = 14
-	const property ancho = 25
+	const property ancho = 27
 	var estadoActual = estadoJuego
 	
 	
@@ -26,7 +26,6 @@ object configuraciones {
 	keyboard.num1().onPressDo({estadoActual.alPresionar1()})
 	keyboard.num2().onPressDo({estadoActual.alPresionar2()})
 	keyboard.num3().onPressDo({estadoActual.alPresionar3()})
-	
 	}
 	
 	method cambiarEstado(nuevoEstado) {
@@ -64,7 +63,6 @@ object estadoJuego inherits Estado{
 		jugador.moverse(izquierda)
 	}
 	override method alPresionarE() {
-		
 	}
 }
 

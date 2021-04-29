@@ -1,6 +1,7 @@
 import wollok.game.*
 import paredes.*
 import configuraciones.*
+import bordes.*
 
 class Nivel {
 	
@@ -18,8 +19,8 @@ object nivel1 inherits Nivel{
 	override method cargarNivel() {
 		//musicaJuego.play()
 		
-		paredHorizontal.agregarParedesHorizontales()
-		paredVertical.agregarParedesVerticales()
+		paredes.agregarParedesNivel1()
+		bordes.agregarBordesNivel1()
 		}
 
 	}
