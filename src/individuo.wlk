@@ -63,5 +63,5 @@ object personaje inherits Individuo (position = game.at(1,1), imagen = "individu
 }
 
 object enemigo inherits Individuo (position = game.at(10,10), imagen = "individuo/enemigo.png") {
-	var visible = false
+	var property visible = false
 }
