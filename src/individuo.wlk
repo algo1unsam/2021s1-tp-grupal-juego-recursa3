@@ -11,6 +11,8 @@ class Individuo {
 	var property esAtravesable = true
 	var property imagen = "general/vacio.png"
 	
+	method image() = imagen 
+	
 	method moverse(direccion) {
 		self.moverHaciaSiSePuede(self, direccion)
 	}
