@@ -2,7 +2,7 @@ import wollok.game.*
 
 class Pared {
 	var property position = game.at(0,0)
-	var property imagen = "paredes/vacio.png"
+	var property imagen = "general/vacio.png"
 	method esAtravesable() = false
 	
 	method image() = imagen 

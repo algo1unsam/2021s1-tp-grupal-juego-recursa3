@@ -9,10 +9,7 @@ class Individuo {
 	var property mano1 = null
 	var property mano2 = null
 	var property esAtravesable = true
-
-	method image() {
-		return "personajes/personaje.png"
-	}
+	var property imagen = "general/vacio.png"
 	
 	method moverse(direccion) {
 		self.moverHaciaSiSePuede(self, direccion)
@@ -34,11 +31,11 @@ class Individuo {
 	}
 	
 	method puedeMoverse(posicion) = posicion.allElements().all({objeto => objeto.esAtravesable()})
-	
+
 	method atacar(){}
 }
 
-object personaje inherits Individuo (position = game.at(1,1)) {
+object personaje inherits Individuo (position = game.at(1,1), imagen = "individuo/personaje.png") {
 	var property energia = 100
 	var property mochila = null
 
@@ -63,6 +60,6 @@ object personaje inherits Individuo (position = game.at(1,1)) {
 	}
 }
 
-object enemigo inherits Individuo (position = game.at(10,10)) {
+object enemigo inherits Individuo (position = game.at(10,10), imagen = "individuo/enemigo.png") {
 	var visible = false
 }

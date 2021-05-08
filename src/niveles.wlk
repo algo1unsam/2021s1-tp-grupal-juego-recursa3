@@ -13,7 +13,6 @@ class Nivel {
 
 }
 
-
 object nivel1 inherits Nivel{
 	
 	override method cargarNivel() {
