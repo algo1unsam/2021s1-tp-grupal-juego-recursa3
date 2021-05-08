@@ -1,6 +1,6 @@
 import wollok.game.*
 import direcciones.*
-import personaje.*
+import individuo.*
 
 // esto vamos a ver si anda
 
@@ -33,7 +33,7 @@ object configuraciones {
 	}
 	
 	method configurarColisiones() {
-		game.onCollideDo(jugador, {algo => algo.teEncontro()})
+		game.onCollideDo(personaje, {algo => algo.teEncontro()})
 	}	
 }
 
@@ -51,16 +51,16 @@ class Estado{
 
 object estadoJuego inherits Estado{
 	override method alPresionarUp() {
-		jugador.moverse(arriba)
+		personaje.moverse(arriba)
 	}
 	override method alPresionarDown() {
-		jugador.moverse(abajo)
+		personaje.moverse(abajo)
 	}
 	override method alPresionarRight() {
-		jugador.moverse(derecha)
+		personaje.moverse(derecha)
 	}
 	override method alPresionarLeft() {
-		jugador.moverse(izquierda)
+		personaje.moverse(izquierda)
 	}
 	override method alPresionarE() {
 	}

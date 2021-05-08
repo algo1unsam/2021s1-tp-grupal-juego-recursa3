@@ -1,6 +1,6 @@
 import wollok.game.*
 import configuraciones.*
-import personaje.*
+import individuo.*
 import niveles.*
 
 program juego {
@@ -10,6 +10,6 @@ program juego {
 	game.width(configuraciones.ancho())
 	configuraciones.configurarTeclas()
 	nivel1.cargarNivel()
-	game.addVisual(jugador)
+	game.addVisual(personaje)
 	game.start()
 }

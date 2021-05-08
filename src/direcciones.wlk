@@ -1,4 +1,4 @@
-import personaje.*
+import individuo.*
 import configuraciones.*
 
 object arriba {
