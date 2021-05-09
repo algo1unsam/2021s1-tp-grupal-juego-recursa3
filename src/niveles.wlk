@@ -18,9 +18,9 @@ object nivel1 inherits Nivel{
 	
 	override method cargarNivel() {
 		//musicaJuego.play()
-		pisos.agregarPisosNivel1()	
-		paredes.agregarParedesNivel1()
+		pisos.agregarPisosNivel1()
 		bordes.agregarBordesNivel1()
+		paredes.agregarParedesNivel1()
 
 	}
 }
