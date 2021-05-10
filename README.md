@@ -6,3 +6,9 @@
 4.  Franco Miró
 
 - Inserte la descripción de su proyecto aquíg
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+```
