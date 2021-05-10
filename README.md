@@ -1,4 +1,4 @@
-# ```TRABAJO PRACTICO ALGORITMOS```
+# ```TRABAJO PRACTICO ALGORITMOS 1```
 ## INTEGRANTES:
 1.  Martin Perez Magallanes
 2.  Ariel Santillan
@@ -11,4 +11,12 @@
 + text in green
 ! text in orange
 # text in gray
+```
+
+```
+![](https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg)
+```
+
+```
+<img src=”https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg” width=”100">
 ```
