@@ -17,13 +17,12 @@ object espada {
 
 }
 
-object mochila inherits Objeto {
+object mochila inherits Objeto{
 
 	const objetosGuardados = []
-	const pesoMaximo = -15
-	
+
 	method controlarPeso() {
-		if (objetosGuardados.sum{ unObjeto => unObjeto.peso() } + pesoMaximo < 0) {
+		if (objetosGuardados.sum{ unObjeto => unObjeto.peso() } - peso < 0) {
 			return true
 		}
 		return false
