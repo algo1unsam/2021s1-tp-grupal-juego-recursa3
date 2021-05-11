@@ -1,9 +1,12 @@
 class Objetos {
 
-	var categoria
-	var peso
+	var property categoria
+	var property peso
 	var property imagen = "general/vacio.png"
 
+	method esAtravesable() = true
+
+	method image() = imagen 
 }
 
 class Escudo inherits Objetos{
@@ -50,6 +53,7 @@ class Mochila inherits Objetos{
 			// Al encontrar una mochila la cambia por la que ya tiene
 			if(unObjeto.categoria() == "mochila"){
 				peso = unObjeto.peso()
+				imagen = unObjeto.imagen()
 			}
 		}else{
 			// Podemos agregar un visual ej: cartel, mensaje o imagen, en la parte libre de la derecha
