@@ -1,42 +1,67 @@
-class Objeto {
+class Objetos {
 
 	var categoria
 	var peso
+	var property imagen = "general/vacio.png"
 
 }
 
-object escudo {
+class Escudo inherits Objetos{
 
 	var defensa
 
 }
 
-object espada {
+object escudoChico inherits Escudo(categoria="escudo", peso = 5, defensa=10, imagen="objeto/escudoChico.png"){}
+object escudoGrande inherits Escudo(categoria="escudo", peso = 10, defensa=20, imagen="objeto/escudoGrande.png"){}
+
+class Espada inherits Objetos{
 
 	var danio
 
 }
 
-object mochila inherits Objeto{
+object espadaChica inherits Espada(categoria="espada", peso = 5, danio=10, imagen="objeto/espadaChica.png"){}
+object espadaGrande inherits Espada(categoria="espada", peso = 10, danio=20, imagen="objeto/espadaGrande.png"){}
+
+class Mochila inherits Objetos{
 
 	const objetosGuardados = []
 
 	method controlarPeso() {
-		if (objetosGuardados.sum{ unObjeto => unObjeto.peso() } - peso < 0) {
-			return true
-		}
-		return false
+		return objetosGuardados.sum{ unObjeto => unObjeto.peso() } - peso < 0
 	}
 
 	method agregarObjeto(unObjeto) {
-		if (self.controlarPeso()) objetosGuardados.add(unObjeto)
-	// Mensaje de no puede agregar? No sería error, sabemos otra forma de hacerlo?
-	// O sin mensaje pero tampoco agregar, o sea no hacer nada
+		if (self.controlarPeso()){
+			if(objetosGuardados.map({ unObjetoGuardado => unObjetoGuardado.categoria() == "espada" }).size() <= 2 ){
+				objetosGuardados.add(unObjeto)
+			}else{
+				//game.addVisual("No puedes tener mas de 2 espadas, tira una de las tuyas (?")
+			}
+			
+			// No puede tener mas de 1 escudo.
+			if(objetosGuardados.map({ unObjetoGuardado => unObjetoGuardado.categoria() == "escudo" }).size() <= 1 ){
+				objetosGuardados.add(unObjeto)
+			}else{
+				//game.addVisual("No puedes tener mas de 1 escudo, tira el tuyo (?")
+			}
+			
+			// Al encontrar una mochila la cambia por la que ya tiene
+			if(unObjeto.categoria() == "mochila"){
+				peso = unObjeto.peso()
+			}
+		}else{
+			// Podemos agregar un visual ej: cartel, mensaje o imagen, en la parte libre de la derecha
+			// que diga por ejemplo esto:
+			// game.addVisual("No tenes espacio para llevar este objeto tira un objeto para ganar mas espacio")
+		}
 	}
 
 	method desecharObjeto(unObjeto) {
 		objetosGuardados.remove(unObjeto)
 	}
-
 }
-
+	
+object mochilaChica inherits Mochila(categoria="mochila", peso = 15, imagen="objeto/mochilaChica.png"){}
+object mochilaGrande inherits Mochila(categoria="mochila", peso = 20, imagen="objeto/mochilaGrande.png"){}
