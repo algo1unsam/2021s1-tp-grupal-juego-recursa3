@@ -1,53 +1,43 @@
 import individuo.*
 import configuraciones.*
 
-object arriba {
-	method nombre() = "Espalda"
-	
-	method posicion(posicion) = posicion.up(1)
-	
-	method puedeIr(personaje) = self.posicion(personaje.position()).allElements().all({elemento => elemento.esAtravesable()})
-	
-	method orientar(personaje, posicion){
-	}
-}
- 
- 
-object abajo {
-	method nombre() = "DeFrente"
-	
-	method posicion(posicion) = posicion.down(1)
-	
-	method puedeIr(personaje) = self.posicion(personaje.position()).allElements().all({elemento => elemento.esAtravesable()})
-	
-	method orientar(personaje, posicion){
-	}
-}
+class Direccion{
 
+	var property nombre
 
-object derecha {
-	method nombre() = "Derecha"
-	
-	method posicion(posicion) = posicion.right(1)
-	
-	method puedeIr(personaje) = self.posicion(personaje.position()).allElements().all({elemento => elemento.esAtravesable()})
-	
-	method orientar(personaje, posicion) {
+	method orientar(unPersonaje, posicion){
 		personaje.orientacion(self)
-	}	
+	}
+
+	method posicion(posicion)
+
+	method puedeIr(unPersonaje) = self.posicion(personaje.position()).allElements().all({elemento => elemento.esAtravesable()})
+
+}
+
+object arriba inherits Direccion(nombre="Espalda"){
+
+	override method posicion(posicion) = posicion.up(1)
+
+}
+ 
+ 
+object abajo inherits Direccion(nombre="DeFrente"){
+
+	override method posicion(posicion) = posicion.down(1)
+
+}
+
+
+object derecha inherits Direccion(nombre="Derecha"){
+
+	override method posicion(posicion) = posicion.right(1)
+
 } 
 
 
-object izquierda {
-	method nombre() = "Izquierda"
-	
-	method posicion(posicion) = posicion.left(1)
-	
-	method puedeIr(personaje) = self.posicion(personaje.position()).allElements().all({elemento => elemento.esAtravesable()})
-	
-	method orientar(personaje, posicion) {
-		personaje.orientacion(self)
-	}
+object izquierda  inherits Direccion(nombre="Izquierda"){
+
+	override method posicion(posicion) = posicion.left(1)
+
 }
-
-
