@@ -1,11 +1,8 @@
 import wollok.game.*
+import imagen.*
 
-class Pared {
-	var property position = game.at(0,0)
-	var property imagen = "general/vacio.png"
-	method esAtravesable() = false
-	
-	method image() = imagen 
+class Pared inherits Imagen{
+	override method esAtravesable() = false
 }
 
 object paredes{

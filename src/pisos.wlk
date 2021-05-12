@@ -1,12 +1,7 @@
 import wollok.game.*
+import imagen.*
 
-class Piso {
-	var property position = game.at(0,0)
-	var property imagen = "general/vacio.png"
-	method esAtravesable() = true
-	
-	method image() = imagen 
-}
+class Piso inherits Imagen{}
 
 object pisos{
 	

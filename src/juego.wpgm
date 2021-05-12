@@ -1,6 +1,6 @@
 import wollok.game.*
 import configuraciones.*
-import individuo.*
+import individuos.*
 import niveles.*
 
 program juego {

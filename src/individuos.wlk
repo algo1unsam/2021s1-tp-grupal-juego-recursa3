@@ -1,17 +1,13 @@
 import wollok.game.*
 import direcciones.*
+import imagen.*
 
-class Individuo {
-	var property position =  game.center()
+class Individuo inherits Imagen{
 	var property orientacion = derecha
 	var property vida = 100
 	var property armadura = null
 	var property mano1 = null
 	var property mano2 = null
-	var property esAtravesable = true
-	var property imagen = "general/vacio.png"
-	
-	method image() = imagen 
 	
 	method moverse(direccion) {
 		self.moverHaciaSiSePuede(self, direccion)

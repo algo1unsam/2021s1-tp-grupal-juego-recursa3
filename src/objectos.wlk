@@ -1,15 +1,13 @@
-class Objetos {
+import imagen.*
+
+class Objeto inherits Imagen{
 
 	var property categoria
 	var property peso
-	var property imagen = "general/vacio.png"
 
-	method esAtravesable() = true
-
-	method image() = imagen 
 }
 
-class Escudo inherits Objetos{
+class Escudo inherits Objeto{
 
 	var defensa
 
@@ -18,7 +16,7 @@ class Escudo inherits Objetos{
 object escudoChico inherits Escudo(categoria="escudo", peso = 5, defensa=10, imagen="objeto/escudoChico.png"){}
 object escudoGrande inherits Escudo(categoria="escudo", peso = 10, defensa=20, imagen="objeto/escudoGrande.png"){}
 
-class Espada inherits Objetos{
+class Espada inherits Objeto{
 
 	var danio
 
@@ -27,7 +25,7 @@ class Espada inherits Objetos{
 object espadaChica inherits Espada(categoria="espada", peso = 5, danio=10, imagen="objeto/espadaChica.png"){}
 object espadaGrande inherits Espada(categoria="espada", peso = 10, danio=20, imagen="objeto/espadaGrande.png"){}
 
-class Mochila inherits Objetos{
+class Mochila inherits Objeto{
 
 	const objetosGuardados = []
 

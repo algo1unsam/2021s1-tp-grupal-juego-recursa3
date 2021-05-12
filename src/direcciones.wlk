@@ -1,4 +1,4 @@
-import individuo.*
+import individuos.*
 import configuraciones.*
 
 class Direccion{

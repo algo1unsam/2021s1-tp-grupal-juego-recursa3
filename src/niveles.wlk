@@ -3,6 +3,7 @@ import paredes.*
 import configuraciones.*
 import bordes.*
 import pisos.*
+import estados.*
 
 class Nivel {
 	
