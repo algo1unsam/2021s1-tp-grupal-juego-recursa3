@@ -14,3 +14,8 @@
 
         1.  moverse(direccion) => Controla el movimiento y direccion del personaje
         2.  moverHaciaSiSePuede(personaje, direccion) => Controlara si puede atravezar un obstaculo
+
+```java
+1.  moverHaciaSiSePuede(personaje, direccion) // Controlara si puede atravezar un obstaculo
+
+```
