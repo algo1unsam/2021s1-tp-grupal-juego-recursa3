@@ -31,19 +31,8 @@ object juego inherits Estado{
 }
 
 object menu inherits Estado{
-	override method alPresionarUp() {
-		personaje.moverse(arriba)
-	}
-	override method alPresionarDown() {
-		personaje.moverse(abajo)
-	}
-	override method alPresionarRight() {
-		personaje.moverse(derecha)
-	}
-	override method alPresionarLeft() {
-		personaje.moverse(izquierda)
-	}
-	override method alPresionarE() {
+	override method alPresionarEnter() {
+		//comenzar juego
 	}
 }
 
