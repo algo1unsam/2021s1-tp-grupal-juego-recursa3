@@ -13,7 +13,7 @@ class Estado{
 	method alPresionar3(){}
 }
 
-object estadoJuego inherits Estado{
+object juego inherits Estado{
 	override method alPresionarUp() {
 		personaje.moverse(arriba)
 	}
@@ -29,3 +29,21 @@ object estadoJuego inherits Estado{
 	override method alPresionarE() {
 	}
 }
+
+object menu inherits Estado{
+	override method alPresionarUp() {
+		personaje.moverse(arriba)
+	}
+	override method alPresionarDown() {
+		personaje.moverse(abajo)
+	}
+	override method alPresionarRight() {
+		personaje.moverse(derecha)
+	}
+	override method alPresionarLeft() {
+		personaje.moverse(izquierda)
+	}
+	override method alPresionarE() {
+	}
+}
+

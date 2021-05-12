@@ -1,6 +1,6 @@
 import wollok.game.*
 import paredes.*
-import configuraciones.*
+import configuracion.*
 import bordes.*
 import pisos.*
 import estados.*
@@ -10,7 +10,7 @@ class Nivel {
 	method cargarNivel(){
 
 		configuraciones.configurarColisiones()	
-		configuraciones.cambiarEstado(estadoJuego)
+		configuraciones.cambiarEstado(juego)
 	}
 
 }

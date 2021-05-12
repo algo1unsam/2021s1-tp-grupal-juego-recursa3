@@ -9,7 +9,7 @@ class Objeto inherits Imagen{
 
 class Escudo inherits Objeto{
 
-	var defensa
+	var property defensa
 
 }
 
@@ -18,7 +18,7 @@ object escudoGrande inherits Escudo(categoria="escudo", peso = 10, defensa=20, i
 
 class Espada inherits Objeto{
 
-	var danio
+	var property danio
 
 }
 
