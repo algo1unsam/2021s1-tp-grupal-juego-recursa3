@@ -1,5 +1,6 @@
 import wollok.game.*
 import objecto.*
+//object
 
 class Cofre {
 	
