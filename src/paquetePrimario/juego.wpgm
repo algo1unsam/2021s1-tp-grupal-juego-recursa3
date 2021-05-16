@@ -1,7 +1,7 @@
 import wollok.game.*
 import configuracion.*
-import individuos.*
-import niveles.*
+import paqueteSecundario.niveles.*
+import paqueteSecundario.individuos.*
 
 program juego {
 	game.title("Juego Base de los RECURSA3")

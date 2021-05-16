@@ -1,5 +1,5 @@
 import wollok.game.*
-import imagen.*
+import paquetePrimario.imagen.*
 
 class Borde inherits Imagen{
 	override method esAtravesable() = false

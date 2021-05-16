@@ -1,6 +1,6 @@
 import wollok.game.*
 import direcciones.*
-import imagen.*
+import paquetePrimario.imagen.*
 
 class Individuo inherits Imagen{
 	var property orientacion = derecha

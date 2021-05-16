@@ -1,4 +1,4 @@
-import imagen.*
+import paquetePrimario.imagen.*
 
 class Objeto inherits Imagen{
 

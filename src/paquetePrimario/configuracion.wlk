@@ -1,7 +1,7 @@
 import wollok.game.*
-import direcciones.*
-import individuos.*
-import estados.*
+import paqueteSecundario.direcciones.*
+import paqueteSecundario.individuos.*
+import paqueteSecundario.estados.*
 
 object configuraciones {
 

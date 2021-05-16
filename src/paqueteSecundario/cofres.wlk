@@ -1,6 +1,6 @@
 import wollok.game.*
 import objectos.*
-import imagen.*
+import paquetePrimario.imagen.*
 
 class Cofre inherits Imagen{
 

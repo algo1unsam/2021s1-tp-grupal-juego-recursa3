@@ -1,5 +1,5 @@
 import individuos.*
-import configuracion.*
+import paquetePrimario.configuracion.*
 
 class Direccion{
 

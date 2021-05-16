@@ -1,9 +1,9 @@
 import wollok.game.*
 import paredes.*
-import configuracion.*
 import bordes.*
 import pisos.*
 import estados.*
+import paquetePrimario.configuracion.*
 
 class Nivel {
 	

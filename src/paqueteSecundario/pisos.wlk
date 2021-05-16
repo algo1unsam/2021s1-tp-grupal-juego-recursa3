@@ -1,5 +1,5 @@
 import wollok.game.*
-import imagen.*
+import paquetePrimario.imagen.*
 
 class Piso inherits Imagen{}
 
