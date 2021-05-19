@@ -3,9 +3,9 @@ import paredes.*
 import bordes.*
 import pisos.*
 import estados.*
+import salidas.*
 import paquetePrimario.configuracion.*
 import paquetePrimario.pantallaJuego.*
-import paquetePrimario.salida.*
 import paqueteSecundario.individuos.*
 
 class Nivel {
