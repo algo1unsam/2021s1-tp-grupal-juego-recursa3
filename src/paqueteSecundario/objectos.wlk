@@ -1,4 +1,5 @@
 import paquetePrimario.imagen.*
+import wollok.game.*
 
 class Objeto inherits Imagen{
 
@@ -7,14 +8,20 @@ class Objeto inherits Imagen{
 
 }
 
+object objetos{
+	method agregarObjetosNivel1(){
+		game.addVisualIn(espadaChica, game.at(5,5))
+	}
+}
+
 class Escudo inherits Objeto{
 
 	var property defensa
 
 }
 
-object escudoChico inherits Escudo(categoria="escudo", peso = 5, defensa=10, imagen="objeto/escudoChico.png"){}
-object escudoGrande inherits Escudo(categoria="escudo", peso = 10, defensa=20, imagen="objeto/escudoGrande.png"){}
+object escudoChico inherits Escudo(categoria="escudo", peso = 5, defensa=10, imagen="objetos/escudoChico.png"){}
+object escudoGrande inherits Escudo(categoria="escudo", peso = 10, defensa=20, imagen="objetos/escudoGrande.png"){}
 
 class Espada inherits Objeto{
 
@@ -22,8 +29,8 @@ class Espada inherits Objeto{
 
 }
 
-object espadaChica inherits Espada(categoria="espada", peso = 5, danio=10, imagen="objeto/espadaChica.png"){}
-object espadaGrande inherits Espada(categoria="espada", peso = 10, danio=20, imagen="objeto/espadaGrande.png"){}
+object espadaChica inherits Espada(categoria="espada", peso = 5, danio=10, imagen="objetos/espadaChica.png"){}
+object espadaGrande inherits Espada(categoria="espada", peso = 10, danio=20, imagen="objetos/espadaGrande.png"){}
 
 class Mochila inherits Objeto{
 
@@ -65,5 +72,5 @@ class Mochila inherits Objeto{
 	}
 }
 	
-object mochilaChica inherits Mochila(categoria="mochila", peso = 15, imagen="objeto/mochilaChica.png"){}
-object mochilaGrande inherits Mochila(categoria="mochila", peso = 20, imagen="objeto/mochilaGrande.png"){}
+object mochilaChica inherits Mochila(categoria="mochila", peso = 15, imagen="objetos/mochilaChica.png"){}
+object mochilaGrande inherits Mochila(categoria="mochila", peso = 20, imagen="objetos/mochilaGrande.png"){}

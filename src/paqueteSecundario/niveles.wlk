@@ -7,6 +7,7 @@ import salidas.*
 import paquetePrimario.configuracion.*
 import paquetePrimario.pantallaJuego.*
 import paqueteSecundario.individuos.*
+import paqueteSecundario.objectos.*
 
 class Nivel {
 
@@ -31,6 +32,7 @@ object nivel1 inherits Nivel{
 		bordes.agregarBordesNivel1()
 		paredes.agregarParedesNivel1()
 		salidas.agregarSalidasNivel1()
+		objetos.agregarObjetosNivel1()
 		game.addVisual(personaje)
 		configuraciones.configurarColisiones()
 	}
