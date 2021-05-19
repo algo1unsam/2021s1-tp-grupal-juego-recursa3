@@ -72,8 +72,7 @@ object bordes{
 		game.addVisual(new Borde(position = game.at(16,13),  imagen = "Bordes/bordeCompleto.png"))
 		game.addVisual(new Borde(position = game.at(17,13),  imagen = "Bordes/bordeCompleto.png"))
 		game.addVisual(new Borde(position = game.at(18,13),  imagen = "Bordes/bordeCompleto.png"))
-		//Salida
-		game.addVisual(new Borde(position = game.at(19,13),  imagen = "Bordes/bordePuerta.png"))
+		game.addVisual(new Borde(position = game.at(19,13),  imagen = "Bordes/bordeCompleto.png"))
 		game.addVisual(new Borde(position = game.at(20,13),  imagen = "Bordes/bordeCompleto.png"))
 		
 		game.addVisual(new Borde(position = game.at(0,1),  imagen = "Bordes/bordeDerecho.png"))

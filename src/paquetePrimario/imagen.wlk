@@ -8,5 +8,8 @@ class Imagen {
 	method esAtravesable() = true
 
 	method image() = imagen
-
+	
+	method teEncontro(){
+		// Agregar logica al metodo dependiendo objeto
+	}
 }

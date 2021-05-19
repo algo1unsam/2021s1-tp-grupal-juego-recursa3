@@ -33,5 +33,5 @@ object configuraciones {
 	
 	method configurarColisiones() {
 		game.onCollideDo(personaje, {algo => algo.teEncontro()})
-	}	
+	}
 }
