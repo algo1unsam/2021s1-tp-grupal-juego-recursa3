@@ -68,20 +68,25 @@ class Mochila inherits Objeto {
 
 	method agregarObjeto(unObjeto) {
 		// if (self.controlarPeso()){
-		// No puede tener mas de 2 espadas
-		if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "espada" }).size() <= 2) {
-			objetosGuardados.add(unObjeto)
-			personaje.equiparObjeto(unObjeto)
-		} else {
-			game.say(personaje, "No puedes tener mas de 2 espadas, desecha una primero")
+		if(unObjeto.categoria() == "espada"){
+			// No puede tener mas de 2 espadas
+			if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "espada" }).size() <= 2){
+				objetosGuardados.add(unObjeto)
+				personaje.equiparObjeto(unObjeto)
+			}else {
+				game.say(personaje, "No puedes tener mas de 2 espadas, desecha una primero")
+			} 
 		}
+		if(unObjeto.categoria() == "escudo"){
 			// No puede tener mas de 1 escudo.
-		if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "escudo" }).size() <= 1) {
-			objetosGuardados.add(unObjeto)
-		} else {
-			game.say(personaje, "No puedes tener mas de 1 escudo, desecha el actual primero")
+			if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "escudo" }).size() <= 1){
+				objetosGuardados.add(unObjeto)
+				personaje.equiparObjeto(unObjeto)
+			} else {
+				game.say(personaje, "No puedes tener mas de 1 escudo, desecha el actual primero")
+			}
 		}
-			// Al encontrar una mochila la cambia por la que ya tiene
+		// Al encontrar una mochila la cambia por la que ya tiene
 		if (unObjeto.categoria() == "mochila") {
 			peso = unObjeto.peso()
 			imagen = unObjeto.imagen()
@@ -149,7 +154,7 @@ object cofreCerradoLevel1 inherits Cofre(categoria = "cofre", peso = 0, position
 
 }
 
-object cofreAbierto inherits Objeto(categoria = "cofre", peso = 0, imagen = "cofres/cofreAbierto.png") {
+object cofreAbierto inherits Imagen(imagen = "cofres/cofreAbierto.png") {
 
 }
 

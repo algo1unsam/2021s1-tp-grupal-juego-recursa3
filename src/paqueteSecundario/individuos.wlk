@@ -94,8 +94,13 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	override method image() {
+		if(self.ataque()){
+			return "enemigo/enemigoZombieChicoDerecha.png"
+			//return "personaje/personaje" + orientacion.nombre() + "Ataque.png"
+		}
 		if(self.mano1() != null){
-		 	return "individuo/personaje" + mano1.getObjeto() + orientacion.nombre() + ".png"
+			console.println("personaje/personaje" + mano1 + orientacion.nombre() + ".png")
+		 	return "personaje/personaje" + mano1 + orientacion.nombre() + ".png"
 		}
 		// if(selftieneAlgoEnMano2()){
 		// return "individuo/personaje + mano2.getObjeto() + orientacion.nombre() ".png"
@@ -103,10 +108,6 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 		// if(self.tieneAlgoEnAmbasManos()){
 		// return "individuo/personaje + mano1.getObjeto() + mano2.getObjeto() + orientacion.nombre() + ".png"
 		// }
-		if(self.ataque()){
-			return "enemigo/enemigoZombieChicoDerecha.png"
-			//return "personaje/personaje" + orientacion.nombre() + "Ataque.png"
-		}
 		return "personaje/personaje" + orientacion.nombre() + ".png"
 	}
 
