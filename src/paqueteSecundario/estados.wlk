@@ -13,6 +13,7 @@ class Estado{
 	method alPresionar1(){}
 	method alPresionar2(){}
 	method alPresionar3(){}
+	method alPresionarSpace(){}
 }
 
 object juego inherits Estado{
@@ -31,7 +32,7 @@ object juego inherits Estado{
 	override method alPresionarE() {
 		personaje.interactuarConObjetos(game.getObjectsIn(game.at(personaje.position().x(), personaje.position().y())))
 	}
-	override method alPresionarEnter(){
+	override method alPresionarSpace(){
 		personaje.atacar()
 	}
 }

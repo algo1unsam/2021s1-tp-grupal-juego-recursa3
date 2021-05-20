@@ -25,6 +25,7 @@ object configuraciones {
 	keyboard.num1().onPressDo({estadoActual.alPresionar1()})
 	keyboard.num2().onPressDo({estadoActual.alPresionar2()})
 	keyboard.num3().onPressDo({estadoActual.alPresionar3()})
+	keyboard.space().onPressDo({estadoActual.alPresionarSpace()})
 	}
 
 	method cambiarEstado(nuevoEstado) {

@@ -40,7 +40,7 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	var property mochila = null
 	var property ataque = false
 
-	method equiparObjeto() {
+	method equiparObjeto(unObjeto) {
 	}
 
 	method utilizarObjeto(unObjeto) {
@@ -94,14 +94,14 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	override method image() {
-		// if(self.tieneAlgoEnMano1()){
-		// return "individuo/personaje + orientacion.nombre() + mano1.getObjeto() + ".png"
-		// }
+		if(self.mano1() != null){
+		 	return "individuo/personaje" + mano1.getObjeto() + orientacion.nombre() + ".png"
+		}
 		// if(selftieneAlgoEnMano2()){
-		// return "individuo/personaje + orientacion.nombre() + mano2.getObjeto() + ".png"
+		// return "individuo/personaje + mano2.getObjeto() + orientacion.nombre() ".png"
 		// }
 		// if(self.tieneAlgoEnAmbasManos()){
-		// return "individuo/personaje + orientacion.nombre() + mano1.getObjeto() + mano2.getObjeto() + ".png"
+		// return "individuo/personaje + mano1.getObjeto() + mano2.getObjeto() + orientacion.nombre() + ".png"
 		// }
 		if(self.ataque()){
 			return "enemigo/enemigoZombieChicoDerecha.png"

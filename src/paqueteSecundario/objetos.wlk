@@ -71,6 +71,7 @@ class Mochila inherits Objeto {
 		// No puede tener mas de 2 espadas
 		if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "espada" }).size() <= 2) {
 			objetosGuardados.add(unObjeto)
+			personaje.equiparObjeto(unObjeto)
 		} else {
 			game.say(personaje, "No puedes tener mas de 2 espadas, desecha una primero")
 		}
