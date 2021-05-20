@@ -1,5 +1,6 @@
 import wollok.game.*
 import objectos.*
+import individuos.*
 import paquetePrimario.imagen.*
 
 class Cofre inherits Imagen{
@@ -8,7 +9,13 @@ class Cofre inherits Imagen{
 
 	override method interactuarConObjeto(){
 		if(objetoGuardado != null){
-			game.addVisualIn(cofreAbierto, game.at(self.position().x(),self.position().y()))
+			if(personaje.cantidadLlaves() > 0){
+				personaje.utilizarObjeto(llave)
+				game.addVisualIn(cofreAbierto, game.at(self.position().x(),self.position().y()))
+				game.removeVisual(self)
+			}else{
+				game.say(personaje, "Necesitas una llave para abrir el cofre")
+			}
 		}
 		return self.objetoGuardado()
 	}
@@ -20,6 +27,5 @@ object cofres{
 	}
 }
 
-object cofreCerradoLevel1 inherits Cofre(position = game.at(11,2), imagen="cofre/cofreCerrado.png", objetoGuardado = espadaChica){}
-object cofreAbierto inherits Cofre(imagen="cofre/cofreAbierto.png", objetoGuardado = null){}
-
+object cofreCerradoLevel1 inherits Cofre(position = game.at(11,2), imagen="cofres/cofreCerrado.png", objetoGuardado = espadaChica){}
+object cofreAbierto inherits Imagen(imagen="cofres/cofreAbierto.png"){}

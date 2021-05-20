@@ -35,7 +35,6 @@ object nivel1 inherits Nivel{
 		salidas.agregarSalidasNivel1()
 		objetos.agregarObjetosNivel1()
 		cofres.agregarCofresNivel1()
-		personaje.mochila(mochilaChica)
 		game.addVisual(personaje)
 		configuraciones.configurarColisiones()
 	}
