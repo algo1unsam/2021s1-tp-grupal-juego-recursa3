@@ -26,11 +26,11 @@ object configuraciones {
 	keyboard.num2().onPressDo({estadoActual.alPresionar2()})
 	keyboard.num3().onPressDo({estadoActual.alPresionar3()})
 	}
-	
+
 	method cambiarEstado(nuevoEstado) {
 			estadoActual = nuevoEstado
 	}
-	
+
 	method configurarColisiones() {
 		game.onCollideDo(personaje, {algo => algo.teEncontro()})
 	}

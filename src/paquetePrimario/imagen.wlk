@@ -12,4 +12,9 @@ class Imagen {
 	method teEncontro(){
 		// Agregar logica al metodo dependiendo objeto
 	}
+	
+	method interactuarConObjeto(){
+		// Al precionar E en caso de que el objeto sea interactuable hacer algo
+		return null
+	}
 }

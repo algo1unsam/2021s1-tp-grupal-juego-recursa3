@@ -10,7 +10,8 @@ class Objeto inherits Imagen{
 
 object objetos{
 	method agregarObjetosNivel1(){
-		game.addVisualIn(espadaChica, game.at(5,5))
+		game.addVisualIn(llave, game.at(5,5))
+		//game.addVisualIn(mochilaChica, game.at(3,1))
 	}
 }
 
@@ -42,8 +43,11 @@ class Mochila inherits Objeto{
 
 	method agregarObjeto(unObjeto) {
 		if (self.controlarPeso()){
+			// No puede tener mas de 2 espadas
 			if(objetosGuardados.map({ unObjetoGuardado => unObjetoGuardado.categoria() == "espada" }).size() <= 2 ){
 				objetosGuardados.add(unObjeto)
+				//Agrega la visual del objeto a la zona donde se muestran los objetos que tenes a la derecha de todo
+				game.addVisualIn(unObjeto, game.at(23,5))
 			}else{
 				game.addVisual("No puedes tener mas de 2 espadas, desecha una primero")
 			}

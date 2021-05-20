@@ -41,23 +41,32 @@ object personaje inherits Individuo (position = game.at(1,1), imagen = "individu
 		
 	}
 
-	method utilizarObjeto(){
-		
+	method utilizarObjeto(unObjeto){
+		unObjeto.utilizarObjeto()
 	}
 
+	method interactuarConObjetos(variosObjetos){
+		if(variosObjetos != null){
+			const objetosObtenidos = variosObjetos.map({unObjecto => unObjecto.interactuarConObjeto()})
+			if(objetosObtenidos != null){
+				objetosObtenidos.forEach({unObjecto => self.agregarObjeto(unObjecto)})
+			}
+		} 
+	}
+	
 	method agregarObjeto(unObjeto){
-		if (mochila != null){
+		if (mochila != null && unObjeto != null){
 			mochila.agregarObjeto(unObjeto)
 		}
 	}
-	
+
 	method desecharObjeto(unObjeto){ 
 		if (mochila != null){
 			mochila.desecharObjeto(unObjeto)
 		}
 	}
 	
-	method image() {
+	override method image() {
 		//if(self.tieneAlgoEnMano1()){
 			//return "individuo/personaje + orientacion.nombre() + mano1.getObjeto() + ".png"
 		//}

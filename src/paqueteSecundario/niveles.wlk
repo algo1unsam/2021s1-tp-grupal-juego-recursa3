@@ -8,6 +8,7 @@ import paquetePrimario.configuracion.*
 import paquetePrimario.pantallaJuego.*
 import paqueteSecundario.individuos.*
 import paqueteSecundario.objectos.*
+import paqueteSecundario.cofres.*
 
 class Nivel {
 
@@ -33,6 +34,8 @@ object nivel1 inherits Nivel{
 		paredes.agregarParedesNivel1()
 		salidas.agregarSalidasNivel1()
 		objetos.agregarObjetosNivel1()
+		cofres.agregarCofresNivel1()
+		personaje.mochila(mochilaChica)
 		game.addVisual(personaje)
 		configuraciones.configurarColisiones()
 	}
