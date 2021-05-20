@@ -22,7 +22,7 @@ object arriba inherits Direccion(nombre="Espalda"){
 }
  
  
-object abajo inherits Direccion(nombre="DeFrente"){
+object abajo inherits Direccion(nombre="Frente"){
 
 	override method posicion(posicion) = posicion.down(1)
 

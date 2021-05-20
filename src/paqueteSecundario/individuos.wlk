@@ -67,7 +67,7 @@ object personaje inherits Individuo (position = game.at(1,1), imagen = "individu
 		//if(self.tieneAlgoEnAmbasManos()){
 			//return "individuo/personaje + orientacion.nombre() + mano1.getObjeto() + mano2.getObjeto() + ".png"
 		//}
-		return "individuo/personaje" + orientacion.nombre() + ".png"
+		return "personaje/personaje" + orientacion.nombre() + ".png"
 	}
 }
 
