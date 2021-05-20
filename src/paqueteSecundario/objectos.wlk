@@ -59,20 +59,20 @@ class Mochila inherits Objeto{
 			}else{
 				game.say(personaje, "No puedes tener mas de 2 espadas, desecha una primero")
 			}
-			
+
 			// No puede tener mas de 1 escudo.
 			if(objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "escudo" }).size() <= 1 ){
 				objetosGuardados.add(unObjeto)
 			}else{
 				game.say(personaje, "No puedes tener mas de 1 escudo, desecha el actual primero")
 			}
-			
+
 			// Al encontrar una mochila la cambia por la que ya tiene
 			if(unObjeto.categoria() == "mochila"){
 				peso = unObjeto.peso()
 				imagen = unObjeto.imagen()
 			}
-			
+
 			if(unObjeto.categoria() == "llave"){
 				llaves += 1
 			}
@@ -81,8 +81,6 @@ class Mochila inherits Objeto{
 			game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))
 
 //		}else{
-//			// Podemos agregar un visual ej: cartel, mensaje o imagen, en la parte libre de la derecha
-//			// que diga por ejemplo esto:
 //			game.say(personaje, "No tenes espacio para llevar este objeto, desecha uno primero para ganar mas espacio")
 //		}
 	}
