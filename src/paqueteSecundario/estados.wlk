@@ -31,6 +31,9 @@ object juego inherits Estado{
 	override method alPresionarE() {
 		personaje.interactuarConObjetos(game.getObjectsIn(game.at(personaje.position().x(), personaje.position().y())))
 	}
+	override method alPresionarEnter(){
+		personaje.atacar()
+	}
 }
 
 object menu inherits Estado{
@@ -38,4 +41,3 @@ object menu inherits Estado{
 		//comenzar juego
 	}
 }
-

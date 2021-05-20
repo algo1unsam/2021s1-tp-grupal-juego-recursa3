@@ -30,8 +30,7 @@ class Individuo inherits Imagen {
 
 	method puedeMoverse(posicion) = posicion.allElements().all({ objeto => objeto.esAtravesable() })
 
-	method atacar() {
-	}
+	method atacar()
 
 }
 
@@ -39,6 +38,7 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 
 	var property energia = 100
 	var property mochila = null
+	var property ataque = false
 
 	method equiparObjeto() {
 	}
@@ -87,6 +87,11 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	method cantidadLlaves() {
 		return mochila.llaves()
 	}
+	
+	override method atacar(){
+		self.ataque(true)
+		game.schedule(500, {self.ataque(false)})
+	}
 
 	override method image() {
 		// if(self.tieneAlgoEnMano1()){
@@ -98,6 +103,10 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 		// if(self.tieneAlgoEnAmbasManos()){
 		// return "individuo/personaje + orientacion.nombre() + mano1.getObjeto() + mano2.getObjeto() + ".png"
 		// }
+		if(self.ataque()){
+			return "enemigo/enemigoZombieChicoDerecha.png"
+			//return "personaje/personaje" + orientacion.nombre() + "Ataque.png"
+		}
 		return "personaje/personaje" + orientacion.nombre() + ".png"
 	}
 
@@ -107,5 +116,6 @@ object enemigo inherits Individuo (position = game.at(10, 10), imagen = "individ
 
 	var property visible = false
 
+	override method atacar(){}
 }
 
