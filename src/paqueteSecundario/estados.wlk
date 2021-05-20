@@ -1,5 +1,7 @@
 import individuos.*
 import direcciones.*
+import objectos.*
+import cofres.*
 
 class Estado{
 	method alPresionarUp(){}
@@ -27,6 +29,8 @@ object juego inherits Estado{
 		personaje.moverse(izquierda)
 	}
 	override method alPresionarE() {
+		//Aca algo me falta, debería poder llamar al cofre del nivel que sea
+		cofreLevel1.abrirCofre(llave)
 	}
 }
 
