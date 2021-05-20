@@ -7,8 +7,7 @@ import salidas.*
 import paquetePrimario.configuracion.*
 import paquetePrimario.pantallaJuego.*
 import paqueteSecundario.individuos.*
-import paqueteSecundario.objectos.*
-import paqueteSecundario.cofres.*
+import paqueteSecundario.objetos.*
 
 class Nivel {
 

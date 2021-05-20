@@ -1,7 +1,6 @@
 import individuos.*
 import direcciones.*
-import objectos.*
-import cofres.*
+import objetos.*
 import wollok.game.*
 
 class Estado{
