@@ -56,6 +56,19 @@ object personaje inherits Individuo (position = game.at(1,1), imagen = "individu
 			mochila.desecharObjeto(unObjeto)
 		}
 	}
+	
+	method image() {
+		//if(self.tieneAlgoEnMano1()){
+			//return "individuo/personaje + orientacion.nombre() + mano1.getObjeto() + ".png"
+		//}
+		//if(selftieneAlgoEnMano2()){
+			//return "individuo/personaje + orientacion.nombre() + mano2.getObjeto() + ".png"
+		//}
+		//if(self.tieneAlgoEnAmbasManos()){
+			//return "individuo/personaje + orientacion.nombre() + mano1.getObjeto() + mano2.getObjeto() + ".png"
+		//}
+		return "individuo/personaje" + orientacion.nombre() + ".png"
+	}
 }
 
 object enemigo inherits Individuo (position = game.at(10,10), imagen = "individuo/enemigo.png") {
