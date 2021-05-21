@@ -36,6 +36,6 @@
         1.  moverse(direccion) # Controla el movimiento y direccion del personaje
         2.  moverHaciaSiSePuede(personaje, direccion) # Controlara si puede atravezar un obstaculo
         3.  puedeMoverse(posicion) # Hace el llamado de moverHaciaSiSePuede para controlar que pueda moverse
-        4.  moverHacia(personaje,direccion) # Se ultiliza para mover de posicion al personaje
+        4.  moverHacia(personaje, direccion) # Se ultiliza para mover de posicion al personaje
         5.  atacar() # Pendiente
     ```
