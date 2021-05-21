@@ -134,7 +134,7 @@ object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo
 	
 	method recibirDanio(danio) {
 		vida -= danio
-		game.say(self,vida.toString() + " ay")
+		game.say(self,vida.toString() + " japish")
 	}
 	
 }
