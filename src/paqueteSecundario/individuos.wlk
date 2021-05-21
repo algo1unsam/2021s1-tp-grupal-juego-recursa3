@@ -98,7 +98,7 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 				enemigos.forEach{unEnemigo => unEnemigo.recibirDanio(mano1.danio())}
 			}
 			game.schedule(500, {self.ataque(false)})
-		}else game.say(self,"No tenes nada en tu mano para atacar")
+		}else game.say(self,"Necesitas una espada para atacar")
 	}
 
 	override method image() {
@@ -127,12 +127,19 @@ object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo
 	
 	method agregarEnemigoNivel1() {
 		game.addVisualIn(self, game.at(3,4))
-		vida = 3
+		vida = 11
 	}
 	
 	method recibirDanio(danio) {
 		vida -= danio
-		game.say(self,vida.toString() + " japish")
+		game.say(self,"vida: " + vida.toString())
+		self.estaMuerto()
+	}
+	
+	method estaMuerto() {
+		if(self.vida() <= 0){
+			game.removeVisual(self)
+		}
 	}
 	
 }
