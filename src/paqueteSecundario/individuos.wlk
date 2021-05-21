@@ -116,18 +116,29 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 		// }
 		return "personaje/personaje" + orientacion.nombre() + ".png"
 	}
+	
+	method recibirDanio(danio) {
+		vida -= danio
+		game.say(self,"vida: " + vida.toString())
+	}
 
 }
 
 object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo/enemigoZombieChicoDerecha.png") {
 
 	var property visible = false
+	var property ataque
+	
 
-	override method atacar(){}
+	override method atacar() {
+		personaje.recibirDanio(ataque)
+	} 
 	
 	method agregarEnemigoNivel1() {
 		game.addVisualIn(self, game.at(3,4))
 		vida = 11
+		ataque = 5
+
 	}
 	
 	method agregarEnemigoNivel2() {
@@ -156,5 +167,10 @@ object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo
 		}
 	}
 	
+	override method teEncontro() {
+		self.atacar()
+	}
+	
+
 }
 
