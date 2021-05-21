@@ -28,14 +28,14 @@
     ```
 *   ### Objeto llave:
     ```python
-        1.  utilizarObjeto()    # Utilizara el methodo usarLlave de la clase Mochila y luego validara si no hay mas llaves en la mochila para remover la imagen
+        1.  utilizarObjeto() # Utilizara el methodo usarLlave de la clase Mochila y luego validara si no hay mas llaves en la mochila para remover la imagen
     ```
 # individuos.wlk:
 *   ### Clase Individuo:
     ```python
         1.  moverse(direccion) # Controla el movimiento y direccion del personaje
         2.  moverHaciaSiSePuede(personaje, direccion) # Controlara si puede atravezar un obstaculo
-        3.  puedeMoverse(posicion)  # Hace el llamado de moverHaciaSiSePuede para controlar que pueda moverse
-        4.  moverHacia(personaje,direccion)   # Se ultiliza para mover de posicion al personaje
-        5.  atacar()    # Pendiente
+        3.  puedeMoverse(posicion) # Hace el llamado de moverHaciaSiSePuede para controlar que pueda moverse
+        4.  moverHacia(personaje,direccion) # Se ultiliza para mover de posicion al personaje
+        5.  atacar() # Pendiente
     ```
