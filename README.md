@@ -21,15 +21,21 @@
         3.  interactuarConObjeto()  # Pendiente
         4.  desecharObjeto(unObjeto) # Se utiliza para remover un objeto de la mochila
         5.  usarLlave() # Utiliza una llave de la mochila -1
-        6.
     ```
 *   ### Clase Cofres:
     ```python
         1.  interactuarConObjeto() # Procederá a validar que el cofre no este vacío y que el personaje tenga algún objeto guardado y que tenga una llave. Luego de validar utilizara la llave o saldrá un mensaje de advertencia 
     ```
+*   ### Objeto llave:
+    ```python
+        1.  utilizarObjeto()    # Utilizara el methodo usarLlave de la clase Mochila y luego validara si no hay mas llaves en la mochila para remover la imagen
+    ```
+# individuos.wlk:
 *   ### Clase Individuo:
     ```python
         1.  moverse(direccion) # Controla el movimiento y direccion del personaje
         2.  moverHaciaSiSePuede(personaje, direccion) # Controlara si puede atravezar un obstaculo
+        3.  puedeMoverse(posicion)  # Hace el llamado de moverHaciaSiSePuede para controlar que pueda moverse
+        4.  moverHacia(personaje,direccion)   # Se ultiliza para mover de posicion al personaje
+        5.  atacar()    # Pendiente
     ```
-# individuos.wlk:
