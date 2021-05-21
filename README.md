@@ -39,3 +39,18 @@
         4.  moverHacia(personaje, direccion) # Se ultiliza para mover de posicion al personaje
         5.  atacar() # Pendiente
     ```
+*   ### Objeto personaje:
+    ```python
+        1.  equiparObjeto(unObjeto) # Equipara un objeto a la mano 1
+        2.  utilizarObjeto(unObjeto) # Usara el metodo utilizarObjeto del objeto que tenga equipado
+        3.  agregarObjeto(unObjeto) # Revisara si el objeto que quiere agregar es una mochila le agregara la mochila como un atributo al personaje. En caso de querer agarrar un objeto distinto de la mochila, revisara si el personaje tiene una mochila y llamara al methodo de la mochila agregarObjeto. De lo contrario arrojara un mensaje.
+        4.  desecharObjeto(unObjeto) # Desechara el objeto que se le pase como parametro. 
+        5.  cantidadLlaves() # Devolvera la consutla a la mochila de las llaves()
+        6.  atacar() # Revisara si el personaje tiene algun objeto en la mano para poder atacar, en caso de haber un enemigo en frente, procede a quitarle vida. Sino sale un mensaje de que no se puede atacar por no tener un objeto en la mano. 
+    ```
+*   ### Objeto enemigo:
+    ```python
+        1.  atacar() # Pendiente
+        2.  agregarEnemigoNivel1()
+        3.  recibirDanio(danio) # Se le restara vida
+    ```
