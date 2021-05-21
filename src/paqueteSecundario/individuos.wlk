@@ -102,12 +102,10 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	override method image() {
-		if(self.ataque()){
-			return "enemigo/enemigoZombieChicoDerecha.png"
-			//return "personaje/personaje" + orientacion.nombre() + "Ataque.png"
+		if(self.mano1() != null && self.ataque()){
+			return "personaje/personaje" + mano1 + "Ataque" + orientacion.nombre() + ".png"
 		}
 		if(self.mano1() != null){
-			console.println("personaje/personaje" + mano1 + orientacion.nombre() + ".png")
 		 	return "personaje/personaje" + mano1 + orientacion.nombre() + ".png"
 		}
 		// if(selftieneAlgoEnMano2()){
