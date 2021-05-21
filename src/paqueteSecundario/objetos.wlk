@@ -42,11 +42,8 @@ object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, defensa = 2
 
 class Espada inherits Objeto {
 
-	var property danio
+	var property danio = 1
 	
-	override method utilizarObjeto(){
-		personaje.atacar()
-    }
 }
 
 object espadaChica inherits Espada(categoria = "espada", peso = 5, danio = 10, imagen = "objetos/espadaChica.png", position = game.at(23, 5)) {

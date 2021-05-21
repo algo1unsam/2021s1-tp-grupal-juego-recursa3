@@ -41,6 +41,7 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	var property ataque = false
 
 	method equiparObjeto(unObjeto) {
+		self.mano1(unObjeto)
 	}
 
 	method utilizarObjeto(unObjeto) {
@@ -89,8 +90,15 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 	
 	override method atacar(){
-		self.ataque(true)
-		game.schedule(500, {self.ataque(false)})
+		if (self.mano1() != null){
+			self.ataque(true)
+			const objects = game.getObjectsIn(game.at(orientacion.posicion(self.position()).x(),orientacion.posicion(self.position())).y())
+			const enemigos = objects.filter{ unObjeto => unObjeto == enemigo }
+			if(enemigos != null){
+				enemigos.forEach{unEnemigo => unEnemigo.recibirDanio(mano1.danio())}
+			}
+			game.schedule(500, {self.ataque(false)})
+		}else game.say(self,"No tenes nada en tu mano para atacar")
 	}
 
 	override method image() {
@@ -113,10 +121,21 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 
 }
 
-object enemigo inherits Individuo (position = game.at(10, 10), imagen = "individuo/enemigo.png") {
+object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo/enemigoZombieChicoDerecha.png") {
 
 	var property visible = false
 
 	override method atacar(){}
+	
+	method agregarEnemigoNivel1() {
+		game.addVisualIn(self, game.at(3,4))
+		vida = 3
+	}
+	
+	method recibirDanio(danio) {
+		vida -= danio
+		game.say(self,vida.toString() + " ay")
+	}
+	
 }
 
