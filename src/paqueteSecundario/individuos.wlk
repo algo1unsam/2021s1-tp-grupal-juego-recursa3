@@ -130,6 +130,20 @@ object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo
 		vida = 11
 	}
 	
+	method agregarEnemigoNivel2() {
+		game.addVisualIn(self, game.at(3,10))
+		game.addVisualIn(self, game.at(9,6))
+		vida = 20
+	}
+	
+	method agregarEnemigoNivel3() {
+		game.addVisualIn(self, game.at(4,11))
+		game.addVisualIn(self, game.at(13,4))
+		game.addVisualIn(self, game.at(19,7))
+		vida = 30
+	}
+	
+	
 	method recibirDanio(danio) {
 		vida -= danio
 		game.say(self,"vida: " + vida.toString())

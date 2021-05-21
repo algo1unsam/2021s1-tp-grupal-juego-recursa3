@@ -144,10 +144,30 @@ object cofres {
 	method agregarCofresNivel1() {
 		game.addVisual(cofreCerradoLevel1)
 	}
+	
+	method agregarCofresNivel2() {
+		//Podriamos hacer game.addVisualIn(cofreCerradoLevel2, position) para poner varios?
+		game.addVisual(cofreCerradoLevel2)
+	}
+	
+	method agregarCofresNivel3() {
+		//Podriamos hacer game.addVisualIn(cofreCerradoLevel2, position) para poner varios?
+		game.addVisual(cofreCerradoLevel3)
+	}
 
 }
 
 object cofreCerradoLevel1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(11, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaChica) {
+
+}
+
+//Elegir donde va
+object cofreCerradoLevel2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(11, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaChica) {
+
+}
+
+//Elegir donde va
+object cofreCerradoLevel3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(11, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaChica) {
 
 }
 
