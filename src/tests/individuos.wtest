@@ -1,5 +1,6 @@
 import paqueteSecundario.individuos.*
 import paqueteSecundario.objetos.*
+
 describe "TEST DE INDIVIDUO"{
 	
 	fixture{
@@ -10,5 +11,17 @@ describe "TEST DE INDIVIDUO"{
 test "EL INDIVIDUO TIENE MOCHILA GRANDE Y DENTRO DE LA MOCHILA TIENE UNA ESPADA CHICA Y UN ESCUDO GRANDE"{
 	assert.equals(mochilaGrande,personaje.mochila())
 	assert.equals([espadaChica,escudoGrande],mochilaGrande.objetosGuardados())
-}	
+}
+test "EL INDIVIDUO DECIDE DEJAR UN OBJETO PORQUE LE OCUPA ESPACIO"{
+	personaje.desecharObjeto(espadaChica)
+	assert.equals([escudoGrande],mochilaGrande.objetosGuardados())
+}
+
+test "EL INDIVIDUO INTENTA GUARDAR 3 ESPADAS, POR LO QUE NO PUEDE Y LA ULTIMA ESPADA SE LA EQUIPA EN LA MANO1"{
+	personaje.agregarObjeto(espadaGrande)
+	assert.notThat(mochilaGrande.objetosGuardados().any({objeto=>objeto==espadaChica}))
+	assert.that(mochilaGrande.objetosGuardados().any({objeto=>objeto==espadaGrande}))
+	assert.that(personaje.mano1()==espadaGrande)
+}
+
 }
