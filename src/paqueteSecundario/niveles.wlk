@@ -11,23 +11,30 @@ import paqueteSecundario.objetos.*
 
 class Nivel {
 
-	method cargarNivel(){
-
+	method cargarNivel() {
 		configuraciones.cambiarEstado(juego)
 	}
 
-	method finalizarNivel()
+	method finalizarNivel() {
+		self.cerrarPantallas()
+		self.reiniciarElementos()
+	}
 
 	method reiniciarElementos() {
-		//personaje.moverAlInicio()
-		//personaje.aumentarEnergia(100)
 	}
+
+	method cerrarPantallas() {
+		game.allVisuals().forEach({ visual => game.removeVisual(visual)})
+	}
+
 }
 
-object nivel1 inherits Nivel{
+object nivel1 inherits Nivel {
 
 	override method cargarNivel() {
-		//musicaJuego.play()
+		super()
+		// musicaJuego.play()
+		self.cerrarPantallas()
 		pisos.agregarPisosNivel1()
 		bordes.agregarBordesNivel1()
 		paredes.agregarParedesNivel1()
@@ -39,46 +46,57 @@ object nivel1 inherits Nivel{
 		configuraciones.configurarColisiones()
 	}
 
-	override method finalizarNivel(){
-		game.allVisuals().forEach({visual => game.removeVisual(visual)})
-		self.reiniciarElementos()
+	override method finalizarNivel() {
+		super()
 		pantallaJuego.avanzarNivel(nivel2)
 	}
+
 }
 
-object nivel2 inherits Nivel{
+object nivel2 inherits Nivel {
 
 	override method cargarNivel() {
-		//musicaJuego.play()
-		//pisos.agregarPisosNivel2()
-		//bordes.agregarBordesNivel2()
-		//paredes.agregarParedesNivel2()
-		//salidas.agregarSalidasNivel2()
+		// musicaJuego.play()
+		pisos.agregarPisosNivel2()
+		bordes.agregarBordesNivel2()
+		// paredes.agregarParedesNivel2()
+		// salidas.agregarSalidasNivel2()
+		// cofres.agregarCofresNivel3()
+		// enemigo.agregarEnemigoNivel3()
 		game.addVisual(personaje)
+		self.reiniciarElementos()
 		configuraciones.configurarColisiones()
 	}
 
-	override method finalizarNivel(){
-		game.allVisuals().forEach({visual => game.removeVisual(visual)})
-		self.reiniciarElementos()
+	override method finalizarNivel() {
+		super()
 		pantallaJuego.avanzarNivel(nivel3)
 	}
+
+	override method reiniciarElementos() {
+		personaje.position(game.at(19, 1))
+	}
+
 }
 
-object nivel3 inherits Nivel{
+object nivel3 inherits Nivel {
 
 	override method cargarNivel() {
-		//musicaJuego.play()
-		//pisos.agregarPisosNivel3()
-		//bordes.agregarBordesNivel3()
-		//paredes.agregarParedesNivel3()
-		//salidas.agregarSalidasNivel3()
+		// musicaJuego.play()
+		// pisos.agregarPisosNivel3()
+		// bordes.agregarBordesNivel3()
+		// paredes.agregarParedesNivel3()
+		// salidas.agregarSalidasNivel3()
+		// cofres.agregarCofresNivel3()
+		// enemigo.agregarEnemigoNivel3()
 		game.addVisual(personaje)
 		configuraciones.configurarColisiones()
 	}
 
-	override method finalizarNivel(){
-		game.allVisuals().forEach({visual => game.removeVisual(visual)})
+	override method finalizarNivel() {
+		self.cerrarPantallas()
 		pantallaJuego.terminarJuego()
 	}
+
 }
+
