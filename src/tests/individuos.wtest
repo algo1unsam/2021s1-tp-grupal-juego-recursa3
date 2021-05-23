@@ -1,1 +1,14 @@
-dd
+import paqueteSecundario.individuos.*
+import paqueteSecundario.objetos.*
+describe "TEST DE INDIVIDUO"{
+	
+	fixture{
+		personaje.agregarObjeto(mochilaGrande)
+		personaje.agregarObjeto(espadaChica)
+		personaje.agregarObjeto(escudoGrande)
+	}
+test "EL INDIVIDUO TIENE MOCHILA GRANDE Y DENTRO DE LA MOCHILA TIENE UNA ESPADA CHICA Y UN ESCUDO GRANDE"{
+	assert.equals(mochilaGrande,personaje.mochila())
+	assert.equals([espadaChica,escudoGrande],mochilaGrande.objetosGuardados())
+}	
+}

@@ -109,6 +109,7 @@ class Mochila inherits Objeto {
 	method usarLlave() {
 		llaves -= 1
 	}
+	method objetosGuardados()=objetosGuardados
 
 }
 
