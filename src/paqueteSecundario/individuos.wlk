@@ -141,7 +141,7 @@ object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo
 		personaje.recibirDanio(ataque)
 	} 
 	
-	method agregarEnemigoNivel1() {
+	method agregarEnemigoNivel1() { //cosas de sobra
 		const direccion = arriba
 		const nuevaPosicion = direccion.posicion(self.position())
 		game.addVisualIn(self, game.at(19,7))
