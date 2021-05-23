@@ -5,13 +5,13 @@ class Direccion{
 
 	var property nombre
 
-	method orientar(unPersonaje, posicion){
-		personaje.orientacion(self)
+	method orientar(individou, posicion){
+		individou.orientacion(self)
 	}
 
 	method posicion(posicion)
 
-	method puedeIr(unPersonaje) = self.posicion(personaje.position()).allElements().all({elemento => elemento.esAtravesable()})
+	method puedeIr(individou) = self.posicion(individou.position()).allElements().all({elemento => elemento.esAtravesable()})
 
 }
 
