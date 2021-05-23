@@ -24,4 +24,11 @@ test "EL INDIVIDUO AL AGARRAR LA ESPADA GRANDE DESECHA LA ESPADA CHICA."{
 	assert.that(mochilaGrande.objetosGuardados().any({objeto=>objeto==espadaGrande}))
 	assert.that(personaje.mano1()==espadaGrande)
 }
+
+test "EL PERSONAJE AGARRA 3 LLAVES Y UTILIZA UNA, LE QUEDAN 2"{
+	3.times({i=>personaje.agregarObjeto(llave)})
+	personaje.utilizarObjeto(llave)
+	assert.equals(2,personaje.cantidadLlaves())
+	
+}
 }
