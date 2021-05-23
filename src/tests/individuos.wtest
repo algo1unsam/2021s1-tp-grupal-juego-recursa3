@@ -1,4 +1,5 @@
 import paqueteSecundario.individuos.*
+<<<<<<< HEAD
 import paqueteSecundario.objetos.*
 describe "TEST DE INDIVIDUO"{
 	
@@ -12,3 +13,17 @@ test "EL INDIVIDUO TIENE MOCHILA GRANDE Y DENTRO DE LA MOCHILA TIENE UNA ESPADA 
 	assert.equals([espadaChica,escudoGrande],mochilaGrande.objetosGuardados())
 }	
 }
+=======
+
+describe "test" {
+
+//	fixture {
+//		
+//	}
+	test"test" {
+		assert.equals(true, true)
+	}
+
+}
+
+>>>>>>> refs/remotes/origin/master
