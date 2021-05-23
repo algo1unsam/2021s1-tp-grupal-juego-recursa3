@@ -1,1 +1,13 @@
-dd
+import paqueteSecundario.individuos.*
+
+describe "test" {
+
+//	fixture {
+//		
+//	}
+	test"test" {
+		assert.equals(true, true)
+	}
+
+}
+
