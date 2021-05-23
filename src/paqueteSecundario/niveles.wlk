@@ -41,9 +41,11 @@ object nivel1 inherits Nivel {
 		salidas.agregarSalidasNivel1()
 		objetos.agregarObjetosNivel1()
 		cofres.agregarCofresNivel1()
-		enemigo.agregarEnemigoNivel1()
 		game.addVisual(personaje)
 		configuraciones.configurarColisiones()
+		enemigo.agregarEnemigoNivel1()
+		game.addVisual(enemigo)
+		enemigo.moverse()
 	}
 
 	override method finalizarNivel() {

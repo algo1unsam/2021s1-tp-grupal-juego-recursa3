@@ -14,21 +14,27 @@ class Individuo inherits Imagen {
 		self.moverHaciaSiSePuede(self, direccion)
 	}
 
-	method moverHaciaSiSePuede(personaje, direccion) {
-		if (direccion.puedeIr(personaje)) {
-			self.moverHacia(personaje, direccion)
+	method moverHaciaSiSePuede(individuo, direccion) {
+		//console.println(direccion.puedeIr(personaje))
+		if (direccion.puedeIr(individuo)) {
+			self.moverHacia(individuo, direccion)
 		}
 	}
 
-	method moverHacia(personaje, direccion) {
-		const nuevaPosicion = direccion.posicion(personaje.position())
+	method moverHacia(individuo, direccion) {
+		const nuevaPosicion = direccion.posicion(individuo.position())
 		if (self.puedeMoverse(nuevaPosicion)) {
-			personaje.orientacion(direccion)
-			personaje.position(nuevaPosicion)
+//			console.println(individuo.toString())
+//			console.println(nuevaPosicion)
+//			console.println(individuo.position())
+//			console.println(direccion)
+			individuo.orientacion(direccion)
+			individuo.position(nuevaPosicion)
 		}
 	}
 
 	method puedeMoverse(posicion) = posicion.allElements().all({ objeto => objeto.esAtravesable() })
+	
 
 	method atacar()
 	
@@ -131,9 +137,9 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 
 }
 
-object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo/enemigoZombieChicoDerecha.png") {
+object enemigo inherits Individuo (vida= 11, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png") {
 
-	var property visible = false
+	//var property visible = false
 	var property ataque
 	
 
@@ -141,6 +147,7 @@ object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo
 		personaje.recibirDanio(ataque)
 	} 
 	
+<<<<<<< HEAD
 	method agregarEnemigoNivel1() { //cosas de sobra
 		const direccion = arriba
 		const nuevaPosicion = direccion.posicion(self.position())
@@ -152,7 +159,11 @@ object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo
 		
 		vida = 11
 		ataque = 5
+=======
+	method agregarEnemigoNivel1() {
+>>>>>>> refs/remotes/origin/master
 
+		ataque = 5
 	}
 	
 	method agregarEnemigoNivel2() {
@@ -172,25 +183,23 @@ object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo
 	override method teEncontro() {
 		self.atacar()
 	}
-	
-	//	method direccionMasConveniente(direcciones) = direcciones.min({ direccion => direccion.posicion(position).distance(personaje.position())})
 
 	method moverse() {
-//        game.onTick(dificultad.nivel(), "Perseguir1", {self.perseguir()})
-//		game.onTick(1000, "Prueba1", {self.moverHaciaJugador()})
-//		game.onTick(1000, "Moverse arriba", {self.position().up(1)})
-		
+	    game.onTick(1000, "Perseguir1", {self.moverHaciaJugador()})
     }
 	
 	method direccionMasConveniente(direcciones) = direcciones.min{ direccion => direccion.posicion(self.position()).distance(personaje.position())}
 	
 	method moverHaciaJugador(){
         var direccionMasConveniente = self.direccionMasConveniente(self.direccionesAtravesables())
+        //console.println(direccionMasConveniente.toString())
         self.moverHaciaSiSePuede(self,direccionMasConveniente)
     }
     
     method direccionesAtravesables() = [izquierda, arriba, abajo, derecha].filter{direccion => direccion.puedeIr(self)}
 	
-
+	override method image() {
+		return "enemigo/enemigoZombieChicoDerecha.png"
+	}
 }
 
