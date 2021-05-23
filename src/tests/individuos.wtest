@@ -17,11 +17,11 @@ test "EL INDIVIDUO DECIDE DEJAR UN OBJETO PORQUE LE OCUPA ESPACIO"{
 	assert.equals([escudoGrande],mochilaGrande.objetosGuardados())
 }
 
-test "EL INDIVIDUO INTENTA GUARDAR 3 ESPADAS, POR LO QUE NO PUEDE Y LA ULTIMA ESPADA SE LA EQUIPA EN LA MANO1"{
+test "EL INDIVIDUO AL AGARRAR LA ESPADA GRANDE DESECHA LA ESPADA CHICA."{
 	personaje.agregarObjeto(espadaGrande)
 	assert.notThat(mochilaGrande.objetosGuardados().any({objeto=>objeto==espadaChica}))
+	assert.notThat(personaje.mano1()==espadaChica)
 	assert.that(mochilaGrande.objetosGuardados().any({objeto=>objeto==espadaGrande}))
 	assert.that(personaje.mano1()==espadaGrande)
 }
-
 }
