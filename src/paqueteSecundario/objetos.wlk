@@ -4,7 +4,6 @@ import paqueteSecundario.individuos.*
 
 class Objeto inherits Imagen {
 
-	var property categoria
 	var property peso
 
 	override method interactuarConObjeto() {

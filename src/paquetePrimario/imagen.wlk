@@ -1,7 +1,7 @@
 import wollok.game.*
 
 class Imagen {
-
+	var property categoria=null
 	var property position = game.at(0,0)
 	var property imagen = "general/vacio.png"
 

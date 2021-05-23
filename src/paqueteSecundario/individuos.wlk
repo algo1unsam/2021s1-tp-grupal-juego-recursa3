@@ -117,7 +117,7 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 		if (self.mano1() != null) {
 			self.ataque(true)
 			const objects = game.getObjectsIn(game.at(orientacion.posicion(self.position()).x(), orientacion.posicion(self.position())).y())
-			const enemigos = objects.filter{ unObjeto => unObjeto == enemigo }
+			const enemigos = objects.filter{ unObjeto => unObjeto.categoria() == 'enemigo' }
 			if (enemigos != null) {
 				enemigos.forEach{ unEnemigo => unEnemigo.recibirDanio(mano1.danio())}
 			}
@@ -149,10 +149,8 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 
 }
 
-object enemigo inherits Individuo (vida = 11, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png") {
-
-	var property ataque
-
+class Enemigo inherits Individuo{
+	var property ataque=0
 	override method atacar() {
 		personaje.recibirDanio(ataque)
 	}
@@ -200,4 +198,6 @@ object enemigo inherits Individuo (vida = 11, position = game.at(10, 10), orient
 		game.removeTickEvent("Perseguir1")
 	}
 }
+
+const enemigo= new Enemigo(vida = 11, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png",categoria='enemigo')
 
