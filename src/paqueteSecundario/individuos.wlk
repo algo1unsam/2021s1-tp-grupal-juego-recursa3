@@ -15,40 +15,47 @@ class Individuo inherits Imagen {
 	}
 
 	method moverHaciaSiSePuede(individuo, direccion) {
-		//console.println(direccion.puedeIr(personaje))
+		// console.println(direccion.puedeIr(individuo))
 		if (direccion.puedeIr(individuo)) {
 			self.moverHacia(individuo, direccion)
+		} else {
+		// console.println(direccion)
 		}
 	}
 
 	method moverHacia(individuo, direccion) {
 		const nuevaPosicion = direccion.posicion(individuo.position())
 		if (self.puedeMoverse(nuevaPosicion)) {
-//			console.println(individuo.toString())
-//			console.println(nuevaPosicion)
-//			console.println(individuo.position())
-//			console.println(direccion)
+			// console.println(individuo.toString())
+			// console.println(nuevaPosicion)
+			// console.println(individuo.position())
+			// console.println(direccion)
 			individuo.orientacion(direccion)
 			individuo.position(nuevaPosicion)
+		} else {
+		// console.println(self.puedeMoverse(nuevaPosicion))
+		// console.println(nuevaPosicion)
 		}
 	}
 
 	method puedeMoverse(posicion) = posicion.allElements().all({ objeto => objeto.esAtravesable() })
-	
 
 	method atacar()
-	
+
 	method recibirDanio(danio) {
 		vida -= danio
-		game.say(self,"vida: " + vida.toString())
+		game.say(self, "vida: " + vida.toString())
 		self.estaMuerto()
 	}
-	
+
 	method estaMuerto() {
-		if(self.vida() <= 0){
+		if (self.vida() <= 0) {
 			game.removeVisual(self)
+			self.murio()
 		}
 	}
+
+	method murio()
 
 }
 
@@ -78,16 +85,15 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 
 	method agregarObjeto(unObjeto) {
 		if (unObjeto != null && unObjeto.categoria() == "mochila") {
-			if(game.hasVisual(unObjeto)){
+			if (game.hasVisual(unObjeto)) {
 				game.removeVisual(unObjeto)
 			}
 			self.mochila(unObjeto)
 			mochila.agregarObjeto(unObjeto)
 		}
-		
 		if (mochila != null) {
 			if (mochila != null && unObjeto != null) {
-				if(game.hasVisual(unObjeto)){
+				if (game.hasVisual(unObjeto)) {
 					game.removeVisual(unObjeto)
 				}
 				mochila.agregarObjeto(unObjeto)
@@ -106,100 +112,92 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	method cantidadLlaves() {
 		return mochila.llaves()
 	}
-	
-	override method atacar(){
-		if (self.mano1() != null){
+
+	override method atacar() {
+		if (self.mano1() != null) {
 			self.ataque(true)
-			const objects = game.getObjectsIn(game.at(orientacion.posicion(self.position()).x(),orientacion.posicion(self.position())).y())
+			const objects = game.getObjectsIn(game.at(orientacion.posicion(self.position()).x(), orientacion.posicion(self.position())).y())
 			const enemigos = objects.filter{ unObjeto => unObjeto == enemigo }
-			if(enemigos != null){
-				enemigos.forEach{unEnemigo => unEnemigo.recibirDanio(mano1.danio())}
+			if (enemigos != null) {
+				enemigos.forEach{ unEnemigo => unEnemigo.recibirDanio(mano1.danio())}
 			}
-			game.schedule(500, {self.ataque(false)})
-		}else game.say(self,"Necesitas una espada para atacar")
+			game.schedule(500, { self.ataque(false)})
+		} else {
+			game.say(self, "Necesitas una espada para atacar")
+		}
 	}
 
 	override method image() {
-		if(self.mano1() != null && self.ataque()){
+		if (self.mano1() != null && self.ataque()) {
 			return "personaje/personaje" + mano1 + "Ataque" + orientacion.nombre() + ".png"
 		}
-		if(self.mano1() != null){
-		 	return "personaje/personaje" + mano1 + orientacion.nombre() + ".png"
+		if (self.mano1() != null) {
+			return "personaje/personaje" + mano1 + orientacion.nombre() + ".png"
 		}
-		// if(selftieneAlgoEnMano2()){
-		// return "individuo/personaje + mano2.getObjeto() + orientacion.nombre() ".png"
-		// }
-		// if(self.tieneAlgoEnAmbasManos()){
-		// return "individuo/personaje + mano1.getObjeto() + mano2.getObjeto() + orientacion.nombre() + ".png"
-		// }
+			// if(selftieneAlgoEnMano2()){
+			// return "individuo/personaje + mano2.getObjeto() + orientacion.nombre() ".png"
+			// }
+			// if(self.tieneAlgoEnAmbasManos()){
+			// return "individuo/personaje + mano1.getObjeto() + mano2.getObjeto() + orientacion.nombre() + ".png"
+			// }
 		return "personaje/personaje" + orientacion.nombre() + ".png"
+	}
+	
+	override method murio(){
+		
 	}
 
 }
 
-object enemigo inherits Individuo (vida= 11, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png") {
+object enemigo inherits Individuo (vida = 11, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png") {
 
-	//var property visible = false
 	var property ataque
-	
 
 	override method atacar() {
 		personaje.recibirDanio(ataque)
-	} 
-	
-<<<<<<< HEAD
-	method agregarEnemigoNivel1() { //cosas de sobra
-		const direccion = arriba
-		const nuevaPosicion = direccion.posicion(self.position())
-		game.addVisualIn(self, game.at(10,10))
-		game.onTick(1000, "Moverse arriba", {self.moverse(arriba)})
-		self.position(nuevaPosicion)
-		game.removeVisual(self)
-		game.schedule(3000, {game.addVisualIn(self, nuevaPosicion)})
-		
-		vida = 11
-		ataque = 5
-=======
-	method agregarEnemigoNivel1() {
->>>>>>> refs/remotes/origin/master
+	}
 
+	method agregarEnemigoNivel1() {
 		ataque = 5
 	}
-	
+
 	method agregarEnemigoNivel2() {
-		game.addVisualIn(self, game.at(3,10))
-		game.addVisualIn(self, game.at(9,6))
+		game.addVisualIn(self, game.at(3, 10))
+		game.addVisualIn(self, game.at(9, 6))
 		vida = 20
 	}
-	
+
 	method agregarEnemigoNivel3() {
-		game.addVisualIn(self, game.at(4,11))
-		game.addVisualIn(self, game.at(13,4))
-		game.addVisualIn(self, game.at(19,7))
+		game.addVisualIn(self, game.at(4, 11))
+		game.addVisualIn(self, game.at(13, 4))
+		game.addVisualIn(self, game.at(19, 7))
 		vida = 30
 	}
-	
-	
+
 	override method teEncontro() {
 		self.atacar()
 	}
 
 	method moverse() {
-	    game.onTick(1000, "Perseguir1", {self.moverHaciaJugador()})
-    }
-	
-	method direccionMasConveniente(direcciones) = direcciones.min{ direccion => direccion.posicion(self.position()).distance(personaje.position())}
-	
-	method moverHaciaJugador(){
-        var direccionMasConveniente = self.direccionMasConveniente(self.direccionesAtravesables())
-        //console.println(direccionMasConveniente.toString())
-        self.moverHaciaSiSePuede(self,direccionMasConveniente)
-    }
-    
-    method direccionesAtravesables() = [izquierda, arriba, abajo, derecha].filter{direccion => direccion.puedeIr(self)}
-	
+		game.onTick(1000, "Perseguir1", { self.moverHaciaJugador()})
+	}
+
+	method direccionMasConveniente(direcciones) = direcciones.min{ direccion => direccion.posicion(self.position()).distance(personaje.position()) }
+
+	method moverHaciaJugador() {
+		var direccionMasConveniente = self.direccionMasConveniente(self.direccionesAtravesables())
+		console.println(direccionMasConveniente.toString())
+		self.moverHaciaSiSePuede(self, direccionMasConveniente)
+	}
+
+	method direccionesAtravesables() = [ izquierda, arriba, abajo, derecha ].filter{ direccion => direccion.puedeIr(self) }
+
 	override method image() {
 		return "enemigo/enemigoZombieChicoDerecha.png"
+	}
+
+	override method murio(){
+		game.removeTickEvent("Perseguir1")
 	}
 }
 

@@ -33,7 +33,7 @@ object nivel1 inherits Nivel {
 
 	override method cargarNivel() {
 		super()
-		// musicaJuego.play()
+			// musicaJuego.play()
 		self.cerrarPantallas()
 		pisos.agregarPisosNivel1()
 		bordes.agregarBordesNivel1()
@@ -61,10 +61,10 @@ object nivel2 inherits Nivel {
 		// musicaJuego.play()
 		pisos.agregarPisosNivel2()
 		bordes.agregarBordesNivel2()
-		// paredes.agregarParedesNivel2()
-		// salidas.agregarSalidasNivel2()
-		// cofres.agregarCofresNivel3()
-		// enemigo.agregarEnemigoNivel3()
+			// paredes.agregarParedesNivel2()
+			// salidas.agregarSalidasNivel2()
+			// cofres.agregarCofresNivel3()
+			// enemigo.agregarEnemigoNivel3()
 		game.addVisual(personaje)
 		self.reiniciarElementos()
 		configuraciones.configurarColisiones()

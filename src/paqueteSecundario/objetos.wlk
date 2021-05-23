@@ -43,7 +43,7 @@ object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, defensa = 2
 class Espada inherits Objeto {
 
 	var property danio
-	
+
 }
 
 object espadaChica inherits Espada(categoria = "espada", peso = 5, danio = 10, imagen = "objetos/espadaChica.png", position = game.at(23, 5)) {
@@ -65,32 +65,29 @@ class Mochila inherits Objeto {
 
 	method agregarObjeto(unObjeto) {
 		// if (self.controlarPeso()){
-		if(unObjeto.categoria() == "espada"){
+		if (unObjeto.categoria() == "espada") {
 			// No puede tener mas de 2 espadas
-			if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "espada" }).size() < 1){
+			if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "espada" }).size() < 1) {
 				objetosGuardados.add(unObjeto)
 				personaje.equiparObjeto(unObjeto)
-			}
-			else {
-				//game.say(personaje, "No puedes tener mas de 2 espadas, desecha una primero")
-				personaje.desecharObjeto(self.objetosGuardados().find({objeto=>objeto.categoria()=="espada"}))
+			} else {
+				// game.say(personaje, "No puedes tener mas de 2 espadas, desecha una primero")
+				personaje.desecharObjeto(self.objetosGuardados().find({ objeto => objeto.categoria() == "espada"}))
 				objetosGuardados.add(unObjeto)
 				personaje.equiparObjeto(unObjeto)
 			}
 		}
-		if(unObjeto.categoria() == "escudo"){
+		if (unObjeto.categoria() == "escudo") {
 			// No puede tener mas de 1 escudo.
-			if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "escudo" }).size() < 1){
+			if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "escudo" }).size() < 1) {
 				objetosGuardados.add(unObjeto)
-				//personaje.equiparObjeto(unObjeto)
-			} 
-			
-			else {
-				personaje.desecharObjeto(self.objetosGuardados().find({objeto=>objeto.categoria()=="escudo"}))
+			// personaje.equiparObjeto(unObjeto)
+			} else {
+				personaje.desecharObjeto(self.objetosGuardados().find({ objeto => objeto.categoria() == "escudo"}))
 				objetosGuardados.add(unObjeto)
 			}
 		}
-		// Al encontrar una mochila la cambia por la que ya tiene
+			// Al encontrar una mochila la cambia por la que ya tiene
 		if (unObjeto.categoria() == "mochila") {
 			peso = unObjeto.peso()
 			imagen = unObjeto.imagen()
@@ -116,7 +113,8 @@ class Mochila inherits Objeto {
 	method usarLlave() {
 		llaves -= 1
 	}
-	method objetosGuardados()=objetosGuardados
+
+	method objetosGuardados() = objetosGuardados
 
 }
 
@@ -152,14 +150,14 @@ object cofres {
 	method agregarCofresNivel1() {
 		game.addVisual(cofreCerradoLevel1)
 	}
-	
+
 	method agregarCofresNivel2() {
-		//Podriamos hacer game.addVisualIn(cofreCerradoLevel2, position) para poner varios?
+		// Podriamos hacer game.addVisualIn(cofreCerradoLevel2, position) para poner varios?
 		game.addVisual(cofreCerradoLevel2)
 	}
-	
+
 	method agregarCofresNivel3() {
-		//Podriamos hacer game.addVisualIn(cofreCerradoLevel2, position) para poner varios?
+		// Podriamos hacer game.addVisualIn(cofreCerradoLevel2, position) para poner varios?
 		game.addVisual(cofreCerradoLevel3)
 	}
 
