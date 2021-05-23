@@ -31,6 +31,18 @@ class Individuo inherits Imagen {
 	method puedeMoverse(posicion) = posicion.allElements().all({ objeto => objeto.esAtravesable() })
 
 	method atacar()
+	
+	method recibirDanio(danio) {
+		vida -= danio
+		game.say(self,"vida: " + vida.toString())
+		self.estaMuerto()
+	}
+	
+	method estaMuerto() {
+		if(self.vida() <= 0){
+			game.removeVisual(self)
+		}
+	}
 
 }
 
@@ -116,11 +128,6 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 		// }
 		return "personaje/personaje" + orientacion.nombre() + ".png"
 	}
-	
-	method recibirDanio(danio) {
-		vida -= danio
-		game.say(self,"vida: " + vida.toString())
-	}
 
 }
 
@@ -135,7 +142,14 @@ object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo
 	} 
 	
 	method agregarEnemigoNivel1() {
-		game.addVisualIn(self, game.at(3,4))
+		const direccion = arriba
+		const nuevaPosicion = direccion.posicion(self.position())
+		game.addVisualIn(self, game.at(19,7))
+		game.onTick(1000, "Moverse arriba", {self.moverse(arriba)})
+		self.position(nuevaPosicion)
+		game.removeVisual(self)
+		game.schedule(3000, {game.addVisualIn(self, nuevaPosicion)})
+		
 		vida = 11
 		ataque = 5
 
@@ -155,21 +169,27 @@ object enemigo inherits Individuo (position = game.at(10, 10), imagen = "enemigo
 	}
 	
 	
-	method recibirDanio(danio) {
-		vida -= danio
-		game.say(self,"vida: " + vida.toString())
-		self.estaMuerto()
-	}
-	
-	method estaMuerto() {
-		if(self.vida() <= 0){
-			game.removeVisual(self)
-		}
-	}
-	
 	override method teEncontro() {
 		self.atacar()
 	}
+	
+	//	method direccionMasConveniente(direcciones) = direcciones.min({ direccion => direccion.posicion(position).distance(personaje.position())})
+
+	method moverse() {
+//        game.onTick(dificultad.nivel(), "Perseguir1", {self.perseguir()})
+//		game.onTick(1000, "Prueba1", {self.moverHaciaJugador()})
+//		game.onTick(1000, "Moverse arriba", {self.position().up(1)})
+		
+    }
+	
+	method direccionMasConveniente(direcciones) = direcciones.min{ direccion => direccion.posicion(self.position()).distance(personaje.position())}
+	
+	method moverHaciaJugador(){
+        var direccionMasConveniente = self.direccionMasConveniente(self.direccionesAtravesables())
+        self.moverHaciaSiSePuede(self,direccionMasConveniente)
+    }
+    
+    method direccionesAtravesables() = [izquierda, arriba, abajo, derecha].filter{direccion => direccion.puedeIr(self)}
 	
 
 }
