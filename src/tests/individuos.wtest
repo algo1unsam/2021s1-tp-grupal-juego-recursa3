@@ -1,8 +1,7 @@
 import paqueteSecundario.individuos.*
 import paqueteSecundario.objetos.*
-
+import wollok.game.*
 describe "TEST DE INDIVIDUO"{
-	
 	fixture{
 		personaje.agregarObjeto(mochilaGrande)
 		personaje.agregarObjeto(espadaChica)
@@ -29,6 +28,13 @@ test "EL PERSONAJE AGARRA 3 LLAVES Y UTILIZA UNA, LE QUEDAN 2"{
 	3.times({i=>personaje.agregarObjeto(llave)})
 	personaje.utilizarObjeto(llave)
 	assert.equals(2,personaje.cantidadLlaves())
+	
+}
+test "EL PERSONAJE ATACA A UN RIVAL HASTA DEJARLO CON _ VIDA"{
+	personaje.position(game.at(10, 10))
+	personaje.atacar()
+	assert.equals(90,enemigo.vida())
+	
 	
 }
 }
