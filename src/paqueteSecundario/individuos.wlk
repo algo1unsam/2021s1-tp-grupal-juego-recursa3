@@ -51,8 +51,11 @@ class Individuo inherits Imagen {
 	method estaMuerto() {
 		if (self.vida() <= 0) {
 			game.removeVisual(self)
+			self.murio()
 		}
 	}
+
+	method murio()
 
 }
 
@@ -139,6 +142,10 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 			// }
 		return "personaje/personaje" + orientacion.nombre() + ".png"
 	}
+	
+	override method murio(){
+		
+	}
 
 }
 
@@ -189,5 +196,8 @@ object enemigo inherits Individuo (vida = 11, position = game.at(10, 10), orient
 		return "enemigo/enemigoZombieChicoDerecha.png"
 	}
 
+	override method murio(){
+		game.removeTickEvent("Perseguir1")
+	}
 }
 
