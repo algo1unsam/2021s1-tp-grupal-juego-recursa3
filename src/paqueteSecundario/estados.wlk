@@ -67,7 +67,7 @@ object juego inherits Estado {
 
 }
 
-object inicio inherits Estado {
+object estadoInicio inherits Estado {
 
 	override method alPresionarEnter() {
 		pantallaTutorial.iniciar()
@@ -75,19 +75,31 @@ object inicio inherits Estado {
 
 }
 
-object tutorial inherits Estado {
+object estadoTutorial inherits Estado {
 
 	override method alPresionarEnter() {
-		pantallaEnemigosObjetos.iniciar()
+		pantallaObjetos.iniciar()
 	}
 
 }
 
-object enemigosObjetos inherits Estado {
+object estadoObjetos inherits Estado {
 
 	override method alPresionarEnter() {
-		nivel1.cargarNivel()
+		pantallaEnemigos.iniciar()
 	}
+
+}
+
+object estadoEnemigos inherits Estado {
+
+	override method alPresionarEnter() {
+		pantallaCargando.iniciar()
+	}
+
+}
+
+object estadoCargando inherits Estado {
 
 }
 

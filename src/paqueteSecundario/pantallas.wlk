@@ -23,8 +23,8 @@ object pantallaInicio inherits Pantalla(imagen = "pantallas/inicio.jpg") {
 
 	override method iniciar() {
 		super()
-		configuraciones.cambiarEstado(inicio)
-		// game.schedule(1, {musicaInicio.play()})
+		configuraciones.cambiarEstado(estadoInicio)
+	// game.schedule(1, {musicaInicio.play()})
 	}
 
 }
@@ -34,17 +34,38 @@ object pantallaTutorial inherits Pantalla(imagen = "pantallas/tutorial.jpg") {
 	override method iniciar() {
 		self.cerrar()
 		super()
-		configuraciones.cambiarEstado(tutorial)
+		configuraciones.cambiarEstado(estadoTutorial)
 	}
 
 }
 
-object pantallaEnemigosObjetos inherits Pantalla(imagen = "pantallas/enemigosObjetos.jpg") {
+object pantallaObjetos inherits Pantalla(imagen = "pantallas/objetos.jpg") {
 
 	override method iniciar() {
 		self.cerrar()
 		super()
-		configuraciones.cambiarEstado(enemigosObjetos)
+		configuraciones.cambiarEstado(estadoObjetos)
+	}
+
+}
+
+object pantallaEnemigos inherits Pantalla(imagen = "pantallas/enemigos.jpg") {
+
+	override method iniciar() {
+		self.cerrar()
+		super()
+		configuraciones.cambiarEstado(estadoEnemigos)
+	}
+
+}
+
+object pantallaCargando inherits Pantalla(imagen = "pantallas/cargando.jpg") {
+
+	override method iniciar() {
+		self.cerrar()
+		super()
+		configuraciones.cambiarEstado(estadoCargando)
+		game.schedule(500, {nivel1.cargarNivel()})
 	}
 
 }
