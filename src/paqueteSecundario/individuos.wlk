@@ -246,6 +246,44 @@ class Enemigo inherits Individuo {
 	}
 
 	override method mostrarVida() {
+		if (game.hasVisual(corazonCompletoEnemigo1)) {
+			game.removeVisual(corazonCompletoEnemigo1)
+		}
+		if (game.hasVisual(corazonCompletoEnemigo2)) {
+			game.removeVisual(corazonCompletoEnemigo2)
+		}
+		if (game.hasVisual(corazonMitadEnemigo1)) {
+			game.removeVisual(corazonMitadEnemigo1)
+		}
+		if (game.hasVisual(corazonMitadEnemigo2)) {
+			game.removeVisual(corazonMitadEnemigo2)
+		}
+		if (game.hasVisual(corazonVacioEnemigo1)) {
+			game.removeVisual(corazonVacioEnemigo1)
+		}
+		if (game.hasVisual(corazonVacioEnemigo2)) {
+			game.removeVisual(corazonVacioEnemigo2)
+		}
+		if (vida == 4) {
+			game.addVisualIn(corazonCompletoEnemigo1, game.at(23, 10))
+			game.addVisualIn(corazonCompletoEnemigo2, game.at(24, 10))
+		}
+		if (vida == 3) {
+			game.addVisualIn(corazonCompletoEnemigo1, game.at(23, 10))
+			game.addVisualIn(corazonMitadEnemigo1, game.at(24, 10))
+		}
+		if (vida == 2) {
+			game.addVisualIn(corazonCompletoEnemigo1, game.at(23, 10))
+			game.addVisualIn(corazonVacioEnemigo1, game.at(24, 10))
+		}
+		if (vida == 1) {
+			game.addVisualIn(corazonMitadEnemigo1, game.at(23, 10))
+			game.addVisualIn(corazonVacioEnemigo1, game.at(24, 10))
+		}
+		if (vida == 0) {
+			game.addVisualIn(corazonVacioEnemigo2, game.at(23, 10))
+			game.addVisualIn(corazonVacioEnemigo1, game.at(24, 10))
+		}
 	}
 
 }

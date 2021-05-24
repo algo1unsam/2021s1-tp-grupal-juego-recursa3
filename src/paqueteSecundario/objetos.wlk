@@ -214,3 +214,27 @@ object corazonVacioPersonaje2 inherits Imagen(imagen = "corazones/corazonVacio.p
 	
 }
 
+
+object corazonCompletoEnemigo1 inherits Imagen(imagen = "corazones/corazonCompleto.png"){
+	
+}
+
+object corazonCompletoEnemigo2 inherits Imagen(imagen = "corazones/corazonCompleto.png"){
+	
+}
+
+object corazonMitadEnemigo1 inherits Imagen(imagen = "corazones/corazonMitad.png"){
+	
+}
+
+object corazonMitadEnemigo2 inherits Imagen(imagen = "corazones/corazonMitad.png"){
+	
+}
+
+object corazonVacioEnemigo1 inherits Imagen(imagen = "corazones/corazonVacio.png"){
+	
+}
+
+object corazonVacioEnemigo2 inherits Imagen(imagen = "corazones/corazonVacio.png"){
+	
+}
