@@ -58,7 +58,7 @@ describe "TEST DE INDIVIDUO" {
 	test "EL ENEMIGO ATACA personaje, Y ESTE QUEDA CON 3 PUNTOS DE VIDA." {
 		personaje.moverse(arriba)
 		assert.equals(personaje.position(), enemigo1.position())
-		enemigo.atacar()
+
 		assert.equals(3, personaje.vida())
 	}
 
