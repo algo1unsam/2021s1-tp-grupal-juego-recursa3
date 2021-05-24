@@ -1,11 +1,12 @@
 import wollok.game.*
 import direcciones.*
 import paquetePrimario.imagen.*
+import paqueteSecundario.objetos.*
 
 class Individuo inherits Imagen {
 
 	var property orientacion = derecha
-	var property vida = 100
+	var property vida = 4
 	var property armadura = null
 	var property mano1 = null
 	var property mano2 = null
@@ -44,7 +45,7 @@ class Individuo inherits Imagen {
 
 	method recibirDanio(danio) {
 		vida -= danio
-		game.say(self, "vida: " + vida.toString())
+		self.mostrarVida()
 		self.estaMuerto()
 	}
 
@@ -56,6 +57,8 @@ class Individuo inherits Imagen {
 	}
 
 	method murio()
+
+	method mostrarVida()
 
 }
 
@@ -142,34 +145,78 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 			// }
 		return "personaje/personaje" + orientacion.nombre() + ".png"
 	}
-	
-	override method murio(){
-		
+
+	override method murio() {
+		// Pantalla GAME OVER
+	}
+
+	override method mostrarVida() {
+		if (game.hasVisual(corazonCompletoPersonaje1)) {
+			game.removeVisual(corazonCompletoPersonaje1)
+		}
+		if (game.hasVisual(corazonCompletoPersonaje2)) {
+			game.removeVisual(corazonCompletoPersonaje2)
+		}
+		if (game.hasVisual(corazonMitadPersonaje1)) {
+			game.removeVisual(corazonMitadPersonaje1)
+		}
+		if (game.hasVisual(corazonMitadPersonaje2)) {
+			game.removeVisual(corazonMitadPersonaje2)
+		}
+		if (game.hasVisual(corazonVacioPersonaje1)) {
+			game.removeVisual(corazonVacioPersonaje1)
+		}
+		if (game.hasVisual(corazonVacioPersonaje2)) {
+			game.removeVisual(corazonVacioPersonaje2)
+		}
+		if (vida == 4) {
+			game.addVisualIn(corazonCompletoPersonaje1, game.at(23, 12))
+			game.addVisualIn(corazonCompletoPersonaje2, game.at(24, 12))
+		}
+		if (vida == 3) {
+			game.addVisualIn(corazonCompletoPersonaje1, game.at(23, 12))
+			game.addVisualIn(corazonMitadPersonaje1, game.at(24, 12))
+		}
+		if (vida == 2) {
+			game.addVisualIn(corazonCompletoPersonaje1, game.at(23, 12))
+			game.addVisualIn(corazonVacioPersonaje1, game.at(24, 12))
+		}
+		if (vida == 1) {
+			game.addVisualIn(corazonMitadPersonaje1, game.at(23, 12))
+			game.addVisualIn(corazonVacioPersonaje1, game.at(24, 12))
+		}
+		if (vida == 0) {
+			game.addVisualIn(corazonVacioPersonaje2, game.at(23, 12))
+			game.addVisualIn(corazonVacioPersonaje1, game.at(24, 12))
+		}
 	}
 
 }
 
-class Enemigo inherits Individuo{
-	var property ataque=0
+class Enemigo inherits Individuo {
+
+	var property ataque = 0
+
 	override method atacar() {
 		personaje.recibirDanio(ataque)
 	}
 
 	method agregarEnemigoNivel1() {
-		ataque = 5
+		game.addVisual(self)
+		self.moverse()
 	}
 
 	method agregarEnemigoNivel2() {
 		game.addVisualIn(self, game.at(3, 10))
 		game.addVisualIn(self, game.at(9, 6))
-		vida = 20
+		vida = 2
 	}
 
 	method agregarEnemigoNivel3() {
 		game.addVisualIn(self, game.at(4, 11))
 		game.addVisualIn(self, game.at(13, 4))
 		game.addVisualIn(self, game.at(19, 7))
-		vida = 30
+		vida = 4
 	}
 
 	override method teEncontro() {
@@ -184,20 +231,24 @@ class Enemigo inherits Individuo{
 
 	method moverHaciaJugador() {
 		var direccionMasConveniente = self.direccionMasConveniente(self.direccionesAtravesables())
-		//console.println(direccionMasConveniente.toString())
+			// console.println(direccionMasConveniente.toString())
 		self.moverHaciaSiSePuede(self, direccionMasConveniente)
 	}
 
 	method direccionesAtravesables() = [ izquierda, arriba, abajo, derecha ].filter{ direccion => direccion.puedeIr(self) }
 
 	override method image() {
-		return "enemigo/enemigoZombieChicoDerecha.png"
+		return "enemigo/enemigoZombieChico" + orientacion.nombre() + ".png"
 	}
 
-	override method murio(){
+	override method murio() {
 		game.removeTickEvent("Perseguir1")
 	}
+
+	override method mostrarVida() {
+	}
+
 }
 
-const enemigo= new Enemigo(vida = 11, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png",categoria='enemigo')
+const enemigo = new Enemigo(vida = 2, ataque = 1, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo')
 

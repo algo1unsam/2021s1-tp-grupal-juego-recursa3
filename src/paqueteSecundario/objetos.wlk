@@ -31,11 +31,11 @@ class Escudo inherits Objeto {
 
 }
 
-object escudoChico inherits Escudo(categoria = "escudo", peso = 5, defensa = 10, imagen = "objetos/escudoChico.png", position = game.at(23, 4)) {
+object escudoChico inherits Escudo(categoria = "escudo", peso = 5, defensa = 1, imagen = "objetos/escudoChico.png", position = game.at(23, 4)) {
 
 }
 
-object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, defensa = 20, imagen = "objetos/escudoGrande.png", position = game.at(23, 4)) {
+object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, defensa = 2, imagen = "objetos/escudoGrande.png", position = game.at(23, 4)) {
 
 }
 
@@ -45,11 +45,11 @@ class Espada inherits Objeto {
 
 }
 
-object espadaChica inherits Espada(categoria = "espada", peso = 5, danio = 10, imagen = "objetos/espadaChica.png", position = game.at(23, 5)) {
+object espadaChica inherits Espada(categoria = "espada", peso = 5, danio = 1, imagen = "objetos/espadaChica.png", position = game.at(23, 5)) {
 
 }
 
-object espadaGrande inherits Espada(categoria = "espada", peso = 10, danio = 20, imagen = "objetos/espadaGrande.png", position = game.at(24, 5)) {
+object espadaGrande inherits Espada(categoria = "espada", peso = 10, danio = 2, imagen = "objetos/espadaGrande.png", position = game.at(24, 5)) {
 
 }
 
@@ -188,6 +188,29 @@ object llave inherits Objeto (categoria = "llave", peso = 0, imagen = "llave/lla
 			game.removeVisual(self)
 		}
 	}
+}
 
+object corazonCompletoPersonaje1 inherits Imagen(imagen = "corazones/corazonCompleto.png"){
+	
+}
+
+object corazonCompletoPersonaje2 inherits Imagen(imagen = "corazones/corazonCompleto.png"){
+	
+}
+
+object corazonMitadPersonaje1 inherits Imagen(imagen = "corazones/corazonMitad.png"){
+	
+}
+
+object corazonMitadPersonaje2 inherits Imagen(imagen = "corazones/corazonMitad.png"){
+	
+}
+
+object corazonVacioPersonaje1 inherits Imagen(imagen = "corazones/corazonVacio.png"){
+	
+}
+
+object corazonVacioPersonaje2 inherits Imagen(imagen = "corazones/corazonVacio.png"){
+	
 }
 
