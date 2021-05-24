@@ -5,6 +5,8 @@
 <img src="picture\presentacion\movimientos.png">
 <br><br>
 <img src="picture\presentacion\objetos.png">
+<br><br>
+<img src="picture\presentacion\enemigo.png">
 
 <br><br>
 
