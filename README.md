@@ -149,6 +149,5 @@
 
                 assert.equals(3, personaje.vida())
             }
-
         }
     ```
