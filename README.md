@@ -2,11 +2,11 @@
 <br><br>
 
 #   ```INSTRUCCIONES DEL JUEGO```
-<img src="picture\presentacion\movimientos.png">
+<img src="assets\pantallas\tutorial.jpg">
 <br><br>
-<img src="picture\presentacion\objetos.png">
+<img src="assets\pantallas\objetos.jpg">
 <br><br>
-<img src="picture\presentacion\enemigo.png">
+<img src="assets\pantallas\enemigos.jpg">
 
 <br><br>
 
