@@ -54,3 +54,73 @@
         2.  agregarEnemigoNivel1()
         3.  recibirDanio(danio) # Se le restara vida
     ```
+
+    ```python
+        import paqueteSecundario.individuos.*
+        import paqueteSecundario.objetos.*
+        import wollok.game.*
+        import paquetePrimario.configuracion.*
+        import paqueteSecundario.direcciones.*
+
+        describe "TEST DE INDIVIDUO" {
+
+            const enemigo1 = new Enemigo(vida = 2, ataque = 1, position = game.at(5, 6), orientacion = arriba, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo')
+
+            fixture {
+                personaje.position(game.at(5, 5))
+                personaje.orientacion(arriba)
+                game.addVisual(enemigo1)
+                game.addVisual(personaje)
+                configuraciones.configurarColisiones()
+                personaje.agregarObjeto(mochilaGrande)
+                personaje.agregarObjeto(espadaChica)
+                personaje.agregarObjeto(escudoGrande)
+                game.onTick(1000, "Perseguir1", { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
+            }
+
+            test "EL INDIVIDUO TIENE MOCHILA GRANDE Y DENTRO DE LA MOCHILA TIENE UNA ESPADA CHICA Y UN ESCUDO GRANDE" {
+                assert.equals(mochilaGrande, personaje.mochila())
+                assert.equals([ espadaChica, escudoGrande ], mochilaGrande.objetosGuardados())
+            }
+
+            test "EL INDIVIDUO DECIDE DEJAR UN OBJETO PORQUE LE OCUPA ESPACIO" {
+                personaje.desecharObjeto(espadaChica)
+                assert.equals([ escudoGrande ], mochilaGrande.objetosGuardados())
+            }
+
+            test "EL INDIVIDUO AL AGARRAR LA ESPADA GRANDE DESECHA LA ESPADA CHICA." {
+                personaje.agregarObjeto(espadaGrande)
+                assert.notThat(mochilaGrande.objetosGuardados().any({ objeto => objeto == espadaChica}))
+                assert.notThat(personaje.mano1() == espadaChica)
+                assert.that(mochilaGrande.objetosGuardados().any({ objeto => objeto == espadaGrande}))
+                assert.that(personaje.mano1() == espadaGrande)
+            }
+
+            test "EL personaje AGARRA 3 LLAVES Y UTILIZA UNA, LE QUEDAN 2" {
+                3.times({ i => personaje.agregarObjeto(llave)})
+                personaje.utilizarObjeto(llave)
+                assert.equals(2, personaje.cantidadLlaves())
+            }
+
+            test "EL personaje ATACA A UN RIVAL HASTA DEJARLO CON 50 VIDA" {
+                personaje.atacar()
+                assert.equals(1, enemigo1.vida())
+            }
+
+            test "EL personaje ATACA AL enemigo1 HASTA MATARLO" {
+                2.times({ i => personaje.atacar()})
+                assert.equals(0, enemigo1.vida())
+                assert.notThat(game.hasVisual(enemigo1))
+            }
+
+            test "EL ENEMIGO ATACA personaje, Y ESTE QUEDA CON 3 PUNTOS DE VIDA." {
+                personaje.moverse(arriba)
+                assert.equals(personaje.position(), enemigo1.position())
+
+                assert.equals(3, personaje.vida())
+            }
+
+        }
+
+
+    ```
