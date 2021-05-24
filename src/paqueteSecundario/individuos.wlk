@@ -184,7 +184,7 @@ class Enemigo inherits Individuo{
 
 	method moverHaciaJugador() {
 		var direccionMasConveniente = self.direccionMasConveniente(self.direccionesAtravesables())
-		console.println(direccionMasConveniente.toString())
+		//console.println(direccionMasConveniente.toString())
 		self.moverHaciaSiSePuede(self, direccionMasConveniente)
 	}
 
