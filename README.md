@@ -54,4 +54,3 @@
         2.  agregarEnemigoNivel1()
         3.  recibirDanio(danio) # Se le restara vida
     ```
- 
