@@ -55,7 +55,7 @@
         3.  recibirDanio(danio) # Se le restara vida
     ```
 
-    ```python
+    ```java
         import paqueteSecundario.individuos.*
         import paqueteSecundario.objetos.*
         import wollok.game.*
