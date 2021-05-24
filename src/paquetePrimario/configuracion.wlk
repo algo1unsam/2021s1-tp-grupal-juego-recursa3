@@ -6,10 +6,9 @@ import paqueteSecundario.estados.*
 object configuraciones {
 
 	const property altura = 14
-	const property ancho = 26
+	const property ancho = 27
 	var estadoActual = juego
-	
-	
+
 	method configurarTeclas() {
 	
 	keyboard.up().onPressDo({estadoActual.alPresionarUp()})
