@@ -1,16 +1,16 @@
 <img src="picture\presentacion\recursa3.jpg" width='600'>
-<br><br><br><br><br><br>
+<br><br>
 
 #   ```INSTRUCCIONES DEL JUEGO```
 <img src="picture\presentacion\movimientos.png">
-<br><br><br><br>
+<br><br>
 <img src="picture\presentacion\objetos.png">
 
-<br><br><br><br><br><br>
+<br><br>
 
 #   ```DIAGRAMA DE ARQUITECTURA```
 <img src="picture\presentacion\tp_algo1.drawio.png">
-<br><br><br><br><br><br>
+<br><br>
 
 # ```CONCEPTOS DE LOS METODOS```
 # objetos.wlk:
@@ -65,7 +65,7 @@
         2.  agregarEnemigoNivel1()
         3.  recibirDanio(danio) # Se le restara vida
     ```
-    <br><br><br><br><br><br>
+    <br><br>
 
     # TEST REALIZADOS
     ```python
