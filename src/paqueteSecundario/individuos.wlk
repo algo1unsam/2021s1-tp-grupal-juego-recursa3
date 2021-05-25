@@ -25,6 +25,9 @@ class Individuo inherits Imagen {
 		}
 	}
 
+
+	method puedeMoverse(posicion) = posicion.allElements().all({ objeto => objeto.esAtravesable() })
+
 	method moverHacia(individuo, direccion) {
 		const nuevaPosicion = direccion.posicion(individuo.position())
 		if (self.puedeMoverse(nuevaPosicion)) {
@@ -39,9 +42,6 @@ class Individuo inherits Imagen {
 		// console.println(nuevaPosicion)
 		}
 	}
-
-	method puedeMoverse(posicion) = posicion.allElements().all({ objeto => objeto.esAtravesable() })
-
 	method atacar()
 
 	method recibirDanio(danio) {
