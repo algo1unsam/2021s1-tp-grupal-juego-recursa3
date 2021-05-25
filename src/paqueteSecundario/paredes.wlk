@@ -126,13 +126,11 @@ object paredes{
 		game.addVisual(new Pared(position = game.at(16,5),  imagen = "paredes/paredSinBordesH.png"))
 		game.addVisual(new Pared(position = game.at(17,5),  imagen = "paredes/paredSinBordesH.png"))
 		game.addVisual(new Pared(position = game.at(18,5),  imagen = "paredes/paredDerechoUnionHV.png"))
-		
-		game.addVisual(new Pared(position = game.at(18,4),  imagen = "paredes/paredBordeIzquierdoUnionHV.png"))
-		game.addVisual(new Pared(position = game.at(19,4),  imagen = "paredes/paredBordeDerechoH.png"))
-	
+
+		game.addVisual(new Pared(position = game.at(18,4),  imagen = "paredes/paredInferiorV.png"))
+
 		game.addVisual(new Pared(position = game.at(18,2),  imagen = "paredes/paredBordeIzquierdoH.png"))
 		game.addVisual(new Pared(position = game.at(19,2),  imagen = "paredes/paredSinBordesH.png"))
-		game.addVisual(new Pared(position = game.at(20,2),  imagen = "paredes/paredSinBordesH.png"))
-		game.addVisual(new Pared(position = game.at(21,2),  imagen = "paredes/paredUnionIzquierdoHV.png"))
+		game.addVisual(new Pared(position = game.at(20,2),  imagen = "paredes/paredUnionIzquierdoHV.png"))
 	}
 }

@@ -188,53 +188,78 @@ object llave inherits Objeto (categoria = "llave", peso = 0, imagen = "llave/lla
 			game.removeVisual(self)
 		}
 	}
+
 }
 
-object corazonCompletoPersonaje1 inherits Imagen(imagen = "corazones/corazonCompleto.png"){
-	
+object corazonCompletoPersonaje1 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
+
 }
 
-object corazonCompletoPersonaje2 inherits Imagen(imagen = "corazones/corazonCompleto.png"){
-	
+object corazonCompletoPersonaje2 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
+
 }
 
-object corazonMitadPersonaje1 inherits Imagen(imagen = "corazones/corazonMitad.png"){
-	
+object corazonCompletoPersonaje3 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
+
 }
 
-object corazonMitadPersonaje2 inherits Imagen(imagen = "corazones/corazonMitad.png"){
-	
+object corazonMitadPersonaje1 inherits Imagen(imagen = "corazones/corazonMitad.png") {
+
 }
 
-object corazonVacioPersonaje1 inherits Imagen(imagen = "corazones/corazonVacio.png"){
-	
+object corazonMitadPersonaje2 inherits Imagen(imagen = "corazones/corazonMitad.png") {
+
 }
 
-object corazonVacioPersonaje2 inherits Imagen(imagen = "corazones/corazonVacio.png"){
-	
+object corazonMitadPersonaje3 inherits Imagen(imagen = "corazones/corazonMitad.png") {
+
 }
 
+object corazonVacioPersonaje1 inherits Imagen(imagen = "corazones/corazonVacio.png") {
 
-object corazonCompletoEnemigo1 inherits Imagen(imagen = "corazones/corazonCompleto.png"){
-	
 }
 
-object corazonCompletoEnemigo2 inherits Imagen(imagen = "corazones/corazonCompleto.png"){
-	
+object corazonVacioPersonaje2 inherits Imagen(imagen = "corazones/corazonVacio.png") {
+
 }
 
-object corazonMitadEnemigo1 inherits Imagen(imagen = "corazones/corazonMitad.png"){
-	
+object corazonVacioPersonaje3 inherits Imagen(imagen = "corazones/corazonVacio.png") {
+
 }
 
-object corazonMitadEnemigo2 inherits Imagen(imagen = "corazones/corazonMitad.png"){
-	
+object corazonCompletoEnemigo1 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
+
 }
 
-object corazonVacioEnemigo1 inherits Imagen(imagen = "corazones/corazonVacio.png"){
-	
+object corazonCompletoEnemigo2 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
+
 }
 
-object corazonVacioEnemigo2 inherits Imagen(imagen = "corazones/corazonVacio.png"){
-	
+object corazonCompletoEnemigo3 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
+
 }
+
+object corazonMitadEnemigo1 inherits Imagen(imagen = "corazones/corazonMitad.png") {
+
+}
+
+object corazonMitadEnemigo2 inherits Imagen(imagen = "corazones/corazonMitad.png") {
+
+}
+
+object corazonMitadEnemigo3 inherits Imagen(imagen = "corazones/corazonMitad.png") {
+
+}
+
+object corazonVacioEnemigo1 inherits Imagen(imagen = "corazones/corazonVacio.png") {
+
+}
+
+object corazonVacioEnemigo2 inherits Imagen(imagen = "corazones/corazonVacio.png") {
+
+}
+
+object corazonVacioEnemigo3 inherits Imagen(imagen = "corazones/corazonVacio.png") {
+
+}
+
