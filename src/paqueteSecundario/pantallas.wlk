@@ -2,12 +2,9 @@ import wollok.game.*
 import paquetePrimario.configuracion.*
 import paqueteSecundario.niveles.*
 import paqueteSecundario.estados.*
+import paquetePrimario.imagen.*
 
-class Pantalla {
-
-	var property imagen = "general/vacio.png"
-
-	method image() = imagen
+class Pantalla inherits Imagen{
 
 	method iniciar() {
 		game.addVisualIn(self, game.origin())

@@ -8,6 +8,7 @@ import paquetePrimario.configuracion.*
 import paquetePrimario.pantallaJuego.*
 import paqueteSecundario.individuos.*
 import paqueteSecundario.objetos.*
+import paqueteSecundario.menues.*
 
 class Nivel {
 
@@ -45,6 +46,7 @@ object nivel1 inherits Nivel {
 		personaje.mostrarVida()
 		enemigo.agregarEnemigoNivel1()
 		configuraciones.configurarColisiones()
+		menues.agregarMenu()
 	}
 
 	override method finalizarNivel() {
