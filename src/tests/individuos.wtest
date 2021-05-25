@@ -39,8 +39,8 @@ describe "TEST DE INDIVIDUO" {
 	}
 
 	test "EL personaje AGARRA 3 LLAVES Y UTILIZA UNA, LE QUEDAN 2" {
-		3.times({ i => personaje.agregarObjeto(llave)})
-		personaje.utilizarObjeto(llave)
+		3.times({ i => personaje.agregarObjeto(llaveCofre)})
+		personaje.utilizarObjeto(llaveCofre)
 		assert.equals(2, personaje.cantidadLlaves())
 	}
 
