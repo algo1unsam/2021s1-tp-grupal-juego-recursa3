@@ -60,7 +60,7 @@ object nivel2 inherits Nivel {
 		// musicaJuego.play()
 		pisos.agregarPisosNivel2()
 		bordes.agregarBordesNivel2()
-			// paredes.agregarParedesNivel2()
+		paredes.agregarParedesNivel2()
 			// salidas.agregarSalidasNivel2()
 			// cofres.agregarCofresNivel3()
 			// enemigo.agregarEnemigoNivel3()
