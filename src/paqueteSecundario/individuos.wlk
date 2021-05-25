@@ -71,8 +71,12 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	var property mochila = null
 	var property ataque = false
 
-	method equiparObjeto(unObjeto) {
+	method equiparObjetoMano1(unObjeto) {
 		self.mano1(unObjeto)
+	}
+	
+	method equiparObjetoMano2(unObjeto) {
+		self.mano2(unObjeto)
 	}
 
 	method utilizarObjeto(unObjeto) {
@@ -144,7 +148,7 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 			return "personaje/personaje" + mano1 + orientacion.nombre() + ".png"
 		}
 		if (self.mano1() != null && self.mano2() != null) {
-			return "individuo/personaje" + mano1 + mano2 + orientacion.nombre() + ".png"
+			return "personaje/personaje" + mano1 + mano2 + orientacion.nombre() + ".png"
 		}
 		return "personaje/personaje" + orientacion.nombre() + ".png"
 	}
