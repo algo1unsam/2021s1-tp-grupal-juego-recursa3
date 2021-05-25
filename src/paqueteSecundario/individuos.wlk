@@ -2,6 +2,7 @@ import wollok.game.*
 import direcciones.*
 import paquetePrimario.imagen.*
 import paqueteSecundario.objetos.*
+import paquetePrimario.menu.*
 
 class Individuo inherits Imagen {
 
@@ -154,44 +155,40 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 
 	override method mostrarVida() {
 		self.removeVida()
-		const corazon1X = 23
-		const corazon2X = 24
-		const corazon3X = 25
-		const corazonY = 12
 		if (vida == 6) {
-			game.addVisualIn(corazonCompletoPersonaje1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonCompletoPersonaje2, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonCompletoPersonaje3, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonCompletoPersonaje1, menu.posicionCorazonPersonaje1())
+			game.addVisualIn(corazonCompletoPersonaje2, menu.posicionCorazonPersonaje2())
+			game.addVisualIn(corazonCompletoPersonaje3, menu.posicionCorazonPersonaje3())
 		}
 		if (vida == 5) {
-			game.addVisualIn(corazonCompletoPersonaje1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonCompletoPersonaje2, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonMitadPersonaje1, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonCompletoPersonaje1, menu.posicionCorazonPersonaje1())
+			game.addVisualIn(corazonCompletoPersonaje2, menu.posicionCorazonPersonaje2())
+			game.addVisualIn(corazonMitadPersonaje1, menu.posicionCorazonPersonaje3())
 		}
 		if (vida == 4) {
-			game.addVisualIn(corazonCompletoPersonaje1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonCompletoPersonaje2, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonVacioPersonaje1, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonCompletoPersonaje1, menu.posicionCorazonPersonaje1())
+			game.addVisualIn(corazonCompletoPersonaje2, menu.posicionCorazonPersonaje2())
+			game.addVisualIn(corazonVacioPersonaje1, menu.posicionCorazonPersonaje3())
 		}
 		if (vida == 3) {
-			game.addVisualIn(corazonCompletoPersonaje1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonMitadPersonaje1, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonVacioPersonaje1, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonCompletoPersonaje1, menu.posicionCorazonPersonaje1())
+			game.addVisualIn(corazonMitadPersonaje1, menu.posicionCorazonPersonaje2())
+			game.addVisualIn(corazonVacioPersonaje1, menu.posicionCorazonPersonaje3())
 		}
 		if (vida == 2) {
-			game.addVisualIn(corazonCompletoPersonaje1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonVacioPersonaje1, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonVacioPersonaje2, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonCompletoPersonaje1, menu.posicionCorazonPersonaje1())
+			game.addVisualIn(corazonVacioPersonaje1, menu.posicionCorazonPersonaje2())
+			game.addVisualIn(corazonVacioPersonaje2, menu.posicionCorazonPersonaje3())
 		}
 		if (vida == 1) {
-			game.addVisualIn(corazonMitadPersonaje1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonVacioPersonaje1, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonVacioPersonaje2, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonMitadPersonaje1, menu.posicionCorazonPersonaje1())
+			game.addVisualIn(corazonVacioPersonaje1, menu.posicionCorazonPersonaje2())
+			game.addVisualIn(corazonVacioPersonaje2, menu.posicionCorazonPersonaje3())
 		}
 		if (vida == 0) {
-			game.addVisualIn(corazonVacioPersonaje1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonVacioPersonaje2, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonVacioPersonaje3, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonVacioPersonaje1, menu.posicionCorazonPersonaje1())
+			game.addVisualIn(corazonVacioPersonaje2, menu.posicionCorazonPersonaje2())
+			game.addVisualIn(corazonVacioPersonaje3, menu.posicionCorazonPersonaje3())
 		}
 	}
 	
@@ -281,44 +278,40 @@ class Enemigo inherits Individuo {
 
 	override method mostrarVida() {
 		self.removeVida()
-		const corazon1X = 23
-		const corazon2X = 24
-		const corazon3X = 25
-		const corazonY = 12
 		if (vida == 6) {
-			game.addVisualIn(corazonCompletoEnemigo1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonCompletoEnemigo2, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonCompletoEnemigo3, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonCompletoEnemigo1, menu.posicionCorazonEnemigo1())
+			game.addVisualIn(corazonCompletoEnemigo2, menu.posicionCorazonEnemigo2())
+			game.addVisualIn(corazonCompletoEnemigo3, menu.posicionCorazonEnemigo3())
 		}
 		if (vida == 5) {
-			game.addVisualIn(corazonCompletoEnemigo1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonCompletoEnemigo2, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonMitadEnemigo1, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonCompletoEnemigo1, menu.posicionCorazonEnemigo1())
+			game.addVisualIn(corazonCompletoEnemigo2, menu.posicionCorazonEnemigo2())
+			game.addVisualIn(corazonMitadEnemigo1, menu.posicionCorazonEnemigo3())
 		}
 		if (vida == 4) {
-			game.addVisualIn(corazonCompletoEnemigo1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonCompletoEnemigo2, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonVacioEnemigo1, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonCompletoEnemigo1, menu.posicionCorazonEnemigo1())
+			game.addVisualIn(corazonCompletoEnemigo2, menu.posicionCorazonEnemigo2())
+			game.addVisualIn(corazonVacioEnemigo1, menu.posicionCorazonEnemigo3())
 		}
 		if (vida == 3) {
-			game.addVisualIn(corazonCompletoEnemigo1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonMitadEnemigo1, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonVacioEnemigo1, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonCompletoEnemigo1, menu.posicionCorazonEnemigo1())
+			game.addVisualIn(corazonMitadEnemigo1, menu.posicionCorazonEnemigo2())
+			game.addVisualIn(corazonVacioEnemigo1, menu.posicionCorazonEnemigo3())
 		}
 		if (vida == 2) {
-			game.addVisualIn(corazonCompletoEnemigo1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonVacioEnemigo1, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonVacioEnemigo2, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonCompletoEnemigo1, menu.posicionCorazonEnemigo1())
+			game.addVisualIn(corazonVacioEnemigo1, menu.posicionCorazonEnemigo2())
+			game.addVisualIn(corazonVacioEnemigo2, menu.posicionCorazonEnemigo3())
 		}
 		if (vida == 1) {
-			game.addVisualIn(corazonMitadEnemigo1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonVacioEnemigo1, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonVacioEnemigo2, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonMitadEnemigo1, menu.posicionCorazonEnemigo1())
+			game.addVisualIn(corazonVacioEnemigo1, menu.posicionCorazonEnemigo2())
+			game.addVisualIn(corazonVacioEnemigo2, menu.posicionCorazonEnemigo3())
 		}
 		if (vida == 0) {
-			game.addVisualIn(corazonVacioEnemigo1, game.at(corazon1X, corazonY))
-			game.addVisualIn(corazonVacioEnemigo2, game.at(corazon2X, corazonY))
-			game.addVisualIn(corazonVacioEnemigo3, game.at(corazon3X, corazonY))
+			game.addVisualIn(corazonVacioEnemigo1, menu.posicionCorazonEnemigo1())
+			game.addVisualIn(corazonVacioEnemigo2, menu.posicionCorazonEnemigo2())
+			game.addVisualIn(corazonVacioEnemigo3, menu.posicionCorazonEnemigo3())
 			game.schedule(500, { self.removeVida() })
 		}
 	}

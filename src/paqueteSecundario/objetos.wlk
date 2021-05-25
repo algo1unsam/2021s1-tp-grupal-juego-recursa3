@@ -1,3 +1,4 @@
+import paquetePrimario.menu.*
 import paquetePrimario.imagen.*
 import wollok.game.*
 import paqueteSecundario.individuos.*
@@ -19,7 +20,7 @@ class Objeto inherits Imagen {
 object objetos {
 
 	method agregarObjetosNivel1() {
-		game.addVisualIn(llave, game.at(5, 5))
+		game.addVisualIn(llaveCofre, game.at(5, 5))
 		game.addVisualIn(mochilaChica, game.at(3, 1))
 	}
 
@@ -31,11 +32,11 @@ class Escudo inherits Objeto {
 
 }
 
-object escudoChico inherits Escudo(categoria = "escudo", peso = 5, defensa = 1, imagen = "objetos/escudoChico.png", position = game.at(23, 4)) {
+object escudoChico inherits Escudo(categoria = "escudo", peso = 5, defensa = 1, imagen = "objetos/escudoChico.png", position = menu.posicionEscudoChico()) {
 
 }
 
-object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, defensa = 2, imagen = "objetos/escudoGrande.png", position = game.at(23, 4)) {
+object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, defensa = 2, imagen = "objetos/escudoGrande.png", position = menu.posicionEscudoGrande()) {
 
 }
 
@@ -45,11 +46,11 @@ class Espada inherits Objeto {
 
 }
 
-object espadaChica inherits Espada(categoria = "espada", peso = 5, danio = 1, imagen = "objetos/espadaChica.png", position = game.at(23, 5)) {
+object espadaChica inherits Espada(categoria = "espada", peso = 5, danio = 1, imagen = "objetos/espadaChica.png", position = menu.posicionEspadaChica()) {
 
 }
 
-object espadaGrande inherits Espada(categoria = "espada", peso = 10, danio = 2, imagen = "objetos/espadaGrande.png", position = game.at(24, 5)) {
+object espadaGrande inherits Espada(categoria = "espada", peso = 10, danio = 2, imagen = "objetos/espadaGrande.png", position = menu.posicionEspadaGrande()) {
 
 }
 
@@ -117,11 +118,11 @@ class Mochila inherits Objeto {
 
 }
 
-object mochilaChica inherits Mochila(categoria = "mochila", peso = -15, imagen = "objetos/mochilaChica.png", position = game.at(23, 6)) {
+object mochilaChica inherits Mochila(categoria = "mochila", peso = -15, imagen = "objetos/mochilaChica.png", position = menu.posicionMochilaChica()) {
 
 }
 
-object mochilaGrande inherits Mochila(categoria = "mochila", peso = -20, imagen = "objetos/mochilaGrande.png", position = game.at(23, 6)) {
+object mochilaGrande inherits Mochila(categoria = "mochila", peso = -20, imagen = "objetos/mochilaGrande.png", position = menu.posicionMochilaGrande()) {
 
 }
 
@@ -132,7 +133,7 @@ class Cofre inherits Objeto {
 	override method interactuarConObjeto() {
 		if (objetoGuardado != null && personaje.mochila() != null) {
 			if (personaje.cantidadLlaves() > 0) {
-				personaje.utilizarObjeto(llave)
+				personaje.utilizarObjeto(llaveCofre)
 				game.addVisualIn(cofreAbierto, game.at(self.position().x(), self.position().y()))
 				game.removeVisual(self)
 				return objetoGuardado
@@ -180,7 +181,7 @@ object cofreAbierto inherits Imagen(imagen = "cofres/cofreAbierto.png") {
 
 }
 
-object llave inherits Objeto (categoria = "llave", peso = 0, imagen = "llave/llave.png", position = game.at(24, 6)) {
+class Llave inherits Objeto {
 
 	override method utilizarObjeto() {
 		personaje.mochila().usarLlave()
@@ -188,6 +189,22 @@ object llave inherits Objeto (categoria = "llave", peso = 0, imagen = "llave/lla
 			game.removeVisual(self)
 		}
 	}
+
+}
+
+object llaveCofre inherits Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()) {
+
+}
+
+object llaveAzul inherits Llave(categoria = "llave", peso = 0, imagen = "llave/llaveAzul.png", position = menu.posicionLlaveAzul()) {
+
+}
+
+object llaveRoja inherits Llave(categoria = "llave", peso = 0, imagen = "llave/llaveRoja.png", position = menu.posicionLlaveRoja()) {
+
+}
+
+object llaveVerde inherits Llave(categoria = "llave", peso = 0, imagen = "llave/llaveVerde.png", position = menu.posicionLlaveVerde()) {
 
 }
 
