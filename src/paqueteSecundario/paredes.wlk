@@ -231,6 +231,10 @@ object paredes{
 		game.addVisual(new Pared(position = game.at(3,6),  imagen = "paredes/paredCompleta.png"))	
 		game.addVisual(new Pared(position = game.at(3,7),  imagen = "paredes/paredCompleta.png"))	
 		game.addVisual(new Pared(position = game.at(3,8),  imagen = "paredes/paredCompleta.png"))			
+		game.addVisual(new Pared(position = game.at(13,7),  imagen = "paredes/paredCompleta.png"))
+		game.addVisual(new Pared(position = game.at(14,7),  imagen = "paredes/paredCompleta.png"))				
+		game.addVisual(new Pared(position = game.at(13,6),  imagen = "paredes/paredCompleta.png"))
+		game.addVisual(new Pared(position = game.at(14,6),  imagen = "paredes/paredCompleta.png"))	
 		game.addVisual(new Pared(position = game.at(2,13),  imagen = "puerta/puerta.png"))	
 		
 		
