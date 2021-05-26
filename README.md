@@ -91,10 +91,10 @@
     ```
     <br><br>
     # ```COMPORTAMIENTO DE LOS BORDES y PAREDES```
-        El juego cuenta con objetos con un atributo booleano (esAtravesable) que indica si dicho objeto puede o no ser atravesado.
-        Tanto el personaje como el enemigo poseen un método denominado puedeMoverse(posicion) el cual va a consultar dicho atributo esAtravesable. 
-            1.  false, no puede moverse
-            2.  true,  puede moverse
+    El juego cuenta con objetos con un atributo booleano (esAtravesable) que indica si dicho objeto puede o no ser atravesado.
+    Tanto el personaje como el enemigo poseen un método denominado puedeMoverse(posicion) el cual va a consultar dicho atributo esAtravesable. 
+        1.  false, no puede moverse
+        2.  true,  puede moverse
     <br><br>    
     # TEST REALIZADOS
     ```python
