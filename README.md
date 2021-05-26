@@ -60,17 +60,18 @@
     ```
 *   ### Objeto personaje:
     ```python
-        1.  equiparObjeto(unObjeto) # Equipara un objeto a la mano 1
-        2.  utilizarObjeto(unObjeto) # Usara el metodo utilizarObjeto del objeto que tenga equipado
-        3.  interactuarConObjetos(variosObjetos) # Se utiliza para que el individuo pueda conocer otro objeto segun los criterios de interactuar del mismo
-        4.  agregarObjeto(unObjeto) # Revisara si el objeto que quiere agregar es una mochila le agregara la mochila como un atributo al personaje. En caso de querer agarrar un objeto distinto de la mochila, revisara si el personaje tiene una mochila y llamara al methodo de la mochila agregarObjeto. De lo contrario arrojara un mensaje.
-        5.  desecharObjeto(unObjeto) # Desechara el objeto que se le pase como parametro. 
-        6.  cantidadLlaves() # Devolvera la consutla a la mochila de las llaves()
-        7.  atacar() # Revisara si el personaje tiene algun objeto en la mano para poder atacar, en caso de haber un enemigo en frente, procede a quitarle vida. Sino sale un mensaje de que no se puede atacar por no tener un objeto en la mano. 
-        8.  image() # Segun la accion que realiza el personaje realizara una accion. 
-        9.  murio() # Mostrara la pantalal de Game Over
-        10. mostrarVida() # Mostrara en pantalla la vida del personaje, la cual a medida que pierda vida se ira modificando. 
-        13. removeVida() # Quitara el visual de la vida cuando reciba daño
+        1.  equiparObjetoMano1(unObjeto) # Equipara un objeto a la mano 1
+        2.  equiparObjetoMano2(unObjeto) # Equipara un objeto a la mano 2
+        3.  utilizarObjeto(unObjeto) # Usara el metodo utilizarObjeto del objeto que tenga equipado
+        4.  interactuarConObjetos(variosObjetos) # Se utiliza para que el individuo pueda conocer otro objeto segun los criterios de interactuar del mismo
+        5.  agregarObjeto(unObjeto) # Revisara si el objeto que quiere agregar es una mochila le agregara la mochila como un atributo al personaje. En caso de querer agarrar un objeto distinto de la mochila, revisara si el personaje tiene una mochila y llamara al methodo de la mochila agregarObjeto. De lo contrario arrojara un mensaje.
+        6.  desecharObjeto(unObjeto) # Desechara el objeto que se le pase como parametro. 
+        7.  cantidadLlaves() # Devolvera la consutla a la mochila de las llaves()
+        8.  atacar() # Revisara si el personaje tiene algun objeto en la mano para poder atacar, en caso de haber un enemigo en frente, procede a quitarle vida. Sino sale un mensaje de que no se puede atacar por no tener un objeto en la mano. 
+        9.  image() # Segun la accion que realiza el personaje realizara una accion. 
+        10.  murio() # Mostrara la pantalal de Game Over
+        11. mostrarVida() # Mostrara en pantalla la vida del personaje, la cual a medida que pierda vida se ira modificando. 
+        12. removeVida() # Quitara el visual de la vida cuando reciba daño
     ```
 *   ### Objeto enemigo:
     ```python
@@ -89,7 +90,12 @@
         13. removeVida() # Quitara el visual de la vida cuando reciba daño
     ```
     <br><br>
-
+    # COMPORTAMIENTO DE LOS BORDES y PAREDES
+        El juego cuenta con objetos con un atributo booleano (esAtravesable) que indica si dicho objeto puede o no ser atravesado.
+        Tanto el personaje como el enemigo poseen un método denominado puedeMoverse(posicion) el cual va a consultar dicho atributo esAtravesable. 
+            1.  false, no puede moverse
+            2.  true,  puede moverse
+    <br><br>    
     # TEST REALIZADOS
     ```python
         import paqueteSecundario.individuos.*
