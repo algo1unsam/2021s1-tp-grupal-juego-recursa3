@@ -25,6 +25,8 @@ class Individuo inherits Imagen {
 		}
 	}
 
+	method puedeMoverse(posicion) = posicion.allElements().all({ objeto => objeto.esAtravesable() })
+
 	method moverHacia(individuo, direccion) {
 		const nuevaPosicion = direccion.posicion(individuo.position())
 		if (self.puedeMoverse(nuevaPosicion)) {
@@ -39,8 +41,6 @@ class Individuo inherits Imagen {
 		// console.println(nuevaPosicion)
 		}
 	}
-
-	method puedeMoverse(posicion) = posicion.allElements().all({ objeto => objeto.esAtravesable() })
 
 	method atacar()
 
@@ -60,7 +60,7 @@ class Individuo inherits Imagen {
 	method murio()
 
 	method mostrarVida()
-	
+
 	method removeVida()
 
 }
@@ -71,8 +71,12 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	var property mochila = null
 	var property ataque = false
 
-	method equiparObjeto(unObjeto) {
+	method equiparObjetoMano1(unObjeto) {
 		self.mano1(unObjeto)
+	}
+	
+	method equiparObjetoMano2(unObjeto) {
+		self.mano2(unObjeto)
 	}
 
 	method utilizarObjeto(unObjeto) {
@@ -134,23 +138,23 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	override method image() {
-		if (self.mano1() != null && self.ataque()) {
+		if (self.mano1() != null && self.mano2() == null && self.ataque()) {
 			return "personaje/personaje" + mano1 + "Ataque" + orientacion.nombre() + ".png"
 		}
-		if (self.mano1() != null) {
+		if (self.mano1() != null && self.mano2() != null && self.ataque()) {
+			return "personaje/personaje" + mano1 + mano2 + "Ataque" + orientacion.nombre() + ".png"
+		}
+		if (self.mano1() != null && self.mano2() == null) {
 			return "personaje/personaje" + mano1 + orientacion.nombre() + ".png"
 		}
-			// if(selftieneAlgoEnMano2()){
-			// return "individuo/personaje + mano2.getObjeto() + orientacion.nombre() ".png"
-			// }
-			// if(self.tieneAlgoEnAmbasManos()){
-			// return "individuo/personaje + mano1.getObjeto() + mano2.getObjeto() + orientacion.nombre() + ".png"
-			// }
+		if (self.mano1() != null && self.mano2() != null) {
+			return "personaje/personaje" + mano1 + mano2 + orientacion.nombre() + ".png"
+		}
 		return "personaje/personaje" + orientacion.nombre() + ".png"
 	}
 
 	override method murio() {
-		// Pantalla GAME OVER
+	// Pantalla GAME OVER
 	}
 
 	override method mostrarVida() {
@@ -191,8 +195,8 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 			game.addVisualIn(corazonVacioPersonaje3, menu.posicionCorazonPersonaje3())
 		}
 	}
-	
-	override method removeVida(){
+
+	override method removeVida() {
 		if (game.hasVisual(corazonCompletoPersonaje1)) {
 			game.removeVisual(corazonCompletoPersonaje1)
 		}
@@ -312,11 +316,11 @@ class Enemigo inherits Individuo {
 			game.addVisualIn(corazonVacioEnemigo1, menu.posicionCorazonEnemigo1())
 			game.addVisualIn(corazonVacioEnemigo2, menu.posicionCorazonEnemigo2())
 			game.addVisualIn(corazonVacioEnemigo3, menu.posicionCorazonEnemigo3())
-			game.schedule(500, { self.removeVida() })
+			game.schedule(500, { self.removeVida()})
 		}
 	}
-	
-	override method removeVida(){
+
+	override method removeVida() {
 		if (game.hasVisual(corazonCompletoEnemigo1)) {
 			game.removeVisual(corazonCompletoEnemigo1)
 		}

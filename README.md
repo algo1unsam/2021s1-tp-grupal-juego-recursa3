@@ -32,6 +32,7 @@
         3.  interactuarConObjeto()  # Pendiente
         4.  desecharObjeto(unObjeto) # Se utiliza para remover un objeto de la mochila
         5.  usarLlave() # Utiliza una llave de la mochila -1
+        6.  objetosGuardados() # Devuelve la coleccion de los objetos guardados
     ```
 *   ### Clase Cofres:
     ```python
@@ -50,11 +51,12 @@
         2.  moverHaciaSiSePuede(personaje, direccion) # Controlara si puede atravezar un obstaculo
         3.  puedeMoverse(posicion) # Hace el llamado de moverHaciaSiSePuede para controlar que pueda moverse
         4.  moverHacia(personaje, direccion) # Se ultiliza para mover de posicion al personaje
-        5.  atacar() # Pendiente
+        5.  atacar() # Depende del individuo
         6.  recibirDanio(danio) # Al individuo se le restara vida dependiendo el objeto con que se lo ataque.
         7.  estaMuerto() # Si al individuo se le agotaron la vida se removera la imagen de dicho individuo en el juego.
-        8.  murio() # Pendiente
-        9.  mostrarVida() # Pendiente
+        8.  murio() # Depende del individuo
+        9.  mostrarVida() # Depende del individuo
+        10. removeVida() # Depende del individuo
     ```
 *   ### Objeto personaje:
     ```python
@@ -68,6 +70,7 @@
         8.  image() # Segun la accion que realiza el personaje realizara una accion. 
         9.  murio() # Mostrara la pantalal de Game Over
         10. mostrarVida() # Mostrara en pantalla la vida del personaje, la cual a medida que pierda vida se ira modificando. 
+        13. removeVida() # Quitara el visual de la vida cuando reciba daño
     ```
 *   ### Objeto enemigo:
     ```python
@@ -83,6 +86,7 @@
         10. image() # establece la imagen del enemigo en el juego
         11. murio() # Se remueve la imagen del enemigo al morir
         12. mostrarVida() # Mostrara en pantalla la vida del personaje, la cual a medida que pierda vida se ira modificando. 
+        13. removeVida() # Quitara el visual de la vida cuando reciba daño
     ```
     <br><br>
 
@@ -93,7 +97,7 @@
         import wollok.game.*
         import paquetePrimario.configuracion.*
         import paqueteSecundario.direcciones.*
-
+        import paqueteSecundario.estados.*
         describe "TEST DE INDIVIDUO" {
 
             const enemigo1 = new Enemigo(vida = 2, ataque = 1, position = game.at(5, 6), orientacion = arriba, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo')
@@ -108,6 +112,7 @@
                 personaje.agregarObjeto(espadaChica)
                 personaje.agregarObjeto(escudoGrande)
                 game.onTick(1000, "Perseguir1", { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
+                
             }
 
             test "EL INDIVIDUO TIENE MOCHILA GRANDE Y DENTRO DE LA MOCHILA TIENE UNA ESPADA CHICA Y UN ESCUDO GRANDE" {
@@ -129,8 +134,8 @@
             }
 
             test "EL personaje AGARRA 3 LLAVES Y UTILIZA UNA, LE QUEDAN 2" {
-                3.times({ i => personaje.agregarObjeto(llave)})
-                personaje.utilizarObjeto(llave)
+                3.times({ i => personaje.agregarObjeto(llaveCofre)})
+                personaje.utilizarObjeto(llaveCofre)
                 assert.equals(2, personaje.cantidadLlaves())
             }
 
@@ -145,11 +150,12 @@
                 assert.notThat(game.hasVisual(enemigo1))
             }
 
-            test "EL ENEMIGO ATACA personaje, Y ESTE QUEDA CON 3 PUNTOS DE VIDA." {
+            test "EL ENEMIGO ATACA personaje, Y ESTE QUEDA CON 5 PUNTOS DE VIDA." {
                 personaje.moverse(arriba)
+                enemigo1.teEncontro()
                 assert.equals(personaje.position(), enemigo1.position())
-
-                assert.equals(3, personaje.vida())
+                assert.equals(5, personaje.vida())
             }
+
         }
     ```

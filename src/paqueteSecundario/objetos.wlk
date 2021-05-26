@@ -21,6 +21,7 @@ object objetos {
 
 	method agregarObjetosNivel1() {
 		game.addVisualIn(llaveCofre, game.at(5, 5))
+		game.addVisualIn(llaveCofre2, game.at(9, 4))
 		game.addVisualIn(mochilaChica, game.at(3, 1))
 	}
 
@@ -69,19 +70,19 @@ class Mochila inherits Objeto {
 			// No puede tener mas de 2 espadas
 			if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "espada" }).size() < 1) {
 				objetosGuardados.add(unObjeto)
-				personaje.equiparObjeto(unObjeto)
+				personaje.equiparObjetoMano1(unObjeto)
 			} else {
 				// game.say(personaje, "No puedes tener mas de 2 espadas, desecha una primero")
 				personaje.desecharObjeto(self.objetosGuardados().find({ objeto => objeto.categoria() == "espada"}))
 				objetosGuardados.add(unObjeto)
-				personaje.equiparObjeto(unObjeto)
+				personaje.equiparObjetoMano1(unObjeto)
 			}
 		}
 		if (unObjeto.categoria() == "escudo") {
 			// No puede tener mas de 1 escudo.
 			if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "escudo" }).size() < 1) {
 				objetosGuardados.add(unObjeto)
-			// personaje.equiparObjeto(unObjeto)
+			 	personaje.equiparObjetoMano2(unObjeto)
 			} else {
 				personaje.desecharObjeto(self.objetosGuardados().find({ objeto => objeto.categoria() == "escudo"}))
 				objetosGuardados.add(unObjeto)
@@ -134,7 +135,7 @@ class Cofre inherits Objeto {
 		if (objetoGuardado != null && personaje.mochila() != null) {
 			if (personaje.cantidadLlaves() > 0) {
 				personaje.utilizarObjeto(llaveCofre)
-				game.addVisualIn(cofreAbierto, game.at(self.position().x(), self.position().y()))
+				game.addVisualIn(new CofreAbierto(imagen = "cofres/cofreAbierto.png"), game.at(self.position().x(), self.position().y()))
 				game.removeVisual(self)
 				return objetoGuardado
 			}
@@ -148,7 +149,8 @@ class Cofre inherits Objeto {
 object cofres {
 
 	method agregarCofresNivel1() {
-		game.addVisual(cofreCerradoLevel1)
+		game.addVisual(cofreCerrado1Level1)
+		game.addVisual(cofreCerrado2Level1)
 	}
 
 	method agregarCofresNivel2() {
@@ -163,21 +165,26 @@ object cofres {
 
 }
 
-object cofreCerradoLevel1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(11, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaChica) {
+object cofreCerrado1Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(11, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaChica) {
+
+}
+
+object cofreCerrado2Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(15, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = escudoChico) {
+
+}
+
+
+//Elegir donde va
+object cofreCerradoLevel2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(10, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = escudoGrande) {
 
 }
 
 //Elegir donde va
-object cofreCerradoLevel2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(11, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaChica) {
+object cofreCerradoLevel3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(11, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaGrande) {
 
 }
 
-//Elegir donde va
-object cofreCerradoLevel3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(11, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaChica) {
-
-}
-
-object cofreAbierto inherits Imagen(imagen = "cofres/cofreAbierto.png") {
+class CofreAbierto inherits Imagen {
 
 }
 
@@ -193,6 +200,10 @@ class Llave inherits Objeto {
 }
 
 object llaveCofre inherits Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()) {
+
+}
+
+object llaveCofre2 inherits Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()) {
 
 }
 
