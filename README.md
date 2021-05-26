@@ -91,13 +91,13 @@
     ```
     <br><br>
     # ```COMPORTAMIENTO DE LOS BLOQUES GRAFICOS```
-    ### Todos los objetos heredan el atributo esAtravesable de la clase Imagen. 
+    #### Todos los objetos heredan el atributo esAtravesable de la clase ```Imagen```. 
 
-    ### El atributo esAtravesable es de tipo Booleano con el fin de indicarnos si un objeto puede o no ser atravesado. 
+    #### El atributo ```esAtravesable``` es de tipo Booleano con el fin de indicarnos si un objeto puede o no ser atravesado. 
 
-    ### Los objetos PAREDES y BLOQUES tienen dicho atributo seteado en false.
+    #### Los objetos PAREDES y BLOQUES tienen dicho atributo seteado en ```false```.
 
-    ### El objeto salidas eliminará todo objeto donde se coloque la salida y pondrá la imagen que corresponda con el valor de esAtravesable como True
+    #### El objeto salidas eliminará todo objeto donde se coloque la salida y pondrá la imagen que corresponda con el valor de ```esAtravesable``` como ```True```
 
     <br><br>    
     # TEST REALIZADOS
