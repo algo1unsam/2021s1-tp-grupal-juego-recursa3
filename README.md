@@ -90,11 +90,15 @@
         13. removeVida() # Quitara el visual de la vida cuando reciba daño
     ```
     <br><br>
-    # ```COMPORTAMIENTO DE LOS BORDES y PAREDES```
-    El juego cuenta con objetos con un atributo booleano (esAtravesable) que indica si dicho objeto puede o no ser atravesado.
-    Tanto el personaje como el enemigo poseen un método denominado puedeMoverse(posicion) el cual va a consultar dicho atributo esAtravesable. 
-        1.  false, no puede moverse
-        2.  true,  puede moverse
+    # ```COMPORTAMIENTO DE LOS BLOQUES GRAFICOS```
+    ### Todos los objetos heredan el atributo esAtravesable de la clase Imagen. 
+
+    ### El atributo esAtravesable es de tipo Booleano con el fin de indicarnos si un objeto puede o no ser atravesado. 
+
+    ### Los objetos PAREDES y BLOQUES tienen dicho atributo seteado en false.
+
+    ### El objeto salidas eliminará todo objeto donde se coloque la salida y pondrá la imagen que corresponda con el valor de esAtravesable como True
+
     <br><br>    
     # TEST REALIZADOS
     ```python
