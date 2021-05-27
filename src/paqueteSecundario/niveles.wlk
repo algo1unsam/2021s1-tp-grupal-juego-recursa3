@@ -23,6 +23,7 @@ class Nivel {
 
 	method reiniciarElementos() {
 		personaje.vida(6)
+		personaje.position(game.at(1, 1))
 	}
 
 	method cerrarPantallas() {
@@ -99,6 +100,7 @@ object nivel3 inherits Nivel {
 	}
 
 	override method finalizarNivel() {
+		super()
 		pantallaJuego.terminarJuego()
 	}
 

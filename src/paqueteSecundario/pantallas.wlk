@@ -59,6 +59,7 @@ object pantallaCargando inherits Pantalla(imagen = "pantallas/cargando.jpg") {
 
 	override method iniciar() {
 		super()
+		pantallaJuego.nivelActual(nivel1)
 		configuraciones.cambiarEstado(estadoCargando)
 		game.schedule(500, { pantallaJuego.iniciar()})
 	}
@@ -70,7 +71,6 @@ object pantallaGameOver inherits Pantalla(imagen = "pantallas/gameover.jpg") {
 	override method iniciar() {
 		game.clear()
 		super()
-		pantallaJuego.nivelActual(nivel1)
 		configuraciones.configurarTeclas()
 		configuraciones.cambiarEstado(estadoGameOver)
 	}
@@ -82,7 +82,6 @@ object pantallaGanaste inherits Pantalla(imagen = "pantallas/ganaste.jpg") {
 	override method iniciar() {
 		game.clear()
 		super()
-		pantallaJuego.nivelActual(nivel1)
 		configuraciones.configurarTeclas()
 		configuraciones.cambiarEstado(estadoGanaste)
 	}
