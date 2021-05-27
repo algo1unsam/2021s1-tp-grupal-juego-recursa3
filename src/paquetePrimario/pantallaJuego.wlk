@@ -1,5 +1,6 @@
-import paqueteSecundario.niveles.*
 import wollok.game.*
+import paqueteSecundario.niveles.*
+import paqueteSecundario.pantallas.*
 
 object pantallaJuego {
 
@@ -19,8 +20,6 @@ object pantallaJuego {
 	method terminarJuego(){
 		//musicaJuego.stop()
 		//sonido.reproducir("musicaEpica")
-		//game.addVisual(fondoGanaste)
-		game.clear()
-		game.schedule(10000, { /*volver inicio juego */})
+		pantallaGanaste.iniciar()
 	}
 }

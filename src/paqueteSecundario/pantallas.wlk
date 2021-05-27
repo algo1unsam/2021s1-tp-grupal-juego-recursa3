@@ -3,10 +3,12 @@ import paquetePrimario.configuracion.*
 import paqueteSecundario.niveles.*
 import paqueteSecundario.estados.*
 import paquetePrimario.imagen.*
+import paquetePrimario.pantallaJuego.*
 
-class Pantalla inherits Imagen{
+class Pantalla inherits Imagen {
 
 	method iniciar() {
+		self.cerrar()
 		game.addVisualIn(self, game.origin())
 	}
 
@@ -29,7 +31,6 @@ object pantallaInicio inherits Pantalla(imagen = "pantallas/inicio.jpg") {
 object pantallaTutorial inherits Pantalla(imagen = "pantallas/tutorial.jpg") {
 
 	override method iniciar() {
-		self.cerrar()
 		super()
 		configuraciones.cambiarEstado(estadoTutorial)
 	}
@@ -39,7 +40,6 @@ object pantallaTutorial inherits Pantalla(imagen = "pantallas/tutorial.jpg") {
 object pantallaObjetos inherits Pantalla(imagen = "pantallas/objetos.jpg") {
 
 	override method iniciar() {
-		self.cerrar()
 		super()
 		configuraciones.cambiarEstado(estadoObjetos)
 	}
@@ -49,7 +49,6 @@ object pantallaObjetos inherits Pantalla(imagen = "pantallas/objetos.jpg") {
 object pantallaEnemigos inherits Pantalla(imagen = "pantallas/enemigos.jpg") {
 
 	override method iniciar() {
-		self.cerrar()
 		super()
 		configuraciones.cambiarEstado(estadoEnemigos)
 	}
@@ -59,10 +58,31 @@ object pantallaEnemigos inherits Pantalla(imagen = "pantallas/enemigos.jpg") {
 object pantallaCargando inherits Pantalla(imagen = "pantallas/cargando.jpg") {
 
 	override method iniciar() {
-		self.cerrar()
 		super()
 		configuraciones.cambiarEstado(estadoCargando)
-		game.schedule(500, {nivel1.cargarNivel()})
+		game.schedule(500, { pantallaJuego.iniciar()})
+	}
+
+}
+
+object pantallaGameOver inherits Pantalla(imagen = "pantallas/gameover.jpg") {
+
+	override method iniciar() {
+		game.clear()
+		super()
+		configuraciones.configurarTeclas()
+		configuraciones.cambiarEstado(estadoGameOver)
+	}
+
+}
+
+object pantallaGanaste inherits Pantalla(imagen = "pantallas/ganaste.jpg") {
+
+	override method iniciar() {
+		game.clear()
+		super()
+		configuraciones.configurarTeclas()
+		configuraciones.cambiarEstado(estadoGanaste)
 	}
 
 }

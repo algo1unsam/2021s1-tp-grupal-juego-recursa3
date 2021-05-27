@@ -47,7 +47,6 @@ object nivel1 inherits Nivel {
 		personaje.mostrarVida()
 		enemigo.agregarEnemigoNivel1()
 		configuraciones.configurarColisiones()
-
 	}
 
 	override method finalizarNivel() {
@@ -64,7 +63,7 @@ object nivel2 inherits Nivel {
 		pisos.agregarPisosNivel2()
 		bordes.agregarBordesNivel2()
 		paredes.agregarParedesNivel2()
-			// salidas.agregarSalidasNivel2()
+		salidas.agregarSalidasNivel2()
 			// cofres.agregarCofresNivel3()
 			// enemigo.agregarEnemigoNivel3()
 		game.addVisual(personaje)
@@ -90,7 +89,7 @@ object nivel3 inherits Nivel {
 		// pisos.agregarPisosNivel3()
 		// bordes.agregarBordesNivel3()
 		// paredes.agregarParedesNivel3()
-		// salidas.agregarSalidasNivel3()
+		salidas.agregarSalidasNivel3()
 		// cofres.agregarCofresNivel3()
 		// enemigo.agregarEnemigoNivel3()
 		game.addVisual(personaje)
@@ -98,7 +97,6 @@ object nivel3 inherits Nivel {
 	}
 
 	override method finalizarNivel() {
-		self.cerrarPantallas()
 		pantallaJuego.terminarJuego()
 	}
 

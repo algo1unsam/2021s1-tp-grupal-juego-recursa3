@@ -3,6 +3,7 @@ import direcciones.*
 import paquetePrimario.imagen.*
 import paqueteSecundario.objetos.*
 import paquetePrimario.menu.*
+import paqueteSecundario.pantallas.*
 
 class Individuo inherits Imagen {
 
@@ -162,7 +163,7 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	override method murio() {
-	// Pantalla GAME OVER
+		pantallaGameOver.iniciar()	
 	}
 
 	override method mostrarVida() {
