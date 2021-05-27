@@ -17,18 +17,20 @@ describe "TEST DE INDIVIDUO" {
 		personaje.agregarObjeto(mochilaGrande)
 		personaje.agregarObjeto(espadaChica)
 		personaje.agregarObjeto(escudoGrande)
+		personaje.agregarObjeto(llaveCofre2)
+		personaje.agregarObjeto(llaveCofre)
 		game.onTick(1000, "Perseguir1", { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
 		
 	}
 
-	test "EL INDIVIDUO TIENE MOCHILA GRANDE Y DENTRO DE LA MOCHILA TIENE UNA ESPADA CHICA Y UN ESCUDO GRANDE" {
+	test "EL INDIVIDUO TIENE MOCHILA GRANDE Y DENTRO DE LA MOCHILA TIENE UNA ESPADA CHICA Y UN ESCUDO GRANDE Y DOS LLAVES" {
 		assert.equals(mochilaGrande, personaje.mochila())
-		assert.equals([ espadaChica, escudoGrande ], mochilaGrande.objetosGuardados())
+		assert.equals([ espadaChica, escudoGrande, llaveCofre2,llaveCofre], mochilaGrande.objetosGuardados())
 	}
 
 	test "EL INDIVIDUO DECIDE DEJAR UN OBJETO PORQUE LE OCUPA ESPACIO" {
 		personaje.desecharObjeto(espadaChica)
-		assert.equals([ escudoGrande ], mochilaGrande.objetosGuardados())
+		assert.equals([ escudoGrande,llaveCofre2,llaveCofre], mochilaGrande.objetosGuardados())
 	}
 
 	test "EL INDIVIDUO AL AGARRAR LA ESPADA GRANDE DESECHA LA ESPADA CHICA." {
@@ -39,10 +41,10 @@ describe "TEST DE INDIVIDUO" {
 		assert.that(personaje.mano1() == espadaGrande)
 	}
 
-	test "EL personaje AGARRA 3 LLAVES Y UTILIZA UNA, LE QUEDAN 2" {
+	test "EL personaje AGARRA 3 LLAVES MAS Y UTILIZA UNA, LE QUEDAN 4" {
 		3.times({ i => personaje.agregarObjeto(llaveCofre)})
 		personaje.utilizarObjeto(llaveCofre)
-		assert.equals(2, personaje.cantidadLlaves())
+		assert.equals(4, personaje.cantidadLlaves())
 	}
 
 	test "EL personaje ATACA A UN RIVAL HASTA DEJARLO CON 50 VIDA" {
@@ -62,6 +64,9 @@ describe "TEST DE INDIVIDUO" {
 		assert.equals(personaje.position(), enemigo1.position())
 		assert.equals(5, personaje.vida())
 	}
-
+	test "Me devuelve una llave"{
+		assert.equals(llaveCofre,personaje.mochila().objetosGuardados().find({objeto => objeto.categoria()=='llave'}))
+		
+	}
 }
 

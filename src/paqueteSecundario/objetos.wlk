@@ -58,7 +58,6 @@ object espadaGrande inherits Espada(categoria = "espada", peso = 10, danio = 2, 
 class Mochila inherits Objeto {
 
 	const objetosGuardados = []
-	var property llaves = 0
 
 	method controlarPeso() {
 		return objetosGuardados.sum{ unObjeto => unObjeto.peso() } - peso <= 0
@@ -94,7 +93,7 @@ class Mochila inherits Objeto {
 			imagen = unObjeto.imagen()
 		}
 		if (unObjeto.categoria() == "llave") {
-			llaves += 1
+			objetosGuardados.add(unObjeto)
 		}
 			// Agrega la visual del objeto a la zona donde se muestran los objetos que tenes a la derecha de todo
 		game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))
@@ -111,11 +110,10 @@ class Mochila inherits Objeto {
 		objetosGuardados.remove(unObjeto)
 	}
 
-	method usarLlave() {
-		llaves -= 1
-	}
 
 	method objetosGuardados() = objetosGuardados
+
+	method llaves()=objetosGuardados.filter({objeto=>objeto.categoria()=='llave'}).size()
 
 }
 
@@ -134,7 +132,8 @@ class Cofre inherits Objeto {
 	override method interactuarConObjeto() {
 		if (objetoGuardado != null && personaje.mochila() != null) {
 			if (personaje.cantidadLlaves() > 0) {
-				personaje.utilizarObjeto(llaveCofre)
+				var miLlave= personaje.mochila().objetosGuardados().find({objeto => objeto.categoria()=='llave'})
+				personaje.utilizarObjeto(miLlave)
 				game.addVisualIn(new CofreAbierto(imagen = "cofres/cofreAbierto.png"), game.at(self.position().x(), self.position().y()))
 				game.removeVisual(self)
 				return objetoGuardado
@@ -191,7 +190,7 @@ class CofreAbierto inherits Imagen {
 class Llave inherits Objeto {
 
 	override method utilizarObjeto() {
-		personaje.mochila().usarLlave()
+		personaje.mochila().desecharObjeto(self)
 		if (personaje.mochila().llaves() == 0) {
 			game.removeVisual(self)
 		}
