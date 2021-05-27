@@ -70,6 +70,7 @@ object pantallaGameOver inherits Pantalla(imagen = "pantallas/gameover.jpg") {
 	override method iniciar() {
 		game.clear()
 		super()
+		pantallaJuego.nivelActual(nivel1)
 		configuraciones.configurarTeclas()
 		configuraciones.cambiarEstado(estadoGameOver)
 	}
@@ -81,6 +82,7 @@ object pantallaGanaste inherits Pantalla(imagen = "pantallas/ganaste.jpg") {
 	override method iniciar() {
 		game.clear()
 		super()
+		pantallaJuego.nivelActual(nivel1)
 		configuraciones.configurarTeclas()
 		configuraciones.cambiarEstado(estadoGanaste)
 	}

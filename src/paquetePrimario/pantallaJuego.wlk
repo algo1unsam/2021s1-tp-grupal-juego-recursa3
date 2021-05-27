@@ -4,9 +4,7 @@ import paqueteSecundario.pantallas.*
 
 object pantallaJuego {
 
-	var nivelActual = nivel1
-
-	method nivelActual() = nivelActual
+	var property nivelActual = nivel1
 	
 	method iniciar() {
 		nivelActual.cargarNivel()

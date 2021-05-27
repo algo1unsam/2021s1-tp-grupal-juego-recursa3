@@ -22,6 +22,7 @@ class Nivel {
 	}
 
 	method reiniciarElementos() {
+		personaje.vida(6)
 	}
 
 	method cerrarPantallas() {
@@ -36,6 +37,7 @@ object nivel1 inherits Nivel {
 		super()
 			// musicaJuego.play()
 		self.cerrarPantallas()
+		self.reiniciarElementos()
 		pisos.agregarPisosNivel1()
 		bordes.agregarBordesNivel1()
 		paredes.agregarParedesNivel1()
