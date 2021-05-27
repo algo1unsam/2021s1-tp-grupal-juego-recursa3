@@ -45,7 +45,15 @@ class Individuo inherits Imagen {
 	method atacar()
 
 	method recibirDanio(danio) {
+		if(mano2 != null and mano2.categoria() == "escudo"){
+			vida -= danio - mano2.defensa()
+//			if(mano2.defensa() == 0) {
+//				game.removeVisual(mano2)
+//				mano2 = null
+//			}
+		}else {
 		vida -= danio
+		}
 		self.mostrarVida()
 		self.estaMuerto()
 	}
