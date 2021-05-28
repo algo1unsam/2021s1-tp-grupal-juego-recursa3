@@ -94,9 +94,28 @@ object bordes inherits Borde {
 
 	method agregarBordesNivel2() {
 		self.agregarBordesCompleto()
+		game.addVisual(new Borde(position = game.at(5, 13), imagen = "Paredes/paredUnionSuperiorHV.png"))
+		game.addVisual(new Borde(position = game.at(16, 13), imagen = "Paredes/paredUnionSuperiorHV.png"))
+		game.addVisual(new Borde(position = game.at(18, 13), imagen = "Paredes/paredUnionSuperiorHV.png"))
+		game.addVisual(new Borde(position = game.at(9, 0), imagen = "Paredes/paredUnionInferiorHV.png"))
+		game.addVisual(new Borde(position = game.at(16, 0), imagen = "Paredes/paredUnionInferiorHV.png"))
+		game.addVisual(new Borde(position = game.at(18, 0), imagen = "Paredes/paredUnionInferiorHV.png"))
+		game.addVisual(new Borde(position = game.at(20, 11), imagen = "Paredes/paredUnionIzquierdoHV.png"))
+		game.addVisual(new Borde(position = game.at(20, 6), imagen = "Paredes/paredUnionIzquierdoHV.png"))
+		game.addVisual(new Borde(position = game.at(0, 6), imagen = "Paredes/paredUnionDerechoHV.png"))
+
 	}
 		method agregarBordesNivel3() {
 		self.agregarBordesCompleto()
+		game.addVisual(new Borde(position = game.at(2, 13), imagen = "Paredes/paredUnionSuperiorHV.png"))
+		game.addVisual(new Borde(position = game.at(12, 13), imagen = "Paredes/paredUnionSuperiorHV.png"))
+		game.addVisual(new Borde(position = game.at(7, 13), imagen = "Paredes/paredUnionSuperiorHV.png"))
+		game.addVisual(new Borde(position = game.at(2, 0), imagen = "Paredes/paredUnionInferiorHV.png"))
+		game.addVisual(new Borde(position = game.at(10, 0), imagen = "Paredes/paredUnionInferiorHV.png"))
+		game.addVisual(new Borde(position = game.at(12, 0), imagen = "Paredes/paredUnionInferiorHV.png"))
+		game.addVisual(new Borde(position = game.at(15, 0), imagen = "Paredes/paredUnionInferiorHV.png"))
+		game.addVisual(new Borde(position = game.at(20, 11), imagen = "Paredes/paredUnionIzquierdoHV.png"))
+
 	}
 
 }
