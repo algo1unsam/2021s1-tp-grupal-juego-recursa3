@@ -24,6 +24,10 @@ class Nivel {
 	method reiniciarElementos() {
 		personaje.vida(6)
 		personaje.position(game.at(1, 1))
+		personaje.mochila(null)
+		personaje.mano1(null)
+		personaje.mano2(null)
+
 	}
 
 	method cerrarPantallas() {
