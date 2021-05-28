@@ -100,7 +100,6 @@ object bordes inherits Borde {
 		game.addVisual(new Borde(position = game.at(9, 0), imagen = "Paredes/paredUnionInferiorHV.png"))
 		game.addVisual(new Borde(position = game.at(16, 0), imagen = "Paredes/paredUnionInferiorHV.png"))
 		game.addVisual(new Borde(position = game.at(18, 0), imagen = "Paredes/paredUnionInferiorHV.png"))
-		game.addVisual(new Borde(position = game.at(20, 11), imagen = "Paredes/paredUnionIzquierdoHV.png"))
 		game.addVisual(new Borde(position = game.at(20, 6), imagen = "Paredes/paredUnionIzquierdoHV.png"))
 		game.addVisual(new Borde(position = game.at(0, 6), imagen = "Paredes/paredUnionDerechoHV.png"))
 
