@@ -226,8 +226,7 @@ object paredes{
 		game.addVisual(new Pared(position = game.at(4,8),  imagen = "paredes/paredCompleta.png"))				
 		game.addVisual(new Pared(position = game.at(1,6),  imagen = "paredes/paredCompleta.png"))
 		game.addVisual(new Pared(position = game.at(4,4),  imagen = "paredes/paredCompleta.png"))	
-		
-		
+
 	}
 	
 	method agregarParedesNivel3() {

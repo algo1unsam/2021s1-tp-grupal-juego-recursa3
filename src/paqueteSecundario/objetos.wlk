@@ -81,7 +81,7 @@ class Mochila inherits Objeto {
 			// No puede tener mas de 1 escudo.
 			if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "escudo" }).size() < 1) {
 				objetosGuardados.add(unObjeto)
-			 	personaje.equiparObjetoMano2(unObjeto)
+				personaje.equiparObjetoMano2(unObjeto)
 			} else {
 				personaje.desecharObjeto(self.objetosGuardados().find({ objeto => objeto.categoria() == "escudo"}))
 				objetosGuardados.add(unObjeto)
@@ -110,10 +110,9 @@ class Mochila inherits Objeto {
 		objetosGuardados.remove(unObjeto)
 	}
 
-
 	method objetosGuardados() = objetosGuardados
 
-	method llaves()=objetosGuardados.filter({objeto=>objeto.categoria()=='llave'}).size()
+	method llaves() = objetosGuardados.filter({ objeto => objeto.categoria() == 'llave' }).size()
 
 }
 
@@ -132,7 +131,7 @@ class Cofre inherits Objeto {
 	override method interactuarConObjeto() {
 		if (objetoGuardado != null && personaje.mochila() != null) {
 			if (personaje.cantidadLlaves() > 0) {
-				var miLlave= personaje.mochila().objetosGuardados().find({objeto => objeto.categoria()=='llave'})
+				var miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == 'llave' })
 				personaje.utilizarObjeto(miLlave)
 				game.addVisualIn(new CofreAbierto(imagen = "cofres/cofreAbierto.png"), game.at(self.position().x(), self.position().y()))
 				game.removeVisual(self)
@@ -171,7 +170,6 @@ object cofreCerrado1Level1 inherits Cofre(categoria = "cofre", peso = 0, positio
 object cofreCerrado2Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(15, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = escudoChico) {
 
 }
-
 
 //Elegir donde va
 object cofreCerradoLevel2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(10, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = escudoGrande) {
@@ -218,75 +216,15 @@ object llaveVerde inherits Llave(categoria = "llave", peso = 0, imagen = "llave/
 
 }
 
-object corazonCompletoPersonaje1 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
+class CorazonCompleto inherits Objeto {
 
 }
 
-object corazonCompletoPersonaje2 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
+class CorazonMitad inherits Objeto {
 
 }
 
-object corazonCompletoPersonaje3 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
-
-}
-
-object corazonMitadPersonaje1 inherits Imagen(imagen = "corazones/corazonMitad.png") {
-
-}
-
-object corazonMitadPersonaje2 inherits Imagen(imagen = "corazones/corazonMitad.png") {
-
-}
-
-object corazonMitadPersonaje3 inherits Imagen(imagen = "corazones/corazonMitad.png") {
-
-}
-
-object corazonVacioPersonaje1 inherits Imagen(imagen = "corazones/corazonVacio.png") {
-
-}
-
-object corazonVacioPersonaje2 inherits Imagen(imagen = "corazones/corazonVacio.png") {
-
-}
-
-object corazonVacioPersonaje3 inherits Imagen(imagen = "corazones/corazonVacio.png") {
-
-}
-
-object corazonCompletoEnemigo1 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
-
-}
-
-object corazonCompletoEnemigo2 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
-
-}
-
-object corazonCompletoEnemigo3 inherits Imagen(imagen = "corazones/corazonCompleto.png") {
-
-}
-
-object corazonMitadEnemigo1 inherits Imagen(imagen = "corazones/corazonMitad.png") {
-
-}
-
-object corazonMitadEnemigo2 inherits Imagen(imagen = "corazones/corazonMitad.png") {
-
-}
-
-object corazonMitadEnemigo3 inherits Imagen(imagen = "corazones/corazonMitad.png") {
-
-}
-
-object corazonVacioEnemigo1 inherits Imagen(imagen = "corazones/corazonVacio.png") {
-
-}
-
-object corazonVacioEnemigo2 inherits Imagen(imagen = "corazones/corazonVacio.png") {
-
-}
-
-object corazonVacioEnemigo3 inherits Imagen(imagen = "corazones/corazonVacio.png") {
+class CorazonVacio inherits Objeto {
 
 }
 

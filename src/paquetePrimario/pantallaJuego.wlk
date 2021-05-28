@@ -1,11 +1,10 @@
-import paqueteSecundario.niveles.*
 import wollok.game.*
+import paqueteSecundario.niveles.*
+import paqueteSecundario.pantallas.*
 
 object pantallaJuego {
 
-	var nivelActual = nivel1
-
-	method nivelActual() = nivelActual
+	var property nivelActual = nivel1
 	
 	method iniciar() {
 		nivelActual.cargarNivel()
@@ -19,8 +18,6 @@ object pantallaJuego {
 	method terminarJuego(){
 		//musicaJuego.stop()
 		//sonido.reproducir("musicaEpica")
-		//game.addVisual(fondoGanaste)
-		game.clear()
-		game.schedule(10000, { /*volver inicio juego */})
+		pantallaGanaste.iniciar()
 	}
 }

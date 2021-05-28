@@ -22,6 +22,8 @@ class Nivel {
 	}
 
 	method reiniciarElementos() {
+		personaje.vida(6)
+		personaje.position(game.at(1, 1))
 	}
 
 	method cerrarPantallas() {
@@ -36,6 +38,7 @@ object nivel1 inherits Nivel {
 		super()
 			// musicaJuego.play()
 		self.cerrarPantallas()
+		self.reiniciarElementos()
 		pisos.agregarPisosNivel1()
 		bordes.agregarBordesNivel1()
 		paredes.agregarParedesNivel1()
@@ -47,7 +50,6 @@ object nivel1 inherits Nivel {
 		personaje.mostrarVida()
 		enemigo.agregarEnemigoNivel1()
 		configuraciones.configurarColisiones()
-
 	}
 
 	override method finalizarNivel() {
@@ -100,7 +102,7 @@ object nivel3 inherits Nivel {
 	}
 
 	override method finalizarNivel() {
-		self.cerrarPantallas()
+		super()
 		pantallaJuego.terminarJuego()
 	}
 
