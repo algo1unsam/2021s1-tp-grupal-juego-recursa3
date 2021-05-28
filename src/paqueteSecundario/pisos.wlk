@@ -18,6 +18,10 @@ object pisos inherits Piso{
 	method agregarPisosNivel2() {
 		self.agregarPisoCompleto()
 	}
+	
+	method agregarPisosNivel3() {
+		self.agregarPisoCompleto()
+	}
 
 }
 

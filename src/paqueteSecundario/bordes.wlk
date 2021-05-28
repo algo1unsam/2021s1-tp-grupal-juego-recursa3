@@ -95,6 +95,9 @@ object bordes inherits Borde {
 	method agregarBordesNivel2() {
 		self.agregarBordesCompleto()
 	}
+		method agregarBordesNivel3() {
+		self.agregarBordesCompleto()
+	}
 
 }
 
