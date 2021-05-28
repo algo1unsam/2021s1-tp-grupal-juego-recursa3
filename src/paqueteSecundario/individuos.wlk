@@ -1,8 +1,8 @@
 import wollok.game.*
 import direcciones.*
+import paquetePrimario.menu.*
 import paquetePrimario.imagen.*
 import paqueteSecundario.objetos.*
-import paquetePrimario.menu.*
 import paqueteSecundario.pantallas.*
 
 class Individuo inherits Imagen {
@@ -12,6 +12,9 @@ class Individuo inherits Imagen {
 	var property armadura = null
 	var property mano1 = null
 	var property mano2 = null
+	var property posicionCorazon1 = null
+	var property posicionCorazon2 = null
+	var property posicionCorazon3 = null
 
 	method moverse(direccion) {
 		self.moverHaciaSiSePuede(self, direccion)
@@ -46,14 +49,14 @@ class Individuo inherits Imagen {
 	method atacar()
 
 	method recibirDanio(danio) {
-		if(mano2 != null and mano2.categoria() == "escudo"){
+		if (mano2 != null and mano2.categoria() == "escudo") {
 			vida -= danio - mano2.defensa()
 //			if(mano2.defensa() == 0) {
 //				game.removeVisual(mano2)
 //				mano2 = null
 //			}
-		}else {
-		vida -= danio
+		} else {
+			vida -= danio
 		}
 		self.mostrarVida()
 		self.estaMuerto()
@@ -68,13 +71,13 @@ class Individuo inherits Imagen {
 
 	method murio()
 
-	method mostrarVida()
-
-	method removeVida()
+	method mostrarVida() {
+		menu.mostrarVida(posicionCorazon1, posicionCorazon2, posicionCorazon3, vida)
+	}
 
 }
 
-object personaje inherits Individuo (position = game.at(1, 1), imagen = "individuo/personaje.png") {
+object personaje inherits Individuo (position = game.at(1, 1), imagen = "individuo/personaje.png", posicionCorazon1 = menu.posicionCorazonPersonaje1(), posicionCorazon2 = menu.posicionCorazonPersonaje2(), posicionCorazon3 = menu.posicionCorazonPersonaje3()) {
 
 	var property energia = 100
 	var property mochila = null
@@ -83,7 +86,7 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	method equiparObjetoMano1(unObjeto) {
 		self.mano1(unObjeto)
 	}
-	
+
 	method equiparObjetoMano2(unObjeto) {
 		self.mano2(unObjeto)
 	}
@@ -163,81 +166,12 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	override method murio() {
-		pantallaGameOver.iniciar()	
-	}
-
-	override method mostrarVida() {
-		self.removeVida()
-		if (vida == 6) {
-			game.addVisualIn(corazonCompletoPersonaje1, menu.posicionCorazonPersonaje1())
-			game.addVisualIn(corazonCompletoPersonaje2, menu.posicionCorazonPersonaje2())
-			game.addVisualIn(corazonCompletoPersonaje3, menu.posicionCorazonPersonaje3())
-		}
-		if (vida == 5) {
-			game.addVisualIn(corazonCompletoPersonaje1, menu.posicionCorazonPersonaje1())
-			game.addVisualIn(corazonCompletoPersonaje2, menu.posicionCorazonPersonaje2())
-			game.addVisualIn(corazonMitadPersonaje1, menu.posicionCorazonPersonaje3())
-		}
-		if (vida == 4) {
-			game.addVisualIn(corazonCompletoPersonaje1, menu.posicionCorazonPersonaje1())
-			game.addVisualIn(corazonCompletoPersonaje2, menu.posicionCorazonPersonaje2())
-			game.addVisualIn(corazonVacioPersonaje1, menu.posicionCorazonPersonaje3())
-		}
-		if (vida == 3) {
-			game.addVisualIn(corazonCompletoPersonaje1, menu.posicionCorazonPersonaje1())
-			game.addVisualIn(corazonMitadPersonaje1, menu.posicionCorazonPersonaje2())
-			game.addVisualIn(corazonVacioPersonaje1, menu.posicionCorazonPersonaje3())
-		}
-		if (vida == 2) {
-			game.addVisualIn(corazonCompletoPersonaje1, menu.posicionCorazonPersonaje1())
-			game.addVisualIn(corazonVacioPersonaje1, menu.posicionCorazonPersonaje2())
-			game.addVisualIn(corazonVacioPersonaje2, menu.posicionCorazonPersonaje3())
-		}
-		if (vida == 1) {
-			game.addVisualIn(corazonMitadPersonaje1, menu.posicionCorazonPersonaje1())
-			game.addVisualIn(corazonVacioPersonaje1, menu.posicionCorazonPersonaje2())
-			game.addVisualIn(corazonVacioPersonaje2, menu.posicionCorazonPersonaje3())
-		}
-		if (vida == 0) {
-			game.addVisualIn(corazonVacioPersonaje1, menu.posicionCorazonPersonaje1())
-			game.addVisualIn(corazonVacioPersonaje2, menu.posicionCorazonPersonaje2())
-			game.addVisualIn(corazonVacioPersonaje3, menu.posicionCorazonPersonaje3())
-		}
-	}
-
-	override method removeVida() {
-		if (game.hasVisual(corazonCompletoPersonaje1)) {
-			game.removeVisual(corazonCompletoPersonaje1)
-		}
-		if (game.hasVisual(corazonCompletoPersonaje2)) {
-			game.removeVisual(corazonCompletoPersonaje2)
-		}
-		if (game.hasVisual(corazonCompletoPersonaje3)) {
-			game.removeVisual(corazonCompletoPersonaje3)
-		}
-		if (game.hasVisual(corazonMitadPersonaje1)) {
-			game.removeVisual(corazonMitadPersonaje1)
-		}
-		if (game.hasVisual(corazonMitadPersonaje2)) {
-			game.removeVisual(corazonMitadPersonaje2)
-		}
-		if (game.hasVisual(corazonMitadPersonaje3)) {
-			game.removeVisual(corazonMitadPersonaje3)
-		}
-		if (game.hasVisual(corazonVacioPersonaje1)) {
-			game.removeVisual(corazonVacioPersonaje1)
-		}
-		if (game.hasVisual(corazonVacioPersonaje2)) {
-			game.removeVisual(corazonVacioPersonaje2)
-		}
-		if (game.hasVisual(corazonVacioPersonaje3)) {
-			game.removeVisual(corazonVacioPersonaje3)
-		}
+		pantallaGameOver.iniciar()
 	}
 
 }
 
-class Enemigo inherits Individuo {
+class Enemigo inherits Individuo{
 
 	var property ataque = 0
 
@@ -288,78 +222,13 @@ class Enemigo inherits Individuo {
 	override method murio() {
 		game.removeTickEvent("Perseguir1")
 	}
-
-	override method mostrarVida() {
-		self.removeVida()
-		if (vida == 6) {
-			game.addVisualIn(corazonCompletoEnemigo1, menu.posicionCorazonEnemigo1())
-			game.addVisualIn(corazonCompletoEnemigo2, menu.posicionCorazonEnemigo2())
-			game.addVisualIn(corazonCompletoEnemigo3, menu.posicionCorazonEnemigo3())
-		}
-		if (vida == 5) {
-			game.addVisualIn(corazonCompletoEnemigo1, menu.posicionCorazonEnemigo1())
-			game.addVisualIn(corazonCompletoEnemigo2, menu.posicionCorazonEnemigo2())
-			game.addVisualIn(corazonMitadEnemigo1, menu.posicionCorazonEnemigo3())
-		}
-		if (vida == 4) {
-			game.addVisualIn(corazonCompletoEnemigo1, menu.posicionCorazonEnemigo1())
-			game.addVisualIn(corazonCompletoEnemigo2, menu.posicionCorazonEnemigo2())
-			game.addVisualIn(corazonVacioEnemigo1, menu.posicionCorazonEnemigo3())
-		}
-		if (vida == 3) {
-			game.addVisualIn(corazonCompletoEnemigo1, menu.posicionCorazonEnemigo1())
-			game.addVisualIn(corazonMitadEnemigo1, menu.posicionCorazonEnemigo2())
-			game.addVisualIn(corazonVacioEnemigo1, menu.posicionCorazonEnemigo3())
-		}
-		if (vida == 2) {
-			game.addVisualIn(corazonCompletoEnemigo1, menu.posicionCorazonEnemigo1())
-			game.addVisualIn(corazonVacioEnemigo1, menu.posicionCorazonEnemigo2())
-			game.addVisualIn(corazonVacioEnemigo2, menu.posicionCorazonEnemigo3())
-		}
-		if (vida == 1) {
-			game.addVisualIn(corazonMitadEnemigo1, menu.posicionCorazonEnemigo1())
-			game.addVisualIn(corazonVacioEnemigo1, menu.posicionCorazonEnemigo2())
-			game.addVisualIn(corazonVacioEnemigo2, menu.posicionCorazonEnemigo3())
-		}
-		if (vida == 0) {
-			game.addVisualIn(corazonVacioEnemigo1, menu.posicionCorazonEnemigo1())
-			game.addVisualIn(corazonVacioEnemigo2, menu.posicionCorazonEnemigo2())
-			game.addVisualIn(corazonVacioEnemigo3, menu.posicionCorazonEnemigo3())
-			game.schedule(500, { self.removeVida()})
-		}
+	
+	method removeVida(){
+		
 	}
-
-	override method removeVida() {
-		if (game.hasVisual(corazonCompletoEnemigo1)) {
-			game.removeVisual(corazonCompletoEnemigo1)
-		}
-		if (game.hasVisual(corazonCompletoEnemigo2)) {
-			game.removeVisual(corazonCompletoEnemigo2)
-		}
-		if (game.hasVisual(corazonCompletoEnemigo3)) {
-			game.removeVisual(corazonCompletoEnemigo3)
-		}
-		if (game.hasVisual(corazonMitadEnemigo1)) {
-			game.removeVisual(corazonMitadEnemigo1)
-		}
-		if (game.hasVisual(corazonMitadEnemigo2)) {
-			game.removeVisual(corazonMitadEnemigo2)
-		}
-		if (game.hasVisual(corazonMitadEnemigo3)) {
-			game.removeVisual(corazonMitadEnemigo3)
-		}
-		if (game.hasVisual(corazonVacioEnemigo1)) {
-			game.removeVisual(corazonVacioEnemigo1)
-		}
-		if (game.hasVisual(corazonVacioEnemigo2)) {
-			game.removeVisual(corazonVacioEnemigo2)
-		}
-		if (game.hasVisual(corazonVacioEnemigo3)) {
-			game.removeVisual(corazonVacioEnemigo3)
-		}
-	}
-
 }
 
-const enemigo = new Enemigo(vida = 2, ataque = 1, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo')
+object enemigo inherits Enemigo(vida = 2, ataque = 1, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()){
+	
+}
 
