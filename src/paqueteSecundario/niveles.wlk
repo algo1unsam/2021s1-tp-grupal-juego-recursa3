@@ -27,7 +27,7 @@ class Nivel {
 		personaje.mochila(null)
 		personaje.mano1(null)
 		personaje.mano2(null)
-
+		mochilaChica.objetosGuardados().clear()
 	}
 
 	method cerrarPantallas() {
