@@ -195,7 +195,7 @@ class Enemigo inherits Individuo {
 	}
 
 	method moverse() {
-		game.onTick(1000, "Perseguir1", { self.moverHaciaJugador()})
+		game.onTick(1000, "perseguir" + self, { self.moverHaciaJugador()})
 	}
 
 	method direccionMasConveniente(direcciones) = direcciones.min{ direccion => direccion.posicion(self.position()).distance(personaje.position()) }
@@ -213,7 +213,7 @@ class Enemigo inherits Individuo {
 	}
 
 	override method murio() {
-		game.removeTickEvent("Perseguir1")
+		game.removeTickEvent("perseguir" + self)
 	}
 
 	method removeVida() {
@@ -232,6 +232,10 @@ class Enemigo inherits Individuo {
 }
 
 object enemigo inherits Enemigo(vida = 2, ataque = 1, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
+
+}
+
+object enemigo1 inherits Enemigo(vida = 2, ataque = 1, position = game.at(4, 5), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
 
 }
 

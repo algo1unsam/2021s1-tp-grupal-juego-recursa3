@@ -121,7 +121,7 @@
                 personaje.agregarObjeto(mochilaGrande)
                 personaje.agregarObjeto(espadaChica)
                 personaje.agregarObjeto(escudoGrande)
-                game.onTick(1000, "Perseguir1", { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
+                game.onTick(1000, "perseguir" + self, { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
                 
             }
 

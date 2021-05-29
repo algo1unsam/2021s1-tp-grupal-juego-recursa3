@@ -19,7 +19,7 @@ describe "TEST DE INDIVIDUO" {
 		personaje.agregarObjeto(escudoGrande)
 		personaje.agregarObjeto(llaveCofre2)
 		personaje.agregarObjeto(llaveCofre)
-		game.onTick(1000, "Perseguir1", { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
+		game.onTick(1000, "perseguir" + self, { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
 		
 	}
 
