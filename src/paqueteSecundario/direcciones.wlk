@@ -1,5 +1,6 @@
 import individuos.*
 import paquetePrimario.configuracion.*
+import wollok.game.*
 
 class Direccion{
 
@@ -12,7 +13,10 @@ class Direccion{
 	method posicion(posicion)
 
 	method puedeIr(individuo) = self.posicion(individuo.position()).allElements().all({elemento => elemento.esAtravesable()})
-
+	
+	method objetosFrentreAlIndividuo(individuo){
+		return game.getObjectsIn(game.at(self.posicion(individuo.position()).x(), self.posicion(individuo.position())).y())
+	}
 }
 
 object arriba inherits Direccion(nombre="Espalda"){

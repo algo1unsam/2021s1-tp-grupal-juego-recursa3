@@ -3,10 +3,11 @@ import paquetePrimario.configuracion.*
 import paqueteSecundario.niveles.*
 import paqueteSecundario.estados.*
 import paquetePrimario.imagen.*
+import paquetePrimario.audio.*
 import paquetePrimario.pantallaJuego.*
 
 class Pantalla inherits Imagen {
-
+		
 	method iniciar() {
 		self.cerrar()
 		game.addVisualIn(self, game.origin())
@@ -23,7 +24,7 @@ object pantallaInicio inherits Pantalla(imagen = "pantallas/inicio.jpg") {
 	override method iniciar() {
 		super()
 		configuraciones.cambiarEstado(estadoInicio)
-	// game.schedule(1, {musicaInicio.play()})
+		game.schedule(1, { audio.reproducirCancionEnLoop("inicio")})
 	}
 
 }
@@ -33,6 +34,7 @@ object pantallaTutorial inherits Pantalla(imagen = "pantallas/tutorial.jpg") {
 	override method iniciar() {
 		super()
 		configuraciones.cambiarEstado(estadoTutorial)
+		game.schedule(1, { audio.reproducirCancionEnLoop("tutorial")})
 	}
 
 }
@@ -71,6 +73,8 @@ object pantallaGameOver inherits Pantalla(imagen = "pantallas/gameover.jpg") {
 	override method iniciar() {
 		game.clear()
 		super()
+		
+		game.schedule(1, { audio.reproducirCancionEnLoop("gameover")})
 		configuraciones.configurarTeclas()
 		configuraciones.cambiarEstado(estadoGameOver)
 	}

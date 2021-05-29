@@ -4,6 +4,7 @@ import paquetePrimario.menu.*
 import paquetePrimario.imagen.*
 import paqueteSecundario.objetos.*
 import paqueteSecundario.pantallas.*
+import paquetePrimario.audio.*
 
 class Individuo inherits Imagen {
 
@@ -21,11 +22,8 @@ class Individuo inherits Imagen {
 	}
 
 	method moverHaciaSiSePuede(individuo, direccion) {
-		// console.println(direccion.puedeIr(individuo))
 		if (direccion.puedeIr(individuo)) {
 			self.moverHacia(individuo, direccion)
-		} else {
-		// console.println(direccion)
 		}
 	}
 
@@ -34,15 +32,8 @@ class Individuo inherits Imagen {
 	method moverHacia(individuo, direccion) {
 		const nuevaPosicion = direccion.posicion(individuo.position())
 		if (self.puedeMoverse(nuevaPosicion)) {
-			// console.println(individuo.toString())
-			// console.println(nuevaPosicion)
-			// console.println(individuo.position())
-			// console.println(direccion)
 			individuo.orientacion(direccion)
 			individuo.position(nuevaPosicion)
-		} else {
-		// console.println(self.puedeMoverse(nuevaPosicion))
-		// console.println(nuevaPosicion)
 		}
 	}
 
@@ -51,10 +42,6 @@ class Individuo inherits Imagen {
 	method recibirDanio(danio) {
 		if (mano2 != null and mano2.categoria() == "escudo") {
 			vida -= danio - mano2.defensa()
-//			if(mano2.defensa() == 0) {
-//				game.removeVisual(mano2)
-//				mano2 = null
-//			}
 		} else {
 			vida -= danio
 		}
@@ -138,10 +125,11 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	override method atacar() {
 		if (self.mano1() != null) {
 			self.ataque(true)
-			const objects = game.getObjectsIn(game.at(orientacion.posicion(self.position()).x(), orientacion.posicion(self.position())).y())
-			const enemigos = objects.filter{ unObjeto => unObjeto.categoria() == 'enemigo' }
-			if (enemigos != null) {
+			const enemigos = enemigo.enemigosFrenteAlIndividuo(orientacion, self)
+			if (!enemigos.isEmpty()) {
 				enemigos.forEach{ unEnemigo => unEnemigo.recibirDanio(mano1.danio())}
+			}else{
+				game.schedule(1, { audio.reproducirSonido("ataque")})
 			}
 			game.schedule(500, { self.ataque(false)})
 		} else {
@@ -168,10 +156,15 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	override method murio() {
 		pantallaGameOver.iniciar()
 	}
+	
+	override method recibirDanio(danio){
+		super(danio)
+		game.schedule(1, { audio.reproducirSonido("danioPersonaje")})
+	}
 
 }
 
-class Enemigo inherits Individuo{
+class Enemigo inherits Individuo {
 
 	var property ataque = 0
 
@@ -222,13 +215,23 @@ class Enemigo inherits Individuo{
 	override method murio() {
 		game.removeTickEvent("Perseguir1")
 	}
-	
-	method removeVida(){
-		
+
+	method removeVida() {
 	}
+	
+	method enemigosFrenteAlIndividuo(orientacionIndividuo, individuo){
+		const objects = orientacionIndividuo.objetosFrentreAlIndividuo(individuo)
+		return objects.filter{ unObjeto => unObjeto.categoria() == 'enemigo' }
+	}
+	
+	override method recibirDanio(danio){
+		super(danio)
+		game.schedule(1, { audio.reproducirSonido("ataqueEnemigo")})
+	}
+
 }
 
-object enemigo inherits Enemigo(vida = 2, ataque = 1, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()){
-	
+object enemigo inherits Enemigo(vida = 2, ataque = 1, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
+
 }
 

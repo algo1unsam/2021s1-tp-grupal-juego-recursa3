@@ -4,7 +4,9 @@ import bordes.*
 import pisos.*
 import estados.*
 import salidas.*
+import pantallas.*
 import paquetePrimario.menu.*
+import paquetePrimario.audio.*
 import paquetePrimario.configuracion.*
 import paquetePrimario.pantallaJuego.*
 import paqueteSecundario.individuos.*
@@ -40,9 +42,9 @@ object nivel1 inherits Nivel {
 
 	override method cargarNivel() {
 		super()
-			// musicaJuego.play()
 		self.cerrarPantallas()
 		self.reiniciarElementos()
+		game.schedule(1, { audio.reproducirCancionEnLoop("nivel1")})
 		pisos.agregarPisosNivel1()
 		bordes.agregarBordesNivel1()
 		paredes.agregarParedesNivel1()
@@ -66,7 +68,7 @@ object nivel1 inherits Nivel {
 object nivel2 inherits Nivel {
 
 	override method cargarNivel() {
-		// musicaJuego.play()
+		game.schedule(1, { audio.reproducirCancionEnLoop("nivel2")})
 		pisos.agregarPisosNivel2()
 		bordes.agregarBordesNivel2()
 		paredes.agregarParedesNivel2()
@@ -94,12 +96,12 @@ object nivel3 inherits Nivel {
 
 	override method cargarNivel() {
 		// musicaJuego.play()
-		 pisos.agregarPisosNivel3()
-		 bordes.agregarBordesNivel3()
-		 paredes.agregarParedesNivel3()
-		// salidas.agregarSalidasNivel3()
-		// cofres.agregarCofresNivel3()
-		// enemigo.agregarEnemigoNivel3()
+		pisos.agregarPisosNivel3()
+		bordes.agregarBordesNivel3()
+		paredes.agregarParedesNivel3()
+			// salidas.agregarSalidasNivel3()
+			// cofres.agregarCofresNivel3()
+			// enemigo.agregarEnemigoNivel3()
 		menu.agregarMenu()
 		game.addVisual(personaje)
 		configuraciones.configurarColisiones()

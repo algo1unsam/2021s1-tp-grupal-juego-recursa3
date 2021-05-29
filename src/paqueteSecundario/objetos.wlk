@@ -2,6 +2,7 @@ import paquetePrimario.menu.*
 import paquetePrimario.imagen.*
 import wollok.game.*
 import paqueteSecundario.individuos.*
+import paquetePrimario.audio.*
 
 class Objeto inherits Imagen {
 
@@ -59,47 +60,29 @@ class Mochila inherits Objeto {
 
 	const objetosGuardados = []
 
-	method controlarPeso() {
-		return objetosGuardados.sum{ unObjeto => unObjeto.peso() } - peso <= 0
-	}
-
 	method agregarObjeto(unObjeto) {
-		// if (self.controlarPeso()){
 		if (unObjeto.categoria() == "espada") {
-			// No puede tener mas de 2 espadas
-			if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "espada" }).size() < 1) {
-				objetosGuardados.add(unObjeto)
-				personaje.equiparObjetoMano1(unObjeto)
-			} else {
-				// game.say(personaje, "No puedes tener mas de 2 espadas, desecha una primero")
-				personaje.desecharObjeto(self.objetosGuardados().find({ objeto => objeto.categoria() == "espada"}))
-				objetosGuardados.add(unObjeto)
-				personaje.equiparObjetoMano1(unObjeto)
-			}
+			objetosGuardados.add(unObjeto)
+			personaje.equiparObjetoMano1(unObjeto)
+			game.schedule(100, { audio.reproducirSonido("agarrar")})
 		}
 		if (unObjeto.categoria() == "escudo") {
-			// No puede tener mas de 1 escudo.
-			if (objetosGuardados.filter({ unObjetoGuardado => unObjetoGuardado.categoria() == "escudo" }).size() < 1) {
-				objetosGuardados.add(unObjeto)
-				personaje.equiparObjetoMano2(unObjeto)
-			} else {
-				personaje.desecharObjeto(self.objetosGuardados().find({ objeto => objeto.categoria() == "escudo"}))
-				objetosGuardados.add(unObjeto)
-			}
+			objetosGuardados.add(unObjeto)
+			personaje.equiparObjetoMano2(unObjeto)
+			game.schedule(100, { audio.reproducirSonido("agarrar")})
 		}
 			// Al encontrar una mochila la cambia por la que ya tiene
 		if (unObjeto.categoria() == "mochila") {
 			peso = unObjeto.peso()
 			imagen = unObjeto.imagen()
+			game.schedule(1, { audio.reproducirSonido("agarrar")})
 		}
 		if (unObjeto.categoria() == "llave") {
 			objetosGuardados.add(unObjeto)
+			game.schedule(1, { audio.reproducirSonido("llave")})
 		}
 			// Agrega la visual del objeto a la zona donde se muestran los objetos que tenes a la derecha de todo
 		game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))
-//		}else{
-//			game.say(personaje, "No tenes espacio para llevar este objeto, desecha uno primero para ganar mas espacio")
-//		}
 	}
 
 	override method interactuarConObjeto() {
@@ -131,9 +114,10 @@ class Cofre inherits Objeto {
 	override method interactuarConObjeto() {
 		if (objetoGuardado != null && personaje.mochila() != null) {
 			if (personaje.cantidadLlaves() > 0) {
-				var miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == 'llave' })
+				const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == 'llave' })
 				personaje.utilizarObjeto(miLlave)
 				game.addVisualIn(new CofreAbierto(imagen = "cofres/cofreAbierto.png"), game.at(self.position().x(), self.position().y()))
+				game.schedule(1, { audio.reproducirSonido("cofre")})
 				game.removeVisual(self)
 				return objetoGuardado
 			}
