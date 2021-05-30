@@ -4,6 +4,7 @@ import objetos.*
 import wollok.game.*
 import paqueteSecundario.pantallas.*
 import paqueteSecundario.niveles.*
+import paqueteVisuales.presionarEnter.*
 
 class Estado {
 
@@ -107,6 +108,7 @@ object estadoGameOver inherits Estado {
 
 	override method alPresionarEnter() {
 		pantallaGameOver.cerrar()
+		pantallaInicio.vuelveAEmpezar(true)
 		pantallaInicio.iniciar()
 	}
 
@@ -116,6 +118,7 @@ object estadoGanaste inherits Estado {
 
 	override method alPresionarEnter() {
 		pantallaGanaste.cerrar()
+		pantallaInicio.vuelveAEmpezar(true)
 		pantallaInicio.iniciar()
 	}
 
