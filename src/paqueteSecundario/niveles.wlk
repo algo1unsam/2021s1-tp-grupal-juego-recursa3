@@ -12,6 +12,7 @@ import paquetePrimario.pantallaJuego.*
 import paqueteSecundario.individuos.*
 import paqueteSecundario.objetos.*
 import paqueteSecundario.rejas.*
+import paqueteSecundario.sombras.*
 
 class Nivel {
 
@@ -58,6 +59,7 @@ object nivel1 inherits Nivel {
 		personaje.mostrarVida()
 		enemigo.agregarEnemigoNivel1()
 		enemigo1.agregarEnemigoNivel1()
+		//sombras.agregarSombra1Nivel1()
 		configuraciones.configurarColisiones()
 	}
 
