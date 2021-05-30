@@ -11,6 +11,7 @@ import paquetePrimario.configuracion.*
 import paquetePrimario.pantallaJuego.*
 import paqueteSecundario.individuos.*
 import paqueteSecundario.objetos.*
+import paqueteSecundario.rejas.*
 
 class Nivel {
 
@@ -48,6 +49,7 @@ object nivel1 inherits Nivel {
 		pisos.agregarPisosNivel1()
 		bordes.agregarBordesNivel1()
 		paredes.agregarParedesNivel1()
+		rejas.agregarRejasNivel1()
 		salidas.agregarSalidasNivel1()
 		objetos.agregarObjetosNivel1()
 		cofres.agregarCofresNivel1()
@@ -73,6 +75,7 @@ object nivel2 inherits Nivel {
 		pisos.agregarPisosNivel2()
 		bordes.agregarBordesNivel2()
 		paredes.agregarParedesNivel2()
+		rejas.agregarRejasNivel2()
 		salidas.agregarSalidasNivel2()
 			// cofres.agregarCofresNivel3()
 			// enemigo.agregarEnemigoNivel3()
@@ -100,10 +103,12 @@ object nivel3 inherits Nivel {
 		pisos.agregarPisosNivel3()
 		bordes.agregarBordesNivel3()
 		paredes.agregarParedesNivel3()
-			// salidas.agregarSalidasNivel3()
+		rejas.agregarRejasNivel3()
+		salidas.agregarSalidasNivel3()
 			// cofres.agregarCofresNivel3()
 			// enemigo.agregarEnemigoNivel3()
 		menu.agregarMenu()
+		personaje.position(game.at(11, 1))
 		game.addVisual(personaje)
 		configuraciones.configurarColisiones()
 	}
