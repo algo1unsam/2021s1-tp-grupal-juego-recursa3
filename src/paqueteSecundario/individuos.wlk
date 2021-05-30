@@ -214,9 +214,7 @@ class Enemigo inherits Individuo {
 
 	override method murio() {
 		game.removeTickEvent("perseguir" + self)
-	}
-
-	method removeVida() {
+		menu.removeVida(posicionCorazon1, posicionCorazon2, posicionCorazon3)
 	}
 	
 	method enemigosFrenteAlIndividuo(orientacionIndividuo, individuo){
