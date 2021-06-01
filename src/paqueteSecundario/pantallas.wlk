@@ -2,7 +2,6 @@ import wollok.game.*
 import paquetePrimario.imagen.*
 import paquetePrimario.audio.*
 import paquetePrimario.configuracion.*
-import paquetePrimario.pantallaJuego.*
 import paqueteSecundario.niveles.*
 import paqueteSecundario.estados.*
 import paqueteVisuales.presionarEnter.*
@@ -106,4 +105,24 @@ object pantallaGanaste inherits Pantalla(imagen = "pantallas/ganaste.jpg") {
 		configuraciones.cambiarEstado(estadoGanaste)
 	}
 
+}
+
+object pantallaJuego inherits Pantalla{
+
+	var property nivelActual = nivel1
+	
+	override method iniciar() {
+		nivelActual.cargarNivel()
+	}
+
+	method avanzarNivel(unNivel) {
+		nivelActual = unNivel
+		self.iniciar()
+	}
+
+	method terminarJuego(){
+		//musicaJuego.stop()
+		//sonido.reproducir("musicaEpica")
+		pantallaGanaste.iniciar()
+	}
 }
