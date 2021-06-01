@@ -6,7 +6,6 @@ import pantallas.*
 import paquetePrimario.menu.*
 import paquetePrimario.audio.*
 import paquetePrimario.configuracion.*
-import paquetePrimario.pantallaJuego.*
 import paqueteBloques.paredes.*
 import paqueteBloques.bordes.*
 import paqueteBloques.pisos.*

@@ -1,6 +1,6 @@
 import wollok.game.*
 import paquetePrimario.imagen.*
-import paquetePrimario.pantallaJuego.*
+import paqueteSecundario.pantallas.*
 
 class Salida inherits Imagen{
 
