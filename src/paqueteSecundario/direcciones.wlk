@@ -14,9 +14,14 @@ class Direccion{
 
 	method puedeIr(individuo) = self.posicion(individuo.position()).allElements().all({elemento => elemento.esAtravesable()})
 	
+	method objetosEnLaPosicionDelIndividuo(individuo){
+		return game.getObjectsIn(game.at(individuo.position().x(), individuo.position().y()))
+	}
+	
 	method objetosFrentreAlIndividuo(individuo){
 		return game.getObjectsIn(game.at(self.posicion(individuo.position()).x(), self.posicion(individuo.position())).y())
 	}
+
 }
 
 object arriba inherits Direccion(nombre="Espalda"){

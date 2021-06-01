@@ -82,9 +82,12 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 		unObjeto.utilizarObjeto()
 	}
 
-	method interactuarConObjetos(variosObjetos) {
-		if (variosObjetos != null) {
-			const todosLosObjetos = variosObjetos.map({ unObjecto => unObjecto.interactuarConObjeto() })
+	method interactuarConObjetos() {
+		const objetosDelante = orientacion.objetosFrentreAlIndividuo(self)
+		const objetosBajo = orientacion.objetosEnLaPosicionDelIndividuo(self)
+		const ambosObjetos = objetosDelante + objetosBajo
+		if (ambosObjetos != null) {
+			const todosLosObjetos = ambosObjetos.map({ unObjecto => unObjecto.interactuarConObjeto() })
 			if (todosLosObjetos != null) {
 				const objetosObtenidos = todosLosObjetos.filter({ unObjecto => unObjecto != null })
 				objetosObtenidos.forEach({ unObjecto => self.agregarObjeto(unObjecto)})

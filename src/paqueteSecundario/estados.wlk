@@ -59,7 +59,7 @@ object juego inherits Estado {
 	}
 
 	override method alPresionarE() {
-		personaje.interactuarConObjetos(game.getObjectsIn(game.at(personaje.position().x(), personaje.position().y())))
+		personaje.interactuarConObjetos()
 	}
 
 	override method alPresionarSpace() {

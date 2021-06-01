@@ -20,6 +20,10 @@ object sombras inherits Sombra {
 		game.addVisual(sombra3Nivel1)
 		game.removeVisual(sombra2Nivel1)
 	}
+	
+	method removerSombra3Nivel1(){
+		game.removeVisual(sombra3Nivel1)
+	}
 
 	method agregarSombra1Nivel2() {
 		game.addVisual(sombra1Nivel2)
@@ -33,6 +37,10 @@ object sombras inherits Sombra {
 	method agregarSombra3Nivel2() {
 		game.addVisual(sombra3Nivel2)
 		game.removeVisual(sombra2Nivel2)
+	}
+	
+	method removerSombra3Nivel2(){
+		game.removeVisual(sombra3Nivel2)
 	}
 
 	method agregarSombra1Nivel3() {
@@ -52,6 +60,10 @@ object sombras inherits Sombra {
 	method agregarSombra4Nivel3() {
 		game.addVisual(sombra4Nivel3)
 		game.removeVisual(sombra3Nivel3)
+	}
+	
+	method removerSombra4Nivel3(){
+		game.removeVisual(sombra4Nivel3)
 	}
 
 }

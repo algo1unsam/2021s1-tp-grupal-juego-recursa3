@@ -110,13 +110,17 @@ object mochilaGrande inherits Mochila(categoria = "mochila", peso = -20, imagen 
 class Cofre inherits Objeto {
 
 	var property objetoGuardado = null
+	
+	override method esAtravesable(){
+		return false
+	}
 
 	override method interactuarConObjeto() {
 		if (objetoGuardado != null && personaje.mochila() != null) {
 			if (personaje.cantidadLlaves() > 0) {
 				const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == 'llave' })
 				personaje.utilizarObjeto(miLlave)
-				game.addVisualIn(new CofreAbierto(imagen = "cofres/cofreAbierto.png"), game.at(self.position().x(), self.position().y()))
+				game.addVisualIn(new CofreAbierto(imagen = "cofres/cofreAbierto.png", peso = 0), game.at(self.position().x(), self.position().y()))
 				game.schedule(1, { audio.reproducirSonido("cofre")})
 				game.removeVisual(self)
 				return objetoGuardado
@@ -165,7 +169,7 @@ object cofreCerradoLevel3 inherits Cofre(categoria = "cofre", peso = 0, position
 
 }
 
-class CofreAbierto inherits Imagen {
+class CofreAbierto inherits Cofre {
 
 }
 
