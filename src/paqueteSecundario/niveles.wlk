@@ -56,8 +56,7 @@ object nivel1 inherits Nivel {
 		menu.agregarMenu()
 		game.addVisual(personaje)
 		personaje.mostrarVida()
-		enemigoConLLaveVerde.agregarEnemigoNivel1()
-		enemigoConLlaveCofre.agregarEnemigoNivel1()
+		enemigos.agregarEnemigoNivel1()
 		sombras.agregarSombra1Nivel1()
 		configuraciones.configurarColisiones()
 	}
@@ -88,7 +87,7 @@ object nivel2 inherits Nivel {
 	}
 
 	override method finalizarNivel() {
-		super()
+		self.cerrarPantallas()
 		pantallaJuego.avanzarNivel(nivel3)
 	}
 

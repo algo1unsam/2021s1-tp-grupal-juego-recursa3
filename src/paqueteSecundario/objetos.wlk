@@ -160,7 +160,7 @@ object cofreCerrado2Level1 inherits Cofre(categoria = "cofre", peso = 0, positio
 
 }
 
-object cofreCerrado3Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = escudoChico) {
+object cofreCerrado3Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(peso = 0)) {
 
 }
 
