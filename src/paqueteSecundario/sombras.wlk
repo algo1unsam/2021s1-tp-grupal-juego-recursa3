@@ -48,6 +48,11 @@ object sombras inherits Sombra {
 		game.addVisual(sombra3Nivel3)
 		game.removeVisual(sombra2Nivel3)
 	}
+	
+	method agregarSombra4Nivel3() {
+		game.addVisual(sombra4Nivel3)
+		game.removeVisual(sombra3Nivel3)
+	}
 
 }
 
@@ -86,4 +91,9 @@ object sombra2Nivel3 inherits Sombra(position = game.at(1, 1), imagen = "sombras
 object sombra3Nivel3 inherits Sombra(position = game.at(1, 1), imagen = "sombras/sombra3Nivel3.png") {
 
 }
+
+object sombra4Nivel3 inherits Sombra(position = game.at(1, 1), imagen = "sombras/sombra4Nivel3.png") {
+
+}
+
 

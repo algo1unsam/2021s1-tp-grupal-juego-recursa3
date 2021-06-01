@@ -84,6 +84,7 @@ object nivel2 inherits Nivel {
 		menu.agregarMenu()
 		game.addVisual(personaje)
 		self.reiniciarElementos()
+		//sombras.agregarSombra1Nivel2()
 		configuraciones.configurarColisiones()
 	}
 
@@ -112,6 +113,7 @@ object nivel3 inherits Nivel {
 		menu.agregarMenu()
 		personaje.position(game.at(11, 1))
 		game.addVisual(personaje)
+		//sombras.agregarSombra1Nivel3()
 		configuraciones.configurarColisiones()
 	}
 
