@@ -192,15 +192,15 @@ object llaveCofre2 inherits Llave(categoria = "llave", peso = 0, imagen = "llave
 
 }
 
-object llaveAzul inherits Llave(categoria = "llave", peso = 0, imagen = "llave/llaveAzul.png", position = menu.posicionLlaveAzul()) {
+object llaveAzul inherits Llave(categoria = "llaveAzul", peso = 0, imagen = "llave/llaveAzul.png", position = menu.posicionLlaveAzul()) {
 
 }
 
-object llaveRoja inherits Llave(categoria = "llave", peso = 0, imagen = "llave/llaveRoja.png", position = menu.posicionLlaveRoja()) {
+object llaveRoja inherits Llave(categoria = "llaveRoja", peso = 0, imagen = "llave/llaveRoja.png", position = menu.posicionLlaveRoja()) {
 
 }
 
-object llaveVerde inherits Llave(categoria = "llave", peso = 0, imagen = "llave/llaveVerde.png", position = menu.posicionLlaveVerde()) {
+object llaveVerde inherits Llave(categoria = "llaveVerde", peso = 0, imagen = "llave/llaveVerde.png", position = menu.posicionLlaveVerde()) {
 
 }
 
