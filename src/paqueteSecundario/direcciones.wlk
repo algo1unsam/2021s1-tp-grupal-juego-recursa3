@@ -21,6 +21,11 @@ class Direccion{
 	method objetosFrentreAlIndividuo(individuo){
 		return game.getObjectsIn(game.at(self.posicion(individuo.position()).x(), self.posicion(individuo.position())).y())
 	}
+	
+	method enemigosFrenteAlIndividuo(individuo) {
+		const objects = self.objetosFrentreAlIndividuo(individuo)
+		return objects.filter{ unObjeto => unObjeto.categoria() == 'enemigo' }
+	}
 
 }
 

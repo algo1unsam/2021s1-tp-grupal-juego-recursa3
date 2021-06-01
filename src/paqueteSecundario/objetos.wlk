@@ -21,9 +21,9 @@ class Objeto inherits Imagen {
 object objetos {
 
 	method agregarObjetosNivel1() {
-		game.addVisualIn(llaveCofre, game.at(5, 5))
-		game.addVisualIn(llaveCofre2, game.at(9, 4))
+		game.addVisualIn(new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()), game.at(5, 8))
 		game.addVisualIn(mochilaChica, game.at(3, 1))
+		game.addVisualIn(llaveAzul, game.at(11, 2))
 	}
 
 }
@@ -137,6 +137,7 @@ object cofres {
 	method agregarCofresNivel1() {
 		game.addVisual(cofreCerrado1Level1)
 		game.addVisual(cofreCerrado2Level1)
+		game.addVisual(cofreCerrado3Level1)
 	}
 
 	method agregarCofresNivel2() {
@@ -151,11 +152,15 @@ object cofres {
 
 }
 
-object cofreCerrado1Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(11, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaChica) {
+object cofreCerrado1Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(1, 12), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaChica) {
 
 }
 
 object cofreCerrado2Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(15, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = escudoChico) {
+
+}
+
+object cofreCerrado3Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = escudoChico) {
 
 }
 
@@ -184,23 +189,16 @@ class Llave inherits Objeto {
 
 }
 
-object llaveCofre inherits Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()) {
-
-}
-
-object llaveCofre2 inherits Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()) {
-
-}
 
 object llaveAzul inherits Llave(categoria = "llaveAzul", peso = 0, imagen = "llave/llaveAzul.png", position = menu.posicionLlaveAzul()) {
 
 }
 
-object llaveRoja inherits Llave(categoria = "llaveRoja", peso = 0, imagen = "llave/llaveRoja.png", position = menu.posicionLlaveRoja()) {
+object llaveVerde inherits Llave(categoria = "llaveVerde", peso = 0, imagen = "llave/llaveVerde.png", position = menu.posicionLlaveVerde()) {
 
 }
 
-object llaveVerde inherits Llave(categoria = "llaveVerde", peso = 0, imagen = "llave/llaveVerde.png", position = menu.posicionLlaveVerde()) {
+object llaveRoja inherits Llave(categoria = "llaveRoja", peso = 0, imagen = "llave/llaveRoja.png", position = menu.posicionLlaveRoja()) {
 
 }
 

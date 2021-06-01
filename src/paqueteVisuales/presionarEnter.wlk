@@ -28,9 +28,7 @@ class PantallaPresionaEnter inherits Pantalla {
 	method presionaEnterParaContinuar() {
 		index = 0
 		subir = true
-
-		game.onTick(50, "presionaEnterParaContinuar", {
-			const pantalla = pantallaPresionaEnterParaContinuar.pantallaPresionaEnterParaContinuarLista().get(index)
+		game.onTick(50, "presionaEnterParaContinuar", { const pantalla = pantallaPresionaEnterParaContinuar.pantallaPresionaEnterParaContinuarLista().get(index)
 			game.addVisualIn(pantalla, game.origin())
 			game.schedule(51, { game.removeVisual(pantalla)})
 			self.asignarIndex()
@@ -38,21 +36,18 @@ class PantallaPresionaEnter inherits Pantalla {
 	}
 
 	method borrarOnTickPresionaEnterParaContinuar() {
-		if(subir and index != 0 or index == 9){
+		if (subir and index != 0 or index == 9) {
 			game.addVisualIn(pantallaPresionaEnterParaContinuar.pantallaPresionaEnterParaContinuarLista().get(index - 1), game.origin())
-		}else {
+		} else {
 			game.addVisualIn(pantallaPresionaEnterParaContinuar.pantallaPresionaEnterParaContinuarLista().get(index + 1), game.origin())
 		}
 		game.removeTickEvent("presionaEnterParaContinuar")
 	}
-	
-	
+
 	method presionaEnterParaVolver() {
 		index = 0
 		subir = true
-
-		game.onTick(50, "presionaEnterParaVolver", {
-			const pantalla = pantallaPresionaEnterParaVolver.pantallaPresionaEnterParaVolverLista().get(index)
+		game.onTick(50, "presionaEnterParaVolver", { const pantalla = pantallaPresionaEnterParaVolver.pantallaPresionaEnterParaVolverLista().get(index)
 			game.addVisualIn(pantalla, game.origin())
 			game.schedule(51, { game.removeVisual(pantalla)})
 			self.asignarIndex()
@@ -60,13 +55,14 @@ class PantallaPresionaEnter inherits Pantalla {
 	}
 
 	method borrarOnTickPresionaEnterParaVolver() {
-		if(subir and index != 0 or index == 9){
+		if (subir and index != 0 or index == 9) {
 			game.addVisualIn(pantallaPresionaEnterParaVolver.pantallaPresionaEnterParaVolverLista().get(index - 1), game.origin())
-		}else {
+		} else {
 			game.addVisualIn(pantallaPresionaEnterParaVolver.pantallaPresionaEnterParaVolverLista().get(index + 1), game.origin())
 		}
 		game.removeTickEvent("presionaEnterParaVolver")
 	}
+
 }
 
 object pantallaPresionaEnterParaContinuar inherits PantallaPresionaEnter(index = 0) {

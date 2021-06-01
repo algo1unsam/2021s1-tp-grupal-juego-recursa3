@@ -128,10 +128,10 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	override method atacar() {
 		if (self.mano1() != null) {
 			self.ataque(true)
-			const enemigos = enemigo.enemigosFrenteAlIndividuo(orientacion, self)
+			const enemigos = orientacion.enemigosFrenteAlIndividuo(self)
 			if (!enemigos.isEmpty()) {
 				enemigos.forEach{ unEnemigo => unEnemigo.recibirDanio(mano1.danio())}
-			}else{
+			} else {
 				game.schedule(1, { audio.reproducirSonido("ataque")})
 			}
 			game.schedule(500, { self.ataque(false)})
@@ -159,8 +159,8 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	override method murio() {
 		pantallaGameOver.iniciar()
 	}
-	
-	override method recibirDanio(danio){
+
+	override method recibirDanio(danio) {
 		super(danio)
 		game.schedule(1, { audio.reproducirSonido("danioPersonaje")})
 	}
@@ -219,24 +219,28 @@ class Enemigo inherits Individuo {
 		game.removeTickEvent("perseguir" + self)
 		menu.removeVida(posicionCorazon1, posicionCorazon2, posicionCorazon3)
 	}
-	
-	method enemigosFrenteAlIndividuo(orientacionIndividuo, individuo){
-		const objects = orientacionIndividuo.objetosFrentreAlIndividuo(individuo)
-		return objects.filter{ unObjeto => unObjeto.categoria() == 'enemigo' }
-	}
-	
-	override method recibirDanio(danio){
+
+	override method recibirDanio(danio) {
 		super(danio)
 		game.schedule(1, { audio.reproducirSonido("ataqueEnemigo")})
 	}
 
 }
 
-object enemigo inherits Enemigo(vida = 2, ataque = 1, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
+object enemigoConLLaveVerde inherits Enemigo(vida = 2, ataque = 1, position = game.at(10, 10), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
+
+	override method murio() {
+		super()
+		game.addVisualIn(llaveVerde, game.at(self.position().x(), self.position().y()))
+	}
 
 }
 
-object enemigo1 inherits Enemigo(vida = 2, ataque = 1, position = game.at(4, 5), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
+object enemigoConLlaveCofre inherits Enemigo(vida = 2, ataque = 1, position = game.at(4, 5), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
+
+	override method murio() {
+		game.addVisualIn(new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()), game.at(self.position().x(), self.position().y()))
+	}
 
 }
 
