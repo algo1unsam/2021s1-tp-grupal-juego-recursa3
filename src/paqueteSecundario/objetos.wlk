@@ -138,6 +138,7 @@ object cofres {
 		game.addVisual(cofreCerrado1Level1)
 		game.addVisual(cofreCerrado2Level1)
 		game.addVisual(cofreCerrado3Level1)
+		game.addVisual(cofreCerrado4Level1)
 	}
 
 	method agregarCofresNivel2() {
@@ -156,11 +157,15 @@ object cofreCerrado1Level1 inherits Cofre(categoria = "cofre", peso = 0, positio
 
 }
 
-object cofreCerrado2Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(15, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = escudoChico) {
+object cofreCerrado2Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(15, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(peso = 0)) {
 
 }
 
 object cofreCerrado3Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(peso = 0)) {
+
+}
+
+object cofreCerrado4Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 5), imagen = "cofres/cofreCerrado.png", objetoGuardado = escudoChico) {
 
 }
 

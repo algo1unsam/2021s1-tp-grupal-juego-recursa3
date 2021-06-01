@@ -56,7 +56,7 @@ object nivel1 inherits Nivel {
 		menu.agregarMenu()
 		game.addVisual(personaje)
 		personaje.mostrarVida()
-		enemigos.agregarEnemigoNivel1()
+		enemigos.agregarEnemigosNivel1ZonaInicio()
 		sombras.agregarSombra1Nivel1()
 		configuraciones.configurarColisiones()
 	}

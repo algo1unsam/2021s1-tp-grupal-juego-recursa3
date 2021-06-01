@@ -209,32 +209,59 @@ class Enemigo inherits Individuo {
 
 }
 
-object enemigos{
-	method agregarEnemigoNivel1() {
+object enemigos {
+
+	method agregarEnemigosNivel1ZonaInicio() {
 		game.addVisual(enemigoConLLaveVerdeNivel1)
 		enemigoConLLaveVerdeNivel1.moverse()
+	}
+
+	method agregarEnemigosNivel1ZonaAzul() {
+	}
+
+	method agregarEnemigosNivel1ZonaVerde() {
 		game.addVisual(enemigoConLlaveRojaNivel1)
 		enemigoConLlaveRojaNivel1.moverse()
 		game.addVisual(enemigoConLlaveCofre1Nivel1)
 		enemigoConLlaveCofre1Nivel1.moverse()
 		game.addVisual(enemigoConLlaveCofre2Nivel1)
 		enemigoConLlaveCofre2Nivel1.moverse()
+	}
+
+	method agregarEnemigosNivel1ZonaRoja() {
 		game.addVisual(enemigoConLlaveCofre3Nivel1)
 		enemigoConLlaveCofre3Nivel1.moverse()
 		game.addVisual(enemigoNadaNivel1)
 		enemigoNadaNivel1.moverse()
 	}
-	
-	method agregarEnemigoNivel2() {
 
+	method agregarEnemigosNivel2ZonaInicio() {
 	}
 
-	method agregarEnemigoNivel3() {
-
+	method agregarEnemigosNivel2ZonaAzul() {
 	}
+
+	method agregarEnemigosNivel2ZonaVerde() {
+	}
+
+	method agregarEnemigosNivel2ZonaRoja() {
+	}
+
+	method agregarEnemigosNivel3ZonaInicio() {
+	}
+
+	method agregarEnemigosNivel3ZonaAzul() {
+	}
+
+	method agregarEnemigosNivel3ZonaVerde() {
+	}
+
+	method agregarEnemigosNivel3ZonaRoja() {
+	}
+
 }
 
-object enemigoConLLaveVerdeNivel1 inherits Enemigo(vida = 2, ataque = 1, position = game.at(6, 4), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
+object enemigoConLLaveVerdeNivel1 inherits Enemigo(vida = 2, ataque = 1, position = game.at(7, 4), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
 
 	override method murio() {
 		super()
@@ -267,7 +294,6 @@ object enemigoConLlaveCofre2Nivel1 inherits Enemigo(vida = 2, ataque = 1, positi
 
 }
 
-
 object enemigoConLlaveCofre3Nivel1 inherits Enemigo(vida = 2, ataque = 1, position = game.at(19, 12), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
 
 	override method murio() {
@@ -276,8 +302,7 @@ object enemigoConLlaveCofre3Nivel1 inherits Enemigo(vida = 2, ataque = 1, positi
 
 }
 
-object enemigoNadaNivel1 inherits Enemigo(vida = 2, ataque = 1, position = game.at(18, 8), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
+object enemigoNadaNivel1 inherits Enemigo(vida = 2, ataque = 1, position = game.at(16, 6), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
 
 }
-
 

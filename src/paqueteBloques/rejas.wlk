@@ -43,6 +43,7 @@ object rejaAzulNivel1 inherits Reja(position = game.at(5, 5), imagen = "rejas/az
 		//if(personaje.mochila().any({unObjeto => unObjeto.categoria() == "llaveAzul"}){
 			super()
 			sombras.agregarSombra2Nivel1()
+			enemigos.agregarEnemigosNivel1ZonaAzul()
 		//}else{
 			//game.say(personaje, "Necesitas encontrar la llave Azul)
 			//game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
@@ -58,6 +59,7 @@ object rejaVerdeNivel1 inherits Reja(position = game.at(7, 5), imagen = "rejas/v
 	override method interactuarConObjeto() {
 		super()
 		sombras.agregarSombra3Nivel1()
+		enemigos.agregarEnemigosNivel1ZonaVerde()
 		return null
 	}
 
@@ -68,6 +70,7 @@ object rejaRojaNivel1 inherits Reja(position = game.at(15, 7), imagen = "rejas/r
 	override method interactuarConObjeto() {
 		super()
 		sombras.removerSombra3Nivel1()
+		enemigos.agregarEnemigosNivel1ZonaRoja()
 		return null
 	}
 
@@ -78,6 +81,7 @@ object rejaAzulNivel2 inherits Reja(position = game.at(17, 7), imagen = "rejas/a
 	override method interactuarConObjeto() {
 		super()
 		sombras.agregarSombra2Nivel2()
+		enemigos.agregarEnemigosNivel2ZonaAzul()
 		return null
 	}
 
@@ -88,6 +92,7 @@ object rejaVerdeNivel2 inherits Reja(position = game.at(1, 3), imagen = "rejas/v
 	override method interactuarConObjeto() {
 		super()
 		sombras.agregarSombra3Nivel2()
+		enemigos.agregarEnemigosNivel2ZonaVerde()
 		return null
 	}
 
@@ -98,6 +103,7 @@ object rejaRojaNivel2 inherits Reja(position = game.at(6, 9), imagen = "rejas/ro
 	override method interactuarConObjeto() {
 		super()
 		sombras.removerSombra3Nivel2()
+		enemigos.agregarEnemigosNivel2ZonaRoja()
 		return null
 	}
 
@@ -108,6 +114,7 @@ object rejaAzulNivel3 inherits Reja(position = game.at(9, 3), imagen = "rejas/az
 	override method interactuarConObjeto() {
 		super()
 		sombras.agregarSombra2Nivel3()
+		enemigos.agregarEnemigosNivel3ZonaAzul()
 		return null
 	}
 
@@ -128,6 +135,7 @@ object rejaRojaNivel3 inherits Reja(position = game.at(1, 9), imagen = "rejas/ro
 	override method interactuarConObjeto() {
 		super()
 		sombras.agregarSombra4Nivel3()
+		enemigos.agregarEnemigosNivel3ZonaRoja()
 		return null
 	}
 
