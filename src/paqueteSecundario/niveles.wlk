@@ -1,18 +1,18 @@
 import wollok.game.*
-import paredes.*
-import bordes.*
-import pisos.*
 import estados.*
-import salidas.*
+import individuos.*
+import objetos.*
 import pantallas.*
 import paquetePrimario.menu.*
 import paquetePrimario.audio.*
 import paquetePrimario.configuracion.*
 import paquetePrimario.pantallaJuego.*
-import paqueteSecundario.individuos.*
-import paqueteSecundario.objetos.*
-import paqueteSecundario.rejas.*
-import paqueteSecundario.sombras.*
+import paqueteBloques.paredes.*
+import paqueteBloques.bordes.*
+import paqueteBloques.pisos.*
+import paqueteBloques.salidas.*
+import paqueteBloques.rejas.*
+import paqueteBloques.sombras.*
 
 class Nivel {
 
