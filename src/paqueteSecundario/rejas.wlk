@@ -4,7 +4,8 @@ import paqueteSecundario.sombras.*
 
 class Reja inherits Imagen {
 
-// override method esAtravesable() = false
+	override method esAtravesable() = false
+
 }
 
 object rejas {
@@ -33,6 +34,7 @@ object rejaAzulNivel1 inherits Reja(position = game.at(5, 5), imagen = "rejas/az
 
 	override method interactuarConObjeto() {
 		sombras.agregarSombra2Nivel1()
+		game.removeVisual(self)
 		return null
 	}
 
@@ -42,6 +44,7 @@ object rejaVerdeNivel1 inherits Reja(position = game.at(7, 5), imagen = "rejas/v
 
 	override method interactuarConObjeto() {
 		sombras.agregarSombra3Nivel1()
+		game.removeVisual(self)
 		return null
 	}
 
@@ -51,6 +54,7 @@ object rejaRojaNivel1 inherits Reja(position = game.at(15, 7), imagen = "rejas/r
 
 	override method interactuarConObjeto() {
 		sombras.removerSombra3Nivel1()
+		game.removeVisual(self)
 		return null
 	}
 
@@ -60,6 +64,7 @@ object rejaAzulNivel2 inherits Reja(position = game.at(17, 7), imagen = "rejas/a
 
 	override method interactuarConObjeto() {
 		sombras.agregarSombra2Nivel2()
+		game.removeVisual(self)
 		return null
 	}
 
@@ -69,6 +74,7 @@ object rejaVerdeNivel2 inherits Reja(position = game.at(1, 3), imagen = "rejas/v
 
 	override method interactuarConObjeto() {
 		sombras.agregarSombra3Nivel2()
+		game.removeVisual(self)
 		return null
 	}
 
@@ -78,15 +84,17 @@ object rejaRojaNivel2 inherits Reja(position = game.at(6, 9), imagen = "rejas/ro
 
 	override method interactuarConObjeto() {
 		sombras.removerSombra3Nivel2()
+		game.removeVisual(self)
 		return null
 	}
 
 }
 
-object rejaAzulNivel3 inherits Reja(position = game.at(9, 4), imagen = "rejas/azul.png") {
+object rejaAzulNivel3 inherits Reja(position = game.at(9, 3), imagen = "rejas/azul.png") {
 
 	override method interactuarConObjeto() {
 		sombras.agregarSombra2Nivel3()
+		game.removeVisual(self)
 		return null
 	}
 
@@ -96,6 +104,7 @@ object rejaVerdeNivel3 inherits Reja(position = game.at(17, 11), imagen = "rejas
 
 	override method interactuarConObjeto() {
 		sombras.agregarSombra3Nivel3()
+		game.removeVisual(self)
 		return null
 	}
 
@@ -105,6 +114,7 @@ object rejaRojaNivel3 inherits Reja(position = game.at(1, 9), imagen = "rejas/ro
 
 	override method interactuarConObjeto() {
 		sombras.agregarSombra4Nivel3()
+		game.removeVisual(self)
 		return null
 	}
 
