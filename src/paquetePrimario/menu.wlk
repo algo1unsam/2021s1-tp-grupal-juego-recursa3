@@ -16,8 +16,8 @@ class Menu inherits Imagen {
 	const property posicionMochilaGrande = game.at(23, 5)
 	const property posicionLlaveCofre = game.at(25, 5)
 	const property posicionLlaveAzul = game.at(22, 4)
-	const property posicionLlaveRoja = game.at(23, 4)
-	const property posicionLlaveVerde = game.at(24, 4)
+	const property posicionLlaveVerde = game.at(23, 4)
+	const property posicionLlaveRoja = game.at(24, 4)
 	const property posicionEspadaChica = game.at(22, 3)
 	const property posicionEspadaGrande = game.at(23, 3)
 	const property posicionEscudoChico = game.at(22, 2)
@@ -66,6 +66,10 @@ class Menu inherits Imagen {
 		game.getObjectsIn(posicionCorazon1).forEach({ visual => game.removeVisual(visual)})
 		game.getObjectsIn(posicionCorazon2).forEach({ visual => game.removeVisual(visual)})
 		game.getObjectsIn(posicionCorazon3).forEach({ visual => game.removeVisual(visual)})
+	}
+	
+	method removeLlaveCofre(){
+		game.getObjectsIn(posicionLlaveCofre).forEach({ visual => game.removeVisual(visual)})
 	}
 
 }

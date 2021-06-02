@@ -6,9 +6,9 @@ import paqueteSecundario.individuos.*
 class Reja inherits Imagen {
 
 	override method esAtravesable() = false
-	
-	override method interactuarConObjeto(){
-		//game.schedule(1, { audio.reproducirSonido("rejaAbierta")})
+
+	override method interactuarConObjeto() {
+		// game.schedule(1, { audio.reproducirSonido("rejaAbierta")})
 		game.removeVisual(self)
 		return null
 	}
@@ -40,15 +40,16 @@ object rejas {
 object rejaAzulNivel1 inherits Reja(position = game.at(5, 5), imagen = "rejas/azul.png") {
 
 	override method interactuarConObjeto() {
-		//if(personaje.mochila().any({unObjeto => unObjeto.categoria() == "llaveAzul"}){
+		if (personaje.mochila() != null && personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == "llaveAzul"})) {
+			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveAzul"})
 			super()
 			sombras.agregarSombra2Nivel1()
 			enemigos.agregarEnemigosNivel1ZonaAzul()
-		//}else{
-			//game.say(personaje, "Necesitas encontrar la llave Azul)
-			//game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
-		//}
-
+			personaje.utilizarObjeto(miLlave)
+		} else {
+			game.say(personaje, "Necesitas encontrar la llave Azul")
+		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		}
 		return null
 	}
 
@@ -57,9 +58,16 @@ object rejaAzulNivel1 inherits Reja(position = game.at(5, 5), imagen = "rejas/az
 object rejaVerdeNivel1 inherits Reja(position = game.at(7, 5), imagen = "rejas/verde.png") {
 
 	override method interactuarConObjeto() {
-		super()
-		sombras.agregarSombra3Nivel1()
-		enemigos.agregarEnemigosNivel1ZonaVerde()
+		if (personaje.mochila() != null && personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == "llaveVerde"})) {
+			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveVerde"})
+			super()
+			sombras.agregarSombra3Nivel1()
+			enemigos.agregarEnemigosNivel1ZonaVerde()
+			personaje.utilizarObjeto(miLlave)
+		} else {
+			game.say(personaje, "Necesitas encontrar la llave Verde")
+		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		}
 		return null
 	}
 
@@ -68,9 +76,16 @@ object rejaVerdeNivel1 inherits Reja(position = game.at(7, 5), imagen = "rejas/v
 object rejaRojaNivel1 inherits Reja(position = game.at(15, 7), imagen = "rejas/roja.png") {
 
 	override method interactuarConObjeto() {
-		super()
-		sombras.removerSombra3Nivel1()
-		enemigos.agregarEnemigosNivel1ZonaRoja()
+		if (personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == "llaveRoja"})) {
+			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveRoja"})
+			super()
+			sombras.removerSombra3Nivel1()
+			enemigos.agregarEnemigosNivel1ZonaRoja()
+			personaje.utilizarObjeto(miLlave)
+		} else {
+			game.say(personaje, "Necesitas encontrar la llave Roja")
+		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		}
 		return null
 	}
 
@@ -79,9 +94,16 @@ object rejaRojaNivel1 inherits Reja(position = game.at(15, 7), imagen = "rejas/r
 object rejaAzulNivel2 inherits Reja(position = game.at(17, 7), imagen = "rejas/azul.png") {
 
 	override method interactuarConObjeto() {
-		super()
-		sombras.agregarSombra2Nivel2()
-		enemigos.agregarEnemigosNivel2ZonaAzul()
+		if (personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == "llaveAzul"})) {
+			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveAzul"})
+			super()
+			sombras.agregarSombra2Nivel2()
+			enemigos.agregarEnemigosNivel2ZonaAzul()
+			personaje.utilizarObjeto(miLlave)
+		} else {
+			game.say(personaje, "Necesitas encontrar la llave Azul")
+		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		}
 		return null
 	}
 
@@ -90,9 +112,16 @@ object rejaAzulNivel2 inherits Reja(position = game.at(17, 7), imagen = "rejas/a
 object rejaVerdeNivel2 inherits Reja(position = game.at(1, 3), imagen = "rejas/verde.png") {
 
 	override method interactuarConObjeto() {
-		super()
-		sombras.agregarSombra3Nivel2()
-		enemigos.agregarEnemigosNivel2ZonaVerde()
+		if (personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == "llaveVerde"})) {
+			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveVerde"})
+			super()
+			sombras.agregarSombra3Nivel2()
+			enemigos.agregarEnemigosNivel2ZonaVerde()
+			personaje.utilizarObjeto(miLlave)
+		} else {
+			game.say(personaje, "Necesitas encontrar la llave Verde")
+		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		}
 		return null
 	}
 
@@ -101,9 +130,16 @@ object rejaVerdeNivel2 inherits Reja(position = game.at(1, 3), imagen = "rejas/v
 object rejaRojaNivel2 inherits Reja(position = game.at(6, 9), imagen = "rejas/roja.png") {
 
 	override method interactuarConObjeto() {
-		super()
-		sombras.removerSombra3Nivel2()
-		enemigos.agregarEnemigosNivel2ZonaRoja()
+		if (personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == "llaveRoja"})) {
+			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveRoja"})
+			super()
+			sombras.removerSombra3Nivel2()
+			enemigos.agregarEnemigosNivel2ZonaRoja()
+			personaje.utilizarObjeto(miLlave)
+		} else {
+			game.say(personaje, "Necesitas encontrar la llave Roja")
+		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		}
 		return null
 	}
 
@@ -112,9 +148,16 @@ object rejaRojaNivel2 inherits Reja(position = game.at(6, 9), imagen = "rejas/ro
 object rejaAzulNivel3 inherits Reja(position = game.at(9, 3), imagen = "rejas/azul.png") {
 
 	override method interactuarConObjeto() {
-		super()
-		sombras.agregarSombra2Nivel3()
-		enemigos.agregarEnemigosNivel3ZonaAzul()
+		if (personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == "llaveAzul"})) {
+			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveAzul"})
+			super()
+			sombras.agregarSombra2Nivel3()
+			enemigos.agregarEnemigosNivel3ZonaAzul()
+			personaje.utilizarObjeto(miLlave)
+		} else {
+			game.say(personaje, "Necesitas encontrar la llave Azul")
+		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		}
 		return null
 	}
 
@@ -123,8 +166,16 @@ object rejaAzulNivel3 inherits Reja(position = game.at(9, 3), imagen = "rejas/az
 object rejaVerdeNivel3 inherits Reja(position = game.at(17, 11), imagen = "rejas/verde.png") {
 
 	override method interactuarConObjeto() {
-		super()
-		sombras.agregarSombra3Nivel3()
+		if (personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == "llaveVerde"})) {
+			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveVerde"})
+			super()
+			sombras.agregarSombra3Nivel3()
+			enemigos.agregarEnemigosNivel3ZonaVerde()
+			personaje.utilizarObjeto(miLlave)
+		} else {
+			game.say(personaje, "Necesitas encontrar la llave Verde")
+		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		}
 		return null
 	}
 
@@ -133,9 +184,16 @@ object rejaVerdeNivel3 inherits Reja(position = game.at(17, 11), imagen = "rejas
 object rejaRojaNivel3 inherits Reja(position = game.at(1, 9), imagen = "rejas/roja.png") {
 
 	override method interactuarConObjeto() {
-		super()
-		sombras.agregarSombra4Nivel3()
-		enemigos.agregarEnemigosNivel3ZonaRoja()
+		if (personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == "llaveRoja"})) {
+			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveRoja"})
+			super()
+			sombras.agregarSombra4Nivel3()
+			enemigos.agregarEnemigosNivel3ZonaRoja()
+			personaje.utilizarObjeto(miLlave)
+		} else {
+			game.say(personaje, "Necesitas encontrar la llave Roja")
+		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		}
 		return null
 	}
 

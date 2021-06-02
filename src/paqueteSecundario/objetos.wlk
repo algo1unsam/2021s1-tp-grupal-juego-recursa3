@@ -81,6 +81,18 @@ class Mochila inherits Objeto {
 			objetosGuardados.add(unObjeto)
 			game.schedule(1, { audio.reproducirSonido("llave")})
 		}
+		if(unObjeto.categoria() == "llaveAzul") {
+			objetosGuardados.add(unObjeto)
+			game.schedule(1, { audio.reproducirSonido("llave")})
+		}
+		if(unObjeto.categoria() == "llaveVerde") {
+			objetosGuardados.add(unObjeto)
+			game.schedule(1, { audio.reproducirSonido("llave")})
+		}
+		if(unObjeto.categoria() == "llaveRoja") {
+			objetosGuardados.add(unObjeto)
+			game.schedule(1, { audio.reproducirSonido("llave")})
+		}
 			// Agrega la visual del objeto a la zona donde se muestran los objetos que tenes a la derecha de todo
 		game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))
 	}
@@ -123,6 +135,9 @@ class Cofre inherits Objeto {
 				game.addVisualIn(new CofreAbierto(imagen = "cofres/cofreAbierto.png", peso = 0), game.at(self.position().x(), self.position().y()))
 				game.schedule(1, { audio.reproducirSonido("cofre")})
 				game.removeVisual(self)
+				if(personaje.cantidadLlaves() == 0){
+					menu.removeLlaveCofre()
+				}
 				return objetoGuardado
 			}
 		}
@@ -197,7 +212,7 @@ class Llave inherits Objeto {
 
 	override method utilizarObjeto() {
 		personaje.mochila().desecharObjeto(self)
-		if (personaje.mochila().llaves() == 0) {
+		if (!personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == self.categoria()})){
 			game.removeVisual(self)
 		}
 	}
