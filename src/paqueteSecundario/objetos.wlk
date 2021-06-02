@@ -143,7 +143,9 @@ object cofres {
 
 	method agregarCofresNivel2() {
 		// Podriamos hacer game.addVisualIn(cofreCerradoLevel2, position) para poner varios?
-		game.addVisual(cofreCerradoLevel2)
+		game.addVisual(cofreCerrado1Level2)
+		game.addVisual(cofreCerrado2Level2)
+		game.addVisual(cofreCerrado3Level2)
 	}
 
 	method agregarCofresNivel3() {
@@ -170,7 +172,15 @@ object cofreCerrado4Level1 inherits Cofre(categoria = "cofre", peso = 0, positio
 }
 
 //Elegir donde va
-object cofreCerradoLevel2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(10, 2), imagen = "cofres/cofreCerrado.png", objetoGuardado = escudoGrande) {
+object cofreCerrado1Level2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 7), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(peso = 0)) {
+
+}
+
+object cofreCerrado2Level2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(2, 12), imagen = "cofres/cofreCerrado.png", objetoGuardado = mochilaGrande) {
+
+}
+
+object cofreCerrado3Level2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(15, 12), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaGrande) {
 
 }
 

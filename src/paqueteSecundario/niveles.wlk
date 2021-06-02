@@ -21,7 +21,6 @@ class Nivel {
 
 	method finalizarNivel() {
 		self.cerrarPantallas()
-		self.reiniciarElementos()
 	}
 
 	method reiniciarElementos() {
@@ -77,8 +76,8 @@ object nivel2 inherits Nivel {
 		paredes.agregarParedesNivel2()
 		rejas.agregarRejasNivel2()
 		salidas.agregarSalidasNivel2()
-			// cofres.agregarCofresNivel3()
-			// enemigo.agregarEnemigoNivel3()
+		cofres.agregarCofresNivel2()
+		enemigos.agregarEnemigosNivel2ZonaInicio()
 		menu.agregarMenu()
 		game.addVisual(personaje)
 		self.reiniciarElementos()
