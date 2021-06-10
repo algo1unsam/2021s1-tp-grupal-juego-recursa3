@@ -107,8 +107,7 @@ object estadoCargando inherits Estado {
 object estadoGameOver inherits Estado {
 
 	override method alPresionarEnter() {
-		pantallaGameOver.cerrar()
-		pantallaInicio.vuelveAEmpezar(true)
+		visualPresionaEnterParaVolver.cerrar()
 		pantallaInicio.iniciar()
 	}
 
@@ -117,8 +116,7 @@ object estadoGameOver inherits Estado {
 object estadoGanaste inherits Estado {
 
 	override method alPresionarEnter() {
-		pantallaGanaste.cerrar()
-		pantallaInicio.vuelveAEmpezar(true)
+		visualPresionaEnterParaVolver.cerrar()
 		pantallaInicio.iniciar()
 	}
 
