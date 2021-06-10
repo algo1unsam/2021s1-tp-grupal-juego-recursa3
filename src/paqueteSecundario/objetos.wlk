@@ -3,6 +3,7 @@ import paquetePrimario.imagen.*
 import wollok.game.*
 import paqueteSecundario.individuos.*
 import paquetePrimario.audio.*
+import individuos.*
 
 class Objeto inherits Imagen {
 
@@ -93,6 +94,19 @@ class Mochila inherits Objeto {
 			objetosGuardados.add(unObjeto)
 			game.schedule(1, { audio.reproducirSonido("llave")})
 		}
+		if(unObjeto.categoria() == "corazon completo") {
+			objetosGuardados.add(unObjeto)
+			game.schedule(1, { audio.reproducirSonido("agarrar")})
+		}
+		if(unObjeto.categoria() == "corazon") {
+			objetosGuardados.add(unObjeto)
+			game.schedule(1, { audio.reproducirSonido("agarrar")})
+		}
+		if(unObjeto.categoria() == "corazon medio") {
+			objetosGuardados.add(unObjeto)
+			game.schedule(1, { audio.reproducirSonido("agarrar")})
+		}
+		
 			// Agrega la visual del objeto a la zona donde se muestran los objetos que tenes a la derecha de todo
 		game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))
 	}
@@ -191,7 +205,7 @@ object cofreCerrado4Level1 inherits Cofre(categoria = "cofre", peso = 0, positio
 }
 
 //Elegir donde va
-object cofreCerrado1Level2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 7), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(peso = 0)) {
+object cofreCerrado1Level2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 7), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
 
 }
 
@@ -204,23 +218,23 @@ object cofreCerrado3Level2 inherits Cofre(categoria = "cofre", peso = 0, positio
 }
 
 //Elegir donde va
-object cofreCerrado1Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(1, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaGrande) {
+object cofreCerrado1Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(1, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
 
 }
 
-object cofreCerrado2Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(7, 3), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaGrande) {
+object cofreCerrado2Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(7, 3), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
 
 }
 
-object cofreCerrado3Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 10), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaGrande) {
+object cofreCerrado3Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 10), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
 
 }
 
-object cofreCerrado4Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(3, 12), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaGrande) {
+object cofreCerrado4Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(3, 12), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
 
 }
 
-object cofreCerrado5Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(4, 10), imagen = "cofres/cofreCerrado.png", objetoGuardado = espadaGrande) {
+object cofreCerrado5Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(4, 10), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
 
 }
 
@@ -253,10 +267,16 @@ object llaveRoja inherits Llave(categoria = "llaveRoja", peso = 0, imagen = "lla
 }
 
 class CorazonCompleto inherits Objeto {
+	method agregarVida() {
+		personaje.vida(personaje.vida() + 2)
+	}
 
 }
 
 class CorazonMitad inherits Objeto {
+	method agregarVida() {
+		personaje.vida(personaje.vida() + 1)
+	}
 
 }
 
