@@ -469,7 +469,7 @@ object enemigoConLlaveCofre4Nivel3 inherits Enemigo(vida = 4, ataque = 3, positi
 	}
 
 }
-
+//Borrar esto, necesito commitear
 object enemigoConLlaveCofre5Nivel3 inherits Enemigo(vida = 4, ataque = 3, position = game.at(14, 12), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
 
 	override method murio() {
