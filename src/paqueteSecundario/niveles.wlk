@@ -80,6 +80,7 @@ object nivel2 inherits Nivel {
 		enemigos.agregarEnemigosNivel2ZonaInicio()
 		menu.agregarMenu()
 		game.addVisual(personaje)
+		personaje.mostrarVida()
 		self.reiniciarElementos()
 		sombras.agregarSombra1Nivel2()
 		configuraciones.configurarColisiones()
@@ -99,7 +100,6 @@ object nivel2 inherits Nivel {
 object nivel3 inherits Nivel {
 
 	override method cargarNivel() {
-		// musicaJuego.play()
 		pisos.agregarPisosNivel3()
 		bordes.agregarBordesNivel3()
 		paredes.agregarParedesNivel3()
@@ -110,6 +110,7 @@ object nivel3 inherits Nivel {
 		menu.agregarMenu()
 		personaje.position(game.at(11, 1))
 		game.addVisual(personaje)
+		personaje.mostrarVida()
 		sombras.agregarSombra1Nivel3()
 		configuraciones.configurarColisiones()
 	}

@@ -252,7 +252,7 @@ object llaveRoja inherits Llave(categoria = "llaveRoja", peso = 0, imagen = "lla
 
 }
 
-class CorazonCompleto inherits Objeto {
+class Corazon inherits Objeto {
 
 	override method utilizarObjeto() {
 		personaje.recibirVida(2)
@@ -260,15 +260,7 @@ class CorazonCompleto inherits Objeto {
 
 }
 
-object corazonCompleto inherits CorazonCompleto(categoria = "corazonCompleto", peso = 0) {
-
-}
-
-class CorazonMitad inherits Objeto {
-
-}
-
-class CorazonVacio inherits Objeto {
+object corazonCompleto inherits Corazon(categoria = "corazonCompleto", peso = 0) {
 
 }
 
