@@ -42,6 +42,10 @@ class Individuo inherits Imagen {
 	method recibirDanio(danio) {
 		if (mano2 != null and mano2.categoria() == "escudo") {
 			vida -= danio - mano2.defensa()
+			mano2.defensa(mano2.defensa() - danio)
+			if (mano2.defensa() <= 0){
+				mano2 = null
+			}
 		} else {
 			vida -= danio
 		}
