@@ -43,7 +43,8 @@ object nivel1 inherits Nivel {
 		menu.agregarMenu()
 		game.addVisual(personaje)
 		personaje.mostrarVida()
-		enemigos.agregarEnemigosNivel1ZonaInicio()
+		enemigosNivel1.reiniciarPosicion()
+		enemigosNivel1.agregarEnemigosZonaInicio()
 		sombras.agregarSombra1Nivel1()
 		configuraciones.configurarColisiones()
 	}
@@ -67,6 +68,7 @@ object nivel1 inherits Nivel {
 object nivel2 inherits Nivel {
 
 	override method cargarNivel() {
+		self.reiniciarPersonaje()
 		game.schedule(1, { audio.reproducirCancionEnLoop("nivel2")})
 		pisos.agregarPisosNivel2()
 		bordes.agregarBordesNivel2()
@@ -74,11 +76,11 @@ object nivel2 inherits Nivel {
 		rejas.agregarRejasNivel2()
 		salidas.agregarSalidasNivel2()
 		cofres.agregarCofresNivel2()
-		enemigos.agregarEnemigosNivel2ZonaInicio()
 		menu.agregarMenu()
 		game.addVisual(personaje)
 		personaje.mostrarVida()
-		self.reiniciarPersonaje()
+		enemigosNivel2.reiniciarPosicion()
+		enemigosNivel2.agregarEnemigosZonaInicio()
 		sombras.agregarSombra1Nivel2()
 		configuraciones.configurarColisiones()
 	}
@@ -97,17 +99,18 @@ object nivel2 inherits Nivel {
 object nivel3 inherits Nivel {
 
 	override method cargarNivel() {
+		self.reiniciarPersonaje()
 		pisos.agregarPisosNivel3()
 		bordes.agregarBordesNivel3()
 		paredes.agregarParedesNivel3()
 		rejas.agregarRejasNivel3()
 		salidas.agregarSalidasNivel3()
 		cofres.agregarCofresNivel3()
-		enemigos.agregarEnemigosNivel3ZonaInicio()
 		menu.agregarMenu()
 		game.addVisual(personaje)
 		personaje.mostrarVida()
-		self.reiniciarPersonaje()
+		enemigosNivel3.reiniciarPosicion()
+		enemigosNivel3.agregarEnemigosZonaInicio()
 		sombras.agregarSombra1Nivel3()
 		configuraciones.configurarColisiones()
 	}

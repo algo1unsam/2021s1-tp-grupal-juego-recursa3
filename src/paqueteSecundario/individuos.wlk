@@ -43,7 +43,7 @@ class Individuo inherits Imagen {
 		if (mano2 != null and mano2.categoria() == "escudo") {
 			vida -= danio - mano2.defensa()
 			mano2.defensa(mano2.defensa() - danio)
-			if (mano2.defensa() <= 0){
+			if (mano2.defensa() <= 0) {
 				mano2 = null
 			}
 		} else {
@@ -208,7 +208,7 @@ class Enemigo inherits Individuo {
 
 	override method murio() {
 		game.removeTickEvent("perseguir" + self)
-		menu.removeVida(posicionCorazon1, posicionCorazon2, posicionCorazon3)
+		game.schedule(100, { menu.removeVida(posicionCorazon1, posicionCorazon2, posicionCorazon3)})
 	}
 
 	override method recibirDanio(danio) {
@@ -218,18 +218,34 @@ class Enemigo inherits Individuo {
 
 }
 
-object enemigos {
+class EnemigosNivel {
 
-//Nivel 1
-	method agregarEnemigosNivel1ZonaInicio() {
+	method agregarEnemigosZonaInicio() {
+		self.reiniciarPosicion()
+	}
+
+	method agregarEnemigosZonaAzul()
+
+	method agregarEnemigosZonaVerde()
+
+	method agregarEnemigosZonaRoja()
+
+	method reiniciarPosicion()
+
+}
+
+object enemigosNivel1 inherits EnemigosNivel {
+
+	override method agregarEnemigosZonaInicio() {
+		super()
 		game.addVisual(enemigoConLLaveVerdeNivel1)
 		enemigoConLLaveVerdeNivel1.moverse()
 	}
 
-	method agregarEnemigosNivel1ZonaAzul() {
+	override method agregarEnemigosZonaAzul() {
 	}
 
-	method agregarEnemigosNivel1ZonaVerde() {
+	override method agregarEnemigosZonaVerde() {
 		game.addVisual(enemigoConLlaveRojaNivel1)
 		enemigoConLlaveRojaNivel1.moverse()
 		game.addVisual(enemigoConLlaveCofre1Nivel1)
@@ -238,47 +254,73 @@ object enemigos {
 		enemigoConLlaveCofre2Nivel1.moverse()
 	}
 
-	method agregarEnemigosNivel1ZonaRoja() {
+	override method agregarEnemigosZonaRoja() {
 		game.addVisual(enemigoConLlaveCofre3Nivel1)
 		enemigoConLlaveCofre3Nivel1.moverse()
 		game.addVisual(enemigoNadaNivel1)
 		enemigoNadaNivel1.moverse()
 	}
 
-//Nivel 2
-	method agregarEnemigosNivel2ZonaInicio() {
+	override method reiniciarPosicion() {
+		enemigoConLLaveVerdeNivel1.position(game.at(7, 4))
+		enemigoConLlaveRojaNivel1.position(game.at(13, 4))
+		enemigoConLlaveCofre1Nivel1.position(game.at(10, 10))
+		enemigoConLlaveCofre2Nivel1.position(game.at(10, 4))
+		enemigoConLlaveCofre3Nivel1.position(game.at(19, 12))
+		enemigoNadaNivel1.position(game.at(16, 6))
+	}
+
+}
+
+object enemigosNivel2 inherits EnemigosNivel {
+
+	override method agregarEnemigosZonaInicio() {
+		super()
 		game.addVisual(enemigoConLlaveAzulNivel2)
 		enemigoConLlaveAzulNivel2.moverse()
 		game.addVisual(enemigoConLlaveCofre1Nivel2)
 		enemigoConLlaveCofre1Nivel2.moverse()
 	}
 
-	method agregarEnemigosNivel2ZonaAzul() {
+	override method agregarEnemigosZonaAzul() {
 		game.addVisual(enemigoConLlaveVerdeNivel2)
 		enemigoConLlaveVerdeNivel2.moverse()
 	}
 
-	method agregarEnemigosNivel2ZonaVerde() {
+	override method agregarEnemigosZonaVerde() {
 		game.addVisual(enemigoConLlaveCofre2Nivel2)
 		enemigoConLlaveCofre2Nivel2.moverse()
 		game.addVisual(enemigoConLlaveRojaNivel2)
 		enemigoConLlaveRojaNivel2.moverse()
 	}
 
-	method agregarEnemigosNivel2ZonaRoja() {
+	override method agregarEnemigosZonaRoja() {
 		game.addVisual(enemigoConLlaveCofre3Nivel2)
 		enemigoConLlaveCofre3Nivel2.moverse()
 	}
 
-//Nivel 3
-	method agregarEnemigosNivel3ZonaInicio() {
+	override method reiniciarPosicion() {
+		enemigoConLlaveAzulNivel2.position(game.at(11, 3))
+		enemigoConLlaveVerdeNivel2.position(game.at(8, 10))
+		enemigoConLlaveRojaNivel2.position(game.at(3, 11))
+		enemigoConLlaveCofre1Nivel2.position(game.at(10, 7))
+		enemigoConLlaveCofre2Nivel2.position(game.at(1, 9))
+		enemigoConLlaveCofre3Nivel2.position(game.at(6, 12))
+	}
+
+}
+
+object enemigosNivel3 inherits EnemigosNivel {
+
+	override method agregarEnemigosZonaInicio() {
+		super()
 		game.addVisual(enemigoConLlaveAzulNivel3)
 		enemigoConLlaveAzulNivel3.moverse()
 		game.addVisual(enemigoConLlaveCofre3Nivel3)
 		enemigoConLlaveCofre3Nivel3.moverse()
 	}
 
-	method agregarEnemigosNivel3ZonaAzul() {
+	override method agregarEnemigosZonaAzul() {
 		game.addVisual(enemigoConLlaveCofre1Nivel3)
 		enemigoConLlaveCofre1Nivel3.moverse()
 		game.addVisual(enemigoConLlaveCofre2Nivel3)
@@ -287,7 +329,7 @@ object enemigos {
 		enemigoConLlaveVerdeNivel3.moverse()
 	}
 
-	method agregarEnemigosNivel3ZonaVerde() {
+	override method agregarEnemigosZonaVerde() {
 		game.addVisual(enemigoConLlaveCofre4Nivel3)
 		enemigoConLlaveCofre4Nivel3.moverse()
 		game.addVisual(enemigoConLlaveCofre5Nivel3)
@@ -296,7 +338,19 @@ object enemigos {
 		enemigoConLlaveRojaNivel3.moverse()
 	}
 
-	method agregarEnemigosNivel3ZonaRoja() {
+	override method agregarEnemigosZonaRoja() {
+	// TODO agrega el jefe final
+	}
+
+	override method reiniciarPosicion() {
+		enemigoConLlaveAzulNivel3.position(game.at(19, 1))
+		enemigoConLlaveVerdeNivel3.position(game.at(1, 8))
+		enemigoConLlaveRojaNivel3.position(game.at(6, 12))
+		enemigoConLlaveCofre1Nivel3.position(game.at(4, 5))
+		enemigoConLlaveCofre2Nivel3.position(game.at(4, 2))
+		enemigoConLlaveCofre3Nivel3.position(game.at(15, 4))
+		enemigoConLlaveCofre4Nivel3.position(game.at(13, 7))
+		enemigoConLlaveCofre5Nivel3.position(game.at(14, 12))
 	}
 
 }
