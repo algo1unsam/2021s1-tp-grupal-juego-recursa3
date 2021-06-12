@@ -269,6 +269,7 @@ object llaveRoja inherits Llave(categoria = "llaveRoja", peso = 0, imagen = "lla
 class CorazonCompleto inherits Objeto {
 	method agregarVida() {
 		personaje.vida(personaje.vida() + 2)
+		//menu.mostrarVida()
 	}
 
 }

@@ -264,12 +264,28 @@ object enemigos {
 
 //Nivel 3
 	method agregarEnemigosNivel3ZonaInicio() {
+		game.addVisual(enemigoConLlaveAzulNivel3)
+		enemigoConLlaveAzulNivel3.moverse()
+		game.addVisual(enemigoConLlaveCofre3Nivel3)
+		enemigoConLlaveCofre3Nivel3.moverse()
 	}
 
 	method agregarEnemigosNivel3ZonaAzul() {
+		game.addVisual(enemigoConLlaveCofre1Nivel3)
+		enemigoConLlaveCofre1Nivel3.moverse()
+		game.addVisual(enemigoConLlaveCofre2Nivel3)
+		enemigoConLlaveCofre2Nivel3.moverse()
+		game.addVisual(enemigoConLlaveVerdeNivel3)
+		enemigoConLlaveVerdeNivel3.moverse()
 	}
 
 	method agregarEnemigosNivel3ZonaVerde() {
+		game.addVisual(enemigoConLlaveCofre4Nivel3)
+		enemigoConLlaveCofre4Nivel3.moverse()
+		game.addVisual(enemigoConLlaveCofre5Nivel3)
+		enemigoConLlaveCofre5Nivel3.moverse()
+		game.addVisual(enemigoConLlaveRojaNivel3)
+		enemigoConLlaveRojaNivel3.moverse()
 	}
 
 	method agregarEnemigosNivel3ZonaRoja() {
