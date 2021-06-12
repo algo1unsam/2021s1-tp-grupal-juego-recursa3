@@ -82,31 +82,22 @@ class Mochila inherits Objeto {
 			objetosGuardados.add(unObjeto)
 			game.schedule(1, { audio.reproducirSonido("llave")})
 		}
-		if(unObjeto.categoria() == "llaveAzul") {
+		if (unObjeto.categoria() == "llaveAzul") {
 			objetosGuardados.add(unObjeto)
 			game.schedule(1, { audio.reproducirSonido("llave")})
 		}
-		if(unObjeto.categoria() == "llaveVerde") {
+		if (unObjeto.categoria() == "llaveVerde") {
 			objetosGuardados.add(unObjeto)
 			game.schedule(1, { audio.reproducirSonido("llave")})
 		}
-		if(unObjeto.categoria() == "llaveRoja") {
+		if (unObjeto.categoria() == "llaveRoja") {
 			objetosGuardados.add(unObjeto)
 			game.schedule(1, { audio.reproducirSonido("llave")})
 		}
-		if(unObjeto.categoria() == "corazon completo") {
-			objetosGuardados.add(unObjeto)
-			game.schedule(1, { audio.reproducirSonido("agarrar")})
+		if (unObjeto.categoria() == "corazonCompleto") {
+			unObjeto.utilizarObjeto()
+			game.schedule(1, { audio.reproducirSonido("vida")})
 		}
-		if(unObjeto.categoria() == "corazon") {
-			objetosGuardados.add(unObjeto)
-			game.schedule(1, { audio.reproducirSonido("agarrar")})
-		}
-		if(unObjeto.categoria() == "corazon medio") {
-			objetosGuardados.add(unObjeto)
-			game.schedule(1, { audio.reproducirSonido("agarrar")})
-		}
-		
 			// Agrega la visual del objeto a la zona donde se muestran los objetos que tenes a la derecha de todo
 		game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))
 	}
@@ -136,8 +127,8 @@ object mochilaGrande inherits Mochila(categoria = "mochila", peso = -20, imagen 
 class Cofre inherits Objeto {
 
 	var property objetoGuardado = null
-	
-	override method esAtravesable(){
+
+	override method esAtravesable() {
 		return false
 	}
 
@@ -149,7 +140,7 @@ class Cofre inherits Objeto {
 				game.addVisualIn(new CofreAbierto(imagen = "cofres/cofreAbierto.png", peso = 0), game.at(self.position().x(), self.position().y()))
 				game.schedule(1, { audio.reproducirSonido("cofre")})
 				game.removeVisual(self)
-				if(personaje.cantidadLlaves() == 0){
+				if (personaje.cantidadLlaves() == 0) {
 					menu.removeLlaveCofre()
 				}
 				return objetoGuardado
@@ -171,14 +162,12 @@ object cofres {
 	}
 
 	method agregarCofresNivel2() {
-		// Podriamos hacer game.addVisualIn(cofreCerradoLevel2, position) para poner varios?
 		game.addVisual(cofreCerrado1Level2)
 		game.addVisual(cofreCerrado2Level2)
 		game.addVisual(cofreCerrado3Level2)
 	}
 
 	method agregarCofresNivel3() {
-		// Podriamos hacer game.addVisualIn(cofreCerradoLevel2, position) para poner varios?
 		game.addVisual(cofreCerrado1Level3)
 		game.addVisual(cofreCerrado2Level3)
 		game.addVisual(cofreCerrado3Level3)
@@ -192,11 +181,11 @@ object cofreCerrado1Level1 inherits Cofre(categoria = "cofre", peso = 0, positio
 
 }
 
-object cofreCerrado2Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(15, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(peso = 0)) {
+object cofreCerrado2Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(15, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = corazonCompleto) {
 
 }
 
-object cofreCerrado3Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(peso = 0)) {
+object cofreCerrado3Level1 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = corazonCompleto) {
 
 }
 
@@ -204,8 +193,7 @@ object cofreCerrado4Level1 inherits Cofre(categoria = "cofre", peso = 0, positio
 
 }
 
-//Elegir donde va
-object cofreCerrado1Level2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 7), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
+object cofreCerrado1Level2 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 7), imagen = "cofres/cofreCerrado.png", objetoGuardado = corazonCompleto) {
 
 }
 
@@ -217,24 +205,23 @@ object cofreCerrado3Level2 inherits Cofre(categoria = "cofre", peso = 0, positio
 
 }
 
-//Elegir donde va
-object cofreCerrado1Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(1, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
+object cofreCerrado1Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(1, 1), imagen = "cofres/cofreCerrado.png", objetoGuardado = corazonCompleto) {
 
 }
 
-object cofreCerrado2Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(7, 3), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
+object cofreCerrado2Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(7, 3), imagen = "cofres/cofreCerrado.png", objetoGuardado = corazonCompleto) {
 
 }
 
-object cofreCerrado3Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 10), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
+object cofreCerrado3Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(19, 10), imagen = "cofres/cofreCerrado.png", objetoGuardado = corazonCompleto) {
 
 }
 
-object cofreCerrado4Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(3, 12), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
+object cofreCerrado4Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(3, 12), imagen = "cofres/cofreCerrado.png", objetoGuardado = corazonCompleto) {
 
 }
 
-object cofreCerrado5Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(4, 10), imagen = "cofres/cofreCerrado.png", objetoGuardado = new CorazonCompleto(categoria = "corazon completo", peso = 0)) {
+object cofreCerrado5Level3 inherits Cofre(categoria = "cofre", peso = 0, position = game.at(4, 10), imagen = "cofres/cofreCerrado.png", objetoGuardado = corazonCompleto) {
 
 }
 
@@ -246,13 +233,12 @@ class Llave inherits Objeto {
 
 	override method utilizarObjeto() {
 		personaje.mochila().desecharObjeto(self)
-		if (!personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == self.categoria()})){
+		if (!personaje.mochila().objetosGuardados().any({ objeto => objeto.categoria() == self.categoria()})) {
 			game.removeVisual(self)
 		}
 	}
 
 }
-
 
 object llaveAzul inherits Llave(categoria = "llaveAzul", peso = 0, imagen = "llave/llaveAzul.png", position = menu.posicionLlaveAzul()) {
 
@@ -267,17 +253,18 @@ object llaveRoja inherits Llave(categoria = "llaveRoja", peso = 0, imagen = "lla
 }
 
 class CorazonCompleto inherits Objeto {
-	method agregarVida() {
-		personaje.vida(personaje.vida() + 2)
-		//menu.mostrarVida()
+
+	override method utilizarObjeto() {
+		personaje.recibirVida(2)
 	}
 
 }
 
+object corazonCompleto inherits CorazonCompleto(categoria = "corazonCompleto", peso = 0) {
+
+}
+
 class CorazonMitad inherits Objeto {
-	method agregarVida() {
-		personaje.vida(personaje.vida() + 1)
-	}
 
 }
 

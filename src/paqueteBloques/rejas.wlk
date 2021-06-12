@@ -1,6 +1,7 @@
 import wollok.game.*
 import sombras.*
 import paquetePrimario.imagen.*
+import paquetePrimario.audio.*
 import paqueteSecundario.individuos.*
 
 class Reja inherits Imagen {
@@ -8,7 +9,7 @@ class Reja inherits Imagen {
 	override method esAtravesable() = false
 
 	override method interactuarConObjeto() {
-		// game.schedule(1, { audio.reproducirSonido("rejaAbierta")})
+		game.schedule(1, { audio.reproducirSonido("rejaAbierta")})
 		game.removeVisual(self)
 		return null
 	}
@@ -48,7 +49,7 @@ object rejaAzulNivel1 inherits Reja(position = game.at(5, 5), imagen = "rejas/az
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Azul")
-		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+			game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
 		}
 		return null
 	}
@@ -66,7 +67,7 @@ object rejaVerdeNivel1 inherits Reja(position = game.at(7, 5), imagen = "rejas/v
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Verde")
-		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		 	game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
 		}
 		return null
 	}
@@ -84,7 +85,7 @@ object rejaRojaNivel1 inherits Reja(position = game.at(15, 7), imagen = "rejas/r
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Roja")
-		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		 	game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
 		}
 		return null
 	}
@@ -102,7 +103,7 @@ object rejaAzulNivel2 inherits Reja(position = game.at(17, 7), imagen = "rejas/a
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Azul")
-		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		 	game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
 		}
 		return null
 	}
@@ -120,7 +121,7 @@ object rejaVerdeNivel2 inherits Reja(position = game.at(1, 3), imagen = "rejas/v
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Verde")
-		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		 	game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
 		}
 		return null
 	}
@@ -138,7 +139,7 @@ object rejaRojaNivel2 inherits Reja(position = game.at(6, 9), imagen = "rejas/ro
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Roja")
-		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		 	game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
 		}
 		return null
 	}
@@ -156,7 +157,7 @@ object rejaAzulNivel3 inherits Reja(position = game.at(9, 3), imagen = "rejas/az
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Azul")
-		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		 	game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
 		}
 		return null
 	}
@@ -174,7 +175,7 @@ object rejaVerdeNivel3 inherits Reja(position = game.at(17, 11), imagen = "rejas
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Verde")
-		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		 	game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
 		}
 		return null
 	}
@@ -192,7 +193,7 @@ object rejaRojaNivel3 inherits Reja(position = game.at(1, 9), imagen = "rejas/ro
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Roja")
-		// game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
+		 	game.schedule(1, { audio.reproducirSonido("rejaCerrada")})
 		}
 		return null
 	}
