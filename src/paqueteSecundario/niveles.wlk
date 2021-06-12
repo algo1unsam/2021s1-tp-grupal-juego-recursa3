@@ -20,21 +20,10 @@ class Nivel {
 	}
 
 	method finalizarNivel() {
-		self.cerrarPantallas()
+		pantallaJuego.cerrar()
 	}
 
-	method reiniciarElementos() {
-		personaje.vida(6)
-		personaje.position(game.at(1, 1))
-		personaje.mochila(null)
-		personaje.mano1(null)
-		personaje.mano2(null)
-		mochilaChica.objetosGuardados().clear()
-	}
-
-	method cerrarPantallas() {
-		game.allVisuals().forEach({ visual => game.removeVisual(visual)})
-	}
+	method reiniciarPersonaje()
 
 }
 
@@ -42,8 +31,7 @@ object nivel1 inherits Nivel {
 
 	override method cargarNivel() {
 		super()
-		self.cerrarPantallas()
-		self.reiniciarElementos()
+		self.reiniciarPersonaje()
 		game.schedule(1, { audio.reproducirCancionEnLoop("nivel1")})
 		pisos.agregarPisosNivel1()
 		bordes.agregarBordesNivel1()
@@ -65,6 +53,15 @@ object nivel1 inherits Nivel {
 		pantallaJuego.avanzarNivel(nivel2)
 	}
 
+	override method reiniciarPersonaje() {
+		personaje.position(game.at(1, 1))
+		personaje.vida(6)
+		personaje.mochila(null)
+		personaje.mano1(null)
+		personaje.mano2(null)
+		mochilaChica.objetosGuardados().clear()
+	}
+
 }
 
 object nivel2 inherits Nivel {
@@ -81,17 +78,17 @@ object nivel2 inherits Nivel {
 		menu.agregarMenu()
 		game.addVisual(personaje)
 		personaje.mostrarVida()
-		self.reiniciarElementos()
+		self.reiniciarPersonaje()
 		sombras.agregarSombra1Nivel2()
 		configuraciones.configurarColisiones()
 	}
 
 	override method finalizarNivel() {
-		self.cerrarPantallas()
+		super()
 		pantallaJuego.avanzarNivel(nivel3)
 	}
 
-	override method reiniciarElementos() {
+	override method reiniciarPersonaje() {
 		personaje.position(game.at(19, 1))
 	}
 
@@ -106,11 +103,11 @@ object nivel3 inherits Nivel {
 		rejas.agregarRejasNivel3()
 		salidas.agregarSalidasNivel3()
 		cofres.agregarCofresNivel3()
-		enemigos.agregarEnemigosNivel2ZonaInicio()
+		enemigos.agregarEnemigosNivel3ZonaInicio()
 		menu.agregarMenu()
-		personaje.position(game.at(11, 1))
 		game.addVisual(personaje)
 		personaje.mostrarVida()
+		self.reiniciarPersonaje()
 		sombras.agregarSombra1Nivel3()
 		configuraciones.configurarColisiones()
 	}
@@ -118,6 +115,10 @@ object nivel3 inherits Nivel {
 	override method finalizarNivel() {
 		super()
 		pantallaJuego.terminarJuego()
+	}
+
+	override method reiniciarPersonaje() {
+		personaje.position(game.at(11, 1))
 	}
 
 }
