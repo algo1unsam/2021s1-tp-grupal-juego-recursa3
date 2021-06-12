@@ -45,7 +45,7 @@ object rejaAzulNivel1 inherits Reja(position = game.at(5, 5), imagen = "rejas/az
 			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveAzul"})
 			super()
 			sombras.agregarSombra2Nivel1()
-			enemigos.agregarEnemigosNivel1ZonaAzul()
+			enemigosNivel1.agregarEnemigosZonaAzul()
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Azul")
@@ -63,7 +63,7 @@ object rejaVerdeNivel1 inherits Reja(position = game.at(7, 5), imagen = "rejas/v
 			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveVerde"})
 			super()
 			sombras.agregarSombra3Nivel1()
-			enemigos.agregarEnemigosNivel1ZonaVerde()
+			enemigosNivel1.agregarEnemigosZonaVerde()
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Verde")
@@ -81,7 +81,7 @@ object rejaRojaNivel1 inherits Reja(position = game.at(15, 7), imagen = "rejas/r
 			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveRoja"})
 			super()
 			sombras.removerSombra3Nivel1()
-			enemigos.agregarEnemigosNivel1ZonaRoja()
+			enemigosNivel1.agregarEnemigosZonaRoja()
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Roja")
@@ -99,7 +99,7 @@ object rejaAzulNivel2 inherits Reja(position = game.at(17, 7), imagen = "rejas/a
 			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveAzul"})
 			super()
 			sombras.agregarSombra2Nivel2()
-			enemigos.agregarEnemigosNivel2ZonaAzul()
+			enemigosNivel2.agregarEnemigosZonaAzul()
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Azul")
@@ -117,7 +117,7 @@ object rejaVerdeNivel2 inherits Reja(position = game.at(1, 3), imagen = "rejas/v
 			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveVerde"})
 			super()
 			sombras.agregarSombra3Nivel2()
-			enemigos.agregarEnemigosNivel2ZonaVerde()
+			enemigosNivel2.agregarEnemigosZonaVerde()
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Verde")
@@ -135,7 +135,7 @@ object rejaRojaNivel2 inherits Reja(position = game.at(6, 9), imagen = "rejas/ro
 			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveRoja"})
 			super()
 			sombras.removerSombra3Nivel2()
-			enemigos.agregarEnemigosNivel2ZonaRoja()
+			enemigosNivel2.agregarEnemigosZonaRoja()
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Roja")
@@ -153,7 +153,7 @@ object rejaAzulNivel3 inherits Reja(position = game.at(9, 3), imagen = "rejas/az
 			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveAzul"})
 			super()
 			sombras.agregarSombra2Nivel3()
-			enemigos.agregarEnemigosNivel3ZonaAzul()
+			enemigosNivel3.agregarEnemigosZonaAzul()
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Azul")
@@ -171,7 +171,7 @@ object rejaVerdeNivel3 inherits Reja(position = game.at(17, 11), imagen = "rejas
 			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveVerde"})
 			super()
 			sombras.agregarSombra3Nivel3()
-			enemigos.agregarEnemigosNivel3ZonaVerde()
+			enemigosNivel3.agregarEnemigosZonaVerde()
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Verde")
@@ -189,7 +189,7 @@ object rejaRojaNivel3 inherits Reja(position = game.at(1, 9), imagen = "rejas/ro
 			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveRoja"})
 			super()
 			sombras.agregarSombra4Nivel3()
-			enemigos.agregarEnemigosNivel3ZonaRoja()
+			enemigosNivel3.agregarEnemigosZonaRoja()
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Roja")
