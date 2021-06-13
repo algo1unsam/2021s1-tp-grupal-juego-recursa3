@@ -7,7 +7,7 @@ import paqueteSecundario.direcciones.*
 import paqueteSecundario.estados.*
 describe "TEST DE INDIVIDUO" {
 
-	const enemigo0 = new Enemigo(vida = 2, ataque = 1, position = game.at(5, 6), orientacion = arriba, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo')
+	const enemigo0 = new Enemigo(vida = 2, ataque = 1, position = game.at(5, 6), orientacion = arriba, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo',posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3())
 	const llaveCofre = new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre())
 	const llaveCofre2 = new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre())
 	
@@ -16,13 +16,14 @@ describe "TEST DE INDIVIDUO" {
 		personaje.orientacion(arriba)
 		game.addVisual(enemigo0)
 		game.addVisual(personaje)
-		configuraciones.configurarColisiones()
 		personaje.agregarObjeto(mochilaGrande)
 		personaje.agregarObjeto(espadaChica)
 		personaje.agregarObjeto(escudoGrande)
 		personaje.agregarObjeto(llaveCofre2)
 		personaje.agregarObjeto(llaveCofre)
-		game.onTick(1000, "perseguir" + self, { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
+		game.onTick(1000, "perseguir" + enemigo0, { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
+		configuraciones.configurarColisiones()
+		
 		
 	}
 
@@ -36,9 +37,9 @@ describe "TEST DE INDIVIDUO" {
 		assert.equals([ escudoGrande,llaveCofre2,llaveCofre], mochilaGrande.objetosGuardados())
 	}
 
-	test "EL INDIVIDUO AL AGARRAR LA ESPADA GRANDE DESECHA LA ESPADA CHICA." {
+	test "EL INDIVIDUO AL AGARRAR LA ESPADA GRANDE Y MANTIENE AMBAS ESPADAS PERO OCUPA LA ESPADAGRANDE." {
 		personaje.agregarObjeto(espadaGrande)
-		assert.notThat(mochilaGrande.objetosGuardados().any({ objeto => objeto == espadaChica}))
+		assert.that(mochilaGrande.objetosGuardados().any({ objeto => objeto == espadaChica}))
 		assert.notThat(personaje.mano1() == espadaChica)
 		assert.that(mochilaGrande.objetosGuardados().any({ objeto => objeto == espadaGrande}))
 		assert.that(personaje.mano1() == espadaGrande)
@@ -50,7 +51,7 @@ describe "TEST DE INDIVIDUO" {
 		assert.equals(4, personaje.cantidadLlaves())
 	}
 
-	test "EL personaje ATACA A UN RIVAL HASTA DEJARLO CON 50 VIDA" {
+	test "EL personaje ATACA A UN RIVAL HASTA DEJARLO CON 1 VIDA" {
 		personaje.atacar()
 		assert.equals(1, enemigo0.vida())
 	}
@@ -63,12 +64,12 @@ describe "TEST DE INDIVIDUO" {
 
 	test "EL ENEMIGO ATACA personaje, Y ESTE QUEDA CON 5 PUNTOS DE VIDA." {
 		personaje.moverse(arriba)
-		enemigo0.teEncontro()
+
 		assert.equals(personaje.position(), enemigo0.position())
 		assert.equals(5, personaje.vida())
 	}
 	test "Me devuelve una llave"{
-		assert.equals(llaveCofre,personaje.mochila().objetosGuardados().find({objeto => objeto.categoria()=='llave'}))
+		assert.equals(llaveCofre2,personaje.mochila().objetosGuardados().find({objeto => objeto.categoria()=='llave'}))
 		
 	}
 }
