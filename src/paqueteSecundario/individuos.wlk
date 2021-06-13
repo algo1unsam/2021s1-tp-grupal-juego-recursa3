@@ -555,7 +555,7 @@ object enemigoFinalNivel3 inherits Enemigo(vida = 12, ataque = 2, position = gam
 			game.removeTickEvent("perseguir" + self)
 			audio.parar()
 			audio.reproducirSonido("muerteEnemigoFinal")
-			game.schedule(400, { game.removeVisual(self)
+			game.schedule(2000, { game.removeVisual(self)
 				self.murio()
 			})
 		}

@@ -10,6 +10,6 @@ program juego {
 	configuraciones.configurarTeclas()
 	pantallaInicio.iniciar()
 	//Para test de nivel 3 final
-	//pantallaJuego.avanzarNivel(nivel3)
+//	pantallaJuego.avanzarNivel(nivel3)
 	game.start()
 }

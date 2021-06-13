@@ -94,8 +94,8 @@ object pantallaGanaste inherits Pantalla(imagen = "pantallas/ganaste.jpg") {
 	override method iniciar() {
 		game.clear()
 		super()
+		game.schedule(1, { audio.reproducirCancionEnLoop("ganaste")})
 		visualPresionaEnterParaVolver.iniciar()
-			// game.schedule(1, { audio.reproducirCancionEnLoop("ganaste")})
 		configuraciones.configurarTeclas()
 		configuraciones.cambiarEstado(estadoGanaste)
 	}
@@ -116,24 +116,21 @@ object pantallaJuego inherits Pantalla {
 	}
 
 	method terminarJuego() {
-		game.schedule(1, { audio.reproducirCancionEnLoop("ganaste")})
 		pantallaGanaste.iniciar()
 	}
+
 	method peleaFinal() {
 		audio.parar()
-		game.schedule(1, {audio.reproducirSonido("pensasteQueEraTanFacil") })
+		game.schedule(1, { audio.reproducirSonido("pensasteQueEraTanFacil")})
 		game.addVisualIn(pantallaPensasteQueEraTanFacil, game.origin())
-		game.schedule(2500, {
-			nivel3.batallaFinal()
-			audio.reproducirCancionEnLoop("peleaFinal")
+		game.schedule(2500, { nivel3.batallaFinal()
 			game.removeVisual(pantallaPensasteQueEraTanFacil)
 		})
-
 	}
 
 }
 
-object pantallaPensasteQueEraTanFacil inherits Pantalla(imagen = "pantallas/cargando.jpg"){
-	
+object pantallaPensasteQueEraTanFacil inherits Pantalla(imagen = "pantallas/cargando.jpg") {
+
 }
 

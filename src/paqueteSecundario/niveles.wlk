@@ -100,6 +100,7 @@ object nivel3 inherits Nivel {
 
 	override method cargarNivel() {
 		self.reiniciarPersonaje()
+		game.schedule(1, { audio.reproducirCancionEnLoop("nivel3")})
 		pisos.agregarPisosNivel3()
 		bordes.agregarBordesNivel3()
 		paredes.agregarParedesNivel3()
@@ -127,6 +128,7 @@ object nivel3 inherits Nivel {
 	}
 	
 	method batallaFinal(){
+		audio.reproducirCancionEnLoop("peleaFinal")
 		sombras.removerSombra4Nivel3()
 		personaje.position(game.at(11, 9))
 		enemigosNivel3.agregarEnemigosZonaRoja()
