@@ -120,6 +120,9 @@ object pantallaJuego inherits Pantalla {
 		// sonido.reproducir("musicaEpica")
 		pantallaGanaste.iniciar()
 	}
+	method peleaFinal() {
+		nivel3.batallaFinal()
+	}
 
 }
 

@@ -123,6 +123,12 @@ object nivel3 inherits Nivel {
 	override method reiniciarPersonaje() {
 		personaje.position(game.at(11, 1))
 	}
+	
+	method batallaFinal(){
+		sombras.removerSombra4Nivel3()
+		personaje.position(game.at(11, 9))
+		enemigosNivel3.agregarEnemigosZonaRoja()
+	}
 
 }
 

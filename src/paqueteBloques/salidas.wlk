@@ -32,7 +32,15 @@ object salidas {
 		// Elimina todo objeto que este en el lugar donde voy a poner la salida.
 		game.getObjectsIn(game.at(1, 13)).forEach({ visual => game.removeVisual(visual)})
 			// Agrego la salida
-		game.addVisual(new Salida(position = game.at(1, 13), imagen = "puerta/puerta.png"))
+		game.addVisual(salidaFinal)
+	}
+
+}
+
+object salidaFinal inherits Salida(position = game.at(1, 13), imagen = "puerta/puerta.png") {
+
+	override method teEncontro() {
+		pantallaJuego.peleaFinal()
 	}
 
 }

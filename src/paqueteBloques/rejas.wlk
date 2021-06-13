@@ -189,7 +189,6 @@ object rejaRojaNivel3 inherits Reja(position = game.at(1, 9), imagen = "rejas/ro
 			const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == "llaveRoja"})
 			super()
 			sombras.agregarSombra4Nivel3()
-			enemigosNivel3.agregarEnemigosZonaRoja()
 			personaje.utilizarObjeto(miLlave)
 		} else {
 			game.say(personaje, "Necesitas encontrar la llave Roja")
