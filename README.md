@@ -31,8 +31,17 @@
 <br><br>
 
 # ```CONCEPTOS DE LOS METODOS```
+
+# imagen.wlk:
+*   ### Clase Imagen:
+    ```python
+        1.  esAtravesable() # Nos dira si un objeto puede o no ser atravesable. 
+        2.  teEncontro()    # Dependera de cada objeto 
+        3.  interactuarConObjeto()  # Se utiliza para interactuar con los objetos del juego apretando la letra E
+    ```
+
 # objetos.wlk:
-*   ### Clase Objeto:
+*   ### Clase Objeto inherits Imagen:
     ```python
         1.  interactuarConObjeto() # Dependera de cada objeto
         2.  utilizarObjeto()    # Dependera de cada objeto
@@ -63,7 +72,7 @@
 <br><br>
 
 # individuos.wlk:
-*   ### Clase Individuo:
+*   ### Clase Individuo inherits Imagen:
     ```python
         1.  moverse(direccion) # Controla el movimiento y direccion del personaje
         2.  moverHaciaSiSePuede(personaje, direccion) # Controlara si puede atravezar un obstaculo
