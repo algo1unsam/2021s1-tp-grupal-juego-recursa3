@@ -103,9 +103,10 @@ class Mochila inherits Objeto {
 		game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))
 	}
 
-	override method interactuarConObjeto() {
-		return self
-	}
+	// Esta de mas este metodo porque ya lo hereda de Objeto. 
+	// override method interactuarConObjeto() {
+	// 	return self
+	// }
 
 	method desecharObjeto(unObjeto) {
 		objetosGuardados.remove(unObjeto)
