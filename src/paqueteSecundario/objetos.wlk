@@ -71,7 +71,7 @@ class Mochila inherits Objeto {
 			objetosGuardados.add(unObjeto)
 			personaje.equiparObjetoMano2(unObjeto)
 			game.schedule(100, { audio.reproducirSonido("agarrar")})
-			game.say(self,"Defensa: " + unObjeto.defensa().toString())
+			game.say(self, "Defensa: " + unObjeto.defensa().toString())
 		}
 			// Al encontrar una mochila la cambia por la que ya tiene
 		if (unObjeto.categoria() == "mochila") {
@@ -167,7 +167,6 @@ object cofres {
 		game.addVisual(cofreCerrado2Level2)
 		game.addVisual(cofreCerrado3Level2)
 		game.addVisual(cofreCerrado4Level2)
-		
 	}
 
 	method agregarCofresNivel3() {
@@ -233,6 +232,10 @@ object cofreCerrado5Level3 inherits Cofre(categoria = "cofre", peso = 0, positio
 }
 
 class CofreAbierto inherits Imagen {
+
+	override method esAtravesable() {
+		return false
+	}
 
 }
 
