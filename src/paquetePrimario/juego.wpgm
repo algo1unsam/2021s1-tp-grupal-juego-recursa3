@@ -9,5 +9,7 @@ program juego {
 	game.width(configuraciones.ancho())
 	configuraciones.configurarTeclas()
 	pantallaInicio.iniciar()
+	//Para test de nivel 3 final
+	//pantallaJuego.avanzarNivel(nivel3)
 	game.start()
 }

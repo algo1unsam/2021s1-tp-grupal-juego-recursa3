@@ -116,13 +116,24 @@ object pantallaJuego inherits Pantalla {
 	}
 
 	method terminarJuego() {
-		// musicaJuego.stop()
-		// sonido.reproducir("musicaEpica")
+		game.schedule(1, { audio.reproducirCancionEnLoop("ganaste")})
 		pantallaGanaste.iniciar()
 	}
 	method peleaFinal() {
-		nivel3.batallaFinal()
+		audio.parar()
+		game.schedule(1, {audio.reproducirSonido("pensasteQueEraTanFacil") })
+		game.addVisualIn(pantallaPensasteQueEraTanFacil, game.origin())
+		game.schedule(2500, {
+			nivel3.batallaFinal()
+			audio.reproducirCancionEnLoop("peleaFinal")
+			game.removeVisual(pantallaPensasteQueEraTanFacil)
+		})
+
 	}
 
+}
+
+object pantallaPensasteQueEraTanFacil inherits Pantalla(imagen = "pantallas/cargando.jpg"){
+	
 }
 

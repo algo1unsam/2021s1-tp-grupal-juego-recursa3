@@ -1,10 +1,11 @@
 import wollok.game.*
 import direcciones.*
 import paquetePrimario.menu.*
+import paquetePrimario.audio.*
 import paquetePrimario.imagen.*
 import paqueteSecundario.objetos.*
 import paqueteSecundario.pantallas.*
-import paquetePrimario.audio.*
+import paqueteBloques.salidas.*
 
 class Individuo inherits Imagen {
 
@@ -208,6 +209,7 @@ class Enemigo inherits Individuo {
 
 	override method murio() {
 		game.removeTickEvent("perseguir" + self)
+		game.schedule(10, { audio.reproducirSonido("muerteEnemigo")})
 		game.schedule(100, { menu.removeVida(posicionCorazon1, posicionCorazon2, posicionCorazon3)})
 	}
 
@@ -546,16 +548,32 @@ object enemigoConLlaveCofre5Nivel3 inherits Enemigo(vida = 4, ataque = 2, positi
 
 }
 
-object enemigoFinalNivel3 inherits Enemigo(vida = 6, ataque = 3, position = game.at(9, 12), orientacion = abajo, imagen = "enemigo/enemigoFinalDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
+object enemigoFinalNivel3 inherits Enemigo(vida = 12, ataque = 2, position = game.at(9, 12), orientacion = abajo, imagen = "enemigo/enemigoFinalDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
 
-	override method murio() {
-		super()
-		pantallaJuego.nivelActual().finalizarNivel()
+	override method estaMuerto() {
+		if (self.vida() <= 0) {
+			game.removeTickEvent("perseguir" + self)
+			audio.parar()
+			audio.reproducirSonido("muerteEnemigoFinal")
+			game.schedule(400, { game.removeVisual(self)
+				self.murio()
+			})
+		}
 	}
 	
+	override method murio() {
+		game.schedule(1, { menu.removeVida(posicionCorazon1, posicionCorazon2, posicionCorazon3)})
+		game.schedule(50, { salidas.agregarSalidasNivel3Final()
+		audio.reproducirCancionEnLoop("ambienteGanaste")
+		})
+		
+	}
+
 	override method image() {
 		return "enemigo/enemigoFinal" + orientacion.nombre() + ".png"
 	}
+
+
 
 }
 

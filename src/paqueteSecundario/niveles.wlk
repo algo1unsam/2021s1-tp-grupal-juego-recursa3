@@ -109,6 +109,8 @@ object nivel3 inherits Nivel {
 		menu.agregarMenu()
 		game.addVisual(personaje)
 		personaje.mostrarVida()
+//		personaje.mochila(mochilaGrande)
+//		personaje.agregarObjeto(espadaGrande)
 		enemigosNivel3.reiniciarPosicion()
 		enemigosNivel3.agregarEnemigosZonaInicio()
 		sombras.agregarSombra1Nivel3()
