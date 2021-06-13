@@ -41,13 +41,13 @@ class Individuo inherits Imagen {
 	method atacar()
 
 	method recibirDanio(danio) {
-		if (mano2 != null and mano2.categoria() == "escudo") {
+		if (mano2 != null and mano2.categoria() == "escudo" and mano2.seDestruye(danio)) {
 			vida -= danio - mano2.defensa()
-			mano2.defensa(mano2.defensa() - danio)
-			if (mano2.defensa() <= 0) {
-				mano2 = null
+			mano2 = null}
+		else if (mano2 != null and !mano2.seDestruye(danio)) {
+				mano2.defensa(mano2.defensa() - danio)
 			}
-		} else {
+		else {
 			vida -= danio
 		}
 		self.mostrarVida()

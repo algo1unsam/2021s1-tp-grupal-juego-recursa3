@@ -32,6 +32,7 @@ object objetos {
 class Escudo inherits Objeto {
 
 	var property defensa
+	method seDestruye(danio)=danio>=self.defensa
 
 }
 

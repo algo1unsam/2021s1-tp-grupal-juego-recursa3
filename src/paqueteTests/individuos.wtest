@@ -8,6 +8,8 @@ import paqueteSecundario.estados.*
 describe "TEST DE INDIVIDUO" {
 
 	const enemigo0 = new Enemigo(vida = 2, ataque = 1, position = game.at(5, 6), orientacion = arriba, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo',posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3())
+	const enemigo1 = new Enemigo(vida = 2, ataque = 2, position = game.at(5, 6), orientacion = arriba, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo',posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3())
+	
 	const llaveCofre = new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre())
 	const llaveCofre2 = new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre())
 	
@@ -62,10 +64,16 @@ describe "TEST DE INDIVIDUO" {
 		assert.notThat(game.hasVisual(enemigo0))
 	}
 
-	test "EL ENEMIGO ATACA personaje, Y ESTE QUEDA CON 5 PUNTOS DE VIDA." {
-		personaje.moverse(arriba)
-
-		assert.equals(personaje.position(), enemigo0.position())
+	test "EL ENEMIGO ATACA AL PERSONAJE 4 VECES, Y ESTE QUEDA CON 5 PUNTOS DE VIDA GRACIAS A LA PROTECCION DEL ESCUDO." {
+		enemigo0.teEncontro()
+		enemigo0.teEncontro()
+		enemigo0.teEncontro()
+		enemigo0.teEncontro()
+		assert.equals(5, personaje.vida())
+	}
+	test "EL ENEMIGO2 ATACA AL PERSONAJE 2 VECES, Y ESTE QUEDA CON 5 PUNTOS DE VIDA GRACIAS A LA PROTECCION DEL ESCUDO." {
+		enemigo1.teEncontro()
+		enemigo1.teEncontro()
 		assert.equals(5, personaje.vida())
 	}
 	test "Me devuelve una llave"{
