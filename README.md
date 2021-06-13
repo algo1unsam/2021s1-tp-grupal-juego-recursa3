@@ -12,7 +12,7 @@
 
 # ```EXPLICACION DEL JUEGO```
 ### El juego consiste en poder atravesar los <b>```3 laberintos```</b> para poder enfrentar al guardián de la mazmorra, pero no va a ser tan fácil.
-### <b>Los laberintos cuentan con zonas, identificadas por colores</b>, que son vigiladas por los súbditos del guardián quienes al sentir que estás cerca, te empezaran a perseguir hasta que logres acabar con ellos.
+### <b>Los laberintos cuentan con zonas, identificadas por colores</b>, que son vigiladas por los súbditos del guardián, quienes al sentir que estás cerca empezaran a perseguirte hasta que logres acabar con ellos.
 ### Presta mucha atención a los cofres, que nos proporcionaran objetos para poder defendernos de la amenaza, estos cofres nos pueden dar Espadas, Escudos o Vida.
 ### <b>Al eliminar a los enemigos dropearas llaves que te permitirán acceder a las zonas</b>, así que no intentes avanzar sin desafiar a los súbditos si no nunca saldrás. 
 # <b>```Nivel 1:```</b>
