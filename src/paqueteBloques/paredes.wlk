@@ -234,9 +234,9 @@ object paredes{
 	method agregarParedesNivel3() {
 		game.addVisual(new Pared(position = game.at(19,11),  imagen = "paredes/paredSinBordesH.png"))		
 		game.addVisual(new Pared(position = game.at(18,11),  imagen = "paredes/paredIzquierdoUnionHV.png"))
-		game.addVisual(new Pared(position = game.at(18,10),  imagen = "paredes/paredInferiorV.png"))		
-		game.addVisual(new Pared(position = game.at(18,8),  imagen = "paredes/paredSuperiorV.png"))
-		game.addVisual(new Pared(position = game.at(18,7),  imagen = "paredes/paredV.png"))
+		game.addVisual(new Pared(position = game.at(18,10),  imagen = "paredes/paredV.png"))
+		game.addVisual(new Pared(position = game.at(18,9),  imagen = "paredes/paredInferiorV.png"))		
+		game.addVisual(new Pared(position = game.at(18,7),  imagen = "paredes/paredSuperiorV.png"))
 		game.addVisual(new Pared(position = game.at(18,6),  imagen = "paredes/paredV.png"))
 		game.addVisual(new Pared(position = game.at(18,5),  imagen = "paredes/paredV.png"))
 		game.addVisual(new Pared(position = game.at(18,4),  imagen = "paredes/paredV.png"))

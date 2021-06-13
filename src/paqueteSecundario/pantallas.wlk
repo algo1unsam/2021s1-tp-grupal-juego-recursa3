@@ -121,7 +121,7 @@ object pantallaJuego inherits Pantalla {
 
 	method peleaFinal() {
 		audio.parar()
-		game.schedule(1, { audio.reproducirSonido("pensasteQueEraTanFacil")})
+		game.schedule(5, { audio.reproducirSonido("pensasteQueEraTanFacil")})
 		game.addVisualIn(pantallaPensasteQueEraTanFacil, game.origin())
 		game.schedule(2500, { nivel3.batallaFinal()
 			game.removeVisual(pantallaPensasteQueEraTanFacil)

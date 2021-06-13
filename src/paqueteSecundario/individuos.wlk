@@ -171,7 +171,9 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	method recibirVida(unaVida) {
-		vida += unaVida
+		if(vida <= 10){
+			vida += unaVida
+		}
 		self.mostrarVida()
 	}
 
@@ -555,7 +557,7 @@ object enemigoFinalNivel3 inherits Enemigo(vida = 12, ataque = 2, position = gam
 			game.removeTickEvent("perseguir" + self)
 			audio.parar()
 			audio.reproducirSonido("muerteEnemigoFinal")
-			game.schedule(2000, { game.removeVisual(self)
+			game.schedule(2500, { game.removeVisual(self)
 				self.murio()
 			})
 		}
