@@ -290,6 +290,8 @@ object enemigosNivel2 inherits EnemigosNivel {
 	override method agregarEnemigosZonaVerde() {
 		game.addVisual(enemigoConLlaveCofre2Nivel2)
 		enemigoConLlaveCofre2Nivel2.moverse()
+		game.addVisual(enemigoConLlaveCofre4Nivel2)
+		enemigoConLlaveCofre4Nivel2.moverse()
 		game.addVisual(enemigoConLlaveRojaNivel2)
 		enemigoConLlaveRojaNivel2.moverse()
 	}
@@ -454,6 +456,15 @@ object enemigoConLlaveCofre2Nivel2 inherits Enemigo(vida = 3, ataque = 2, positi
 }
 
 object enemigoConLlaveCofre3Nivel2 inherits Enemigo(vida = 3, ataque = 2, position = game.at(6, 12), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
+
+	override method murio() {
+		super()
+		game.addVisualIn(new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()), game.at(self.position().x(), self.position().y()))
+	}
+
+}
+
+object enemigoConLlaveCofre4Nivel2 inherits Enemigo(vida = 3, ataque = 2, position = game.at(1, 4), orientacion = abajo, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
 
 	override method murio() {
 		super()
