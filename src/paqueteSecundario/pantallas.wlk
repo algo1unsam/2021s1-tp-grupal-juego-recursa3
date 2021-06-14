@@ -5,6 +5,7 @@ import paquetePrimario.configuracion.*
 import paqueteSecundario.niveles.*
 import paqueteSecundario.estados.*
 import paqueteVisuales.presionarEnter.*
+import paqueteSecundario.individuos.*
 
 class Pantalla inherits Imagen {
 
@@ -64,15 +65,23 @@ object pantallaEnemigos inherits Pantalla(imagen = "pantallas/enemigos.jpg") {
 
 }
 
-object pantallaCargando inherits Pantalla(imagen = "pantallas/cargando.jpg") {
+object pantallaNivel1 inherits Pantalla(imagen = "pantallas/nivel1.jpg") {
 
 	override method iniciar() {
 		super()
 		visualPresionaEnterParaContinuar.cerrar()
 		pantallaJuego.nivelActual(nivel1)
-		configuraciones.cambiarEstado(estadoCargando)
+		configuraciones.cambiarEstado(estadoNivel)
 		game.schedule(500, { pantallaJuego.iniciar()})
 	}
+
+}
+
+object pantallaNivel2 inherits Pantalla(imagen = "pantallas/nivel2.jpg") {
+
+}
+
+object pantallaNivel3 inherits Pantalla(imagen = "pantallas/nivel3.jpg") {
 
 }
 
@@ -121,16 +130,28 @@ object pantallaJuego inherits Pantalla {
 
 	method peleaFinal() {
 		audio.parar()
+		game.onCollideDo(personaje, {})
 		game.schedule(5, { audio.reproducirSonido("pensasteQueEraTanFacil")})
 		game.addVisualIn(pantallaPensasteQueEraTanFacil, game.origin())
 		game.schedule(2500, { nivel3.batallaFinal()
 			game.removeVisual(pantallaPensasteQueEraTanFacil)
+			configuraciones.configurarColisiones()
 		})
+	}
+
+	method pantallaNivel() {
+		if (nivelActual == nivel1) {
+			return pantallaNivel2
+		} else {
+			return pantallaNivel3
+		}
 	}
 
 }
 
 object pantallaPensasteQueEraTanFacil inherits Pantalla(imagen = "pantallas/cargando.jpg") {
-
+	override method teEncontro(){
+		
+	}
 }
 

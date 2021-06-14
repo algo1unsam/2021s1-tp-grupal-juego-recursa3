@@ -101,12 +101,12 @@ object estadoEnemigos inherits Estado {
 
 	override method alPresionarEnter() {
 		super()
-		pantallaCargando.iniciar()
+		pantallaNivel1.iniciar()
 	}
 
 }
 
-object estadoCargando inherits Estado {
+object estadoNivel inherits Estado {
 
 }
 

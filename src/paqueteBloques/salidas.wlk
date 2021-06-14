@@ -6,8 +6,10 @@ import paqueteSecundario.pantallas.*
 class Salida inherits Imagen {
 
 	override method teEncontro() {
-		game.schedule(1, { audio.reproducirSonido("salida")})
-		pantallaJuego.nivelActual().finalizarNivel()
+		game.schedule(5, { game.addVisualIn(pantallaJuego.pantallaNivel(), game.origin()) })
+		game.schedule(10, { audio.reproducirSonido("salida")
+			pantallaJuego.nivelActual().finalizarNivel()
+		})
 	}
 
 }
@@ -36,13 +38,13 @@ object salidas {
 	}
 
 	method agregarSalidasNivel3Final() {
-
 		// Elimina todo objeto que este en el lugar donde voy a poner la salida.
 		game.getObjectsIn(game.at(9, 13)).forEach({ visual => game.removeVisual(visual)})
 			// Agrego la salida
 		game.addVisual(salidaFinal)
 		game.schedule(1, { audio.reproducirSonido("salida")})
-		}
+	}
+
 }
 
 object salidaPelea inherits Salida(position = game.at(1, 13), imagen = "puerta/puerta.png") {
