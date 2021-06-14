@@ -43,11 +43,10 @@ class Individuo inherits Imagen {
 	method recibirDanio(danio) {
 		if (mano2 != null and mano2.categoria() == "escudo" and mano2.seDestruye(danio)) {
 			vida -= danio - mano2.defensa()
-			mano2 = null}
-		else if (mano2 != null and !mano2.seDestruye(danio)) {
-				mano2.defensa(mano2.defensa() - danio)
-			}
-		else {
+			mano2 = null
+		} else if (mano2 != null and !mano2.seDestruye(danio)) {
+			mano2.defensa(mano2.defensa() - danio)
+		} else {
 			vida -= danio
 		}
 		self.mostrarVida()
@@ -549,31 +548,29 @@ object enemigoConLlaveCofre5Nivel3 inherits Enemigo(vida = 4, ataque = 2, positi
 }
 
 object enemigoFinalNivel3 inherits Enemigo(vida = 12, ataque = 2, position = game.at(9, 12), orientacion = abajo, imagen = "enemigo/enemigoFinalDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
-
+	var estaMuertoEnemigoFinal = false
+	
 	override method estaMuerto() {
-		if (self.vida() <= 0) {
-			game.removeTickEvent("perseguir" + self)
+		if (self.vida() <= 0 and !estaMuertoEnemigoFinal) {
+			estaMuertoEnemigoFinal = true
+			game.schedule(2500, { super() })
 			audio.parar()
 			audio.reproducirSonido("muerteEnemigoFinal")
-			game.schedule(2500, { game.removeVisual(self)
-				self.murio()
-			})
+			game.removeTickEvent("perseguir" + self)
+
 		}
 	}
-	
+
 	override method murio() {
 		game.schedule(1, { menu.removeVida(posicionCorazon1, posicionCorazon2, posicionCorazon3)})
 		game.schedule(50, { salidas.agregarSalidasNivel3Final()
-		audio.reproducirCancionEnLoop("ambienteGanaste")
+			audio.reproducirCancionEnLoop("ambienteGanaste")
 		})
-		
 	}
 
 	override method image() {
 		return "enemigo/enemigoFinal" + orientacion.nombre() + ".png"
 	}
-
-
 
 }
 
