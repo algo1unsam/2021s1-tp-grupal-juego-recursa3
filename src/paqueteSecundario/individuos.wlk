@@ -171,9 +171,7 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	method recibirVida(unaVida) {
-		if(vida <= 10){
-			vida += unaVida
-		}
+		vida = (vida + unaVida).min(12)
 		self.mostrarVida()
 	}
 
