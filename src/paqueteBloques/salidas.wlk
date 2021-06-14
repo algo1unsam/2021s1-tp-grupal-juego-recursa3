@@ -6,7 +6,7 @@ import paqueteSecundario.pantallas.*
 class Salida inherits Imagen {
 
 	override method teEncontro() {
-		game.schedule(5, { game.addVisualIn(pantallaJuego.pantallaNivel(), game.origin()) })
+		game.schedule(5, { game.addVisualIn(pantallaJuego.pantallaNivelProximo(), game.origin()) })
 		game.schedule(10, { audio.reproducirSonido("salida")
 			pantallaJuego.nivelActual().finalizarNivel()
 		})

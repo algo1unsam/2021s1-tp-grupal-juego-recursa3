@@ -139,19 +139,16 @@ object pantallaJuego inherits Pantalla {
 		})
 	}
 
-	method pantallaNivel() {
-		if (nivelActual == nivel1) {
-			return pantallaNivel2
-		} else {
-			return pantallaNivel3
-		}
+	method pantallaNivelProximo() {
+		return nivelActual.pantallaProximoNivel()
 	}
 
 }
 
 object pantallaPensasteQueEraTanFacil inherits Pantalla(imagen = "pantallas/cargando.jpg") {
-	override method teEncontro(){
-		
+
+	override method teEncontro() {
 	}
+
 }
 
