@@ -31,16 +31,15 @@ object objetos {
 
 class Escudo inherits Objeto {
 
-	var property defensa
-	method seDestruye(danio)=danio>=self.defensa()
+	var property armadura
 
 }
 
-object escudoChico inherits Escudo(categoria = "escudo", peso = 5, defensa = 2, imagen = "objetos/escudoChico.png", position = menu.posicionEscudoChico()) {
+object escudoChico inherits Escudo(categoria = "escudo", peso = 5, armadura = 2, imagen = "objetos/escudoChico.png", position = menu.posicionEscudoChico()) {
 
 }
 
-object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, defensa = 4, imagen = "objetos/escudoGrande.png", position = menu.posicionEscudoGrande()) {
+object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, armadura = 4, imagen = "objetos/escudoGrande.png", position = menu.posicionEscudoGrande()) {
 
 }
 
@@ -72,7 +71,7 @@ class Mochila inherits Objeto {
 			objetosGuardados.add(unObjeto)
 			personaje.equiparObjetoMano2(unObjeto)
 			game.schedule(100, { audio.reproducirSonido("agarrar")})
-			self.defensa(unObjeto)
+			personaje.recibirArmadura(unObjeto.armadura())
 		}
 			// Al encontrar una mochila la cambia por la que ya tiene
 		if (unObjeto.categoria() == "mochila") {
@@ -111,11 +110,6 @@ class Mochila inherits Objeto {
 	method objetosGuardados() = objetosGuardados
 
 	method llaves() = objetosGuardados.filter({ objeto => objeto.categoria() == 'llave' }).size()
-	
-	method defensa(unObjeto) {
-		personaje.defensa(personaje.defensa() + unObjeto.defensa())
-		game.say(self, "Defensa: " + personaje.defensa().toString())
-	}
 
 }
 

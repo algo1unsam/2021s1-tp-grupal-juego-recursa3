@@ -11,7 +11,7 @@ class Individuo inherits Imagen {
 
 	var property orientacion = derecha
 	var property vida = 6
-	var property armadura = null
+	var property armadura = 0
 	var property mano1 = null
 	var property mano2 = null
 	var property posicionCorazon1 = null
@@ -41,16 +41,23 @@ class Individuo inherits Imagen {
 	method atacar()
 
 	method recibirDanio(danio) {
-		if (mano2 != null and mano2.categoria() == "escudo" and mano2.seDestruye(danio)) {
-			vida -= danio - mano2.defensa()
-			mano2 = null
-		} else if (mano2 != null and !mano2.seDestruye(danio)) {
-			mano2.defensa(mano2.defensa() - danio)
-		} else {
-			vida -= danio
-		}
+		vida -= danio
 		self.mostrarVida()
 		self.estaMuerto()
+	}
+
+	method perderArmadura(danio) {
+		armadura = (armadura - danio).max(0)
+		self.mostrarArmadura()
+	}
+
+	method recibirArmadura(unaArmadura) {
+		armadura = (armadura + unaArmadura).min(9)
+		self.mostrarArmadura()
+	}
+
+	method mostrarArmadura() {
+		menu.mostrarArmadura(armadura)
 	}
 
 	method estaMuerto() {
@@ -73,7 +80,6 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	var property energia = 100
 	var property mochila = null
 	var property ataque = false
-	var property defensa = 0
 
 	method equiparObjetoMano1(unObjeto) {
 		self.mano1(unObjeto)
@@ -166,7 +172,22 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	override method recibirDanio(danio) {
-		super(danio)
+		if (danio < armadura) {
+		} else {
+			vida -= danio - armadura
+		}
+		if (armadura != 0) {
+			self.perderArmadura(danio)
+		}
+		if (armadura == 0) {
+			mano2 = null
+		} else if (armadura.between(1, 3)) {
+			mano2 = escudoChico
+		} else if (armadura > 3) {
+			mano2 = escudoGrande
+		}
+		self.mostrarVida()
+		self.estaMuerto()
 		game.schedule(1, { audio.reproducirSonido("danioPersonaje")})
 	}
 
@@ -220,11 +241,12 @@ class Enemigo inherits Individuo {
 
 }
 
-class EnemigoOrco inherits Enemigo{
-	
+class EnemigoOrco inherits Enemigo {
+
 	override method image() {
 		return "enemigo/enemigoOrco" + orientacion.nombre() + ".png"
 	}
+
 }
 
 class EnemigosNivel {
@@ -241,7 +263,7 @@ class EnemigosNivel {
 	method agregarEnemigosZonaRoja()
 
 	method reiniciarPosicion()
-	
+
 	method reinciarVida()
 
 }
@@ -281,15 +303,14 @@ object enemigosNivel1 inherits EnemigosNivel {
 		enemigoConLlaveCofre3Nivel1.position(game.at(19, 12))
 		enemigoNadaNivel1.position(game.at(16, 6))
 	}
-	
-	override method reinciarVida(){
+
+	override method reinciarVida() {
 		enemigoConLLaveVerdeNivel1.vida(2)
 		enemigoConLlaveRojaNivel1.vida(2)
 		enemigoConLlaveCofre1Nivel1.vida(2)
 		enemigoConLlaveCofre2Nivel1.vida(2)
 		enemigoConLlaveCofre3Nivel1.vida(2)
 		enemigoNadaNivel1.vida(2)
-		
 	}
 
 }
@@ -331,8 +352,8 @@ object enemigosNivel2 inherits EnemigosNivel {
 		enemigoConLlaveCofre2Nivel2.position(game.at(1, 9))
 		enemigoConLlaveCofre3Nivel2.position(game.at(6, 12))
 	}
-	
-	override method reinciarVida(){
+
+	override method reinciarVida() {
 		enemigoConLlaveAzulNivel2.vida(2)
 		enemigoConLlaveVerdeNivel2.vida(4)
 		enemigoConLlaveRojaNivel2.vida(4)
@@ -340,8 +361,6 @@ object enemigosNivel2 inherits EnemigosNivel {
 		enemigoConLlaveCofre2Nivel2.vida(2)
 		enemigoConLlaveCofre3Nivel2.vida(4)
 		enemigoConLlaveCofre4Nivel2.vida(2)
-		
-		
 	}
 
 }
@@ -391,7 +410,7 @@ object enemigosNivel3 inherits EnemigosNivel {
 		enemigoFinalNivel3.position(game.at(9, 12))
 	}
 
-	override method reinciarVida(){
+	override method reinciarVida() {
 		enemigoConLlaveAzulNivel3.vida(4)
 		enemigoConLlaveVerdeNivel3.vida(4)
 		enemigoConLlaveRojaNivel3.vida(4)
@@ -401,8 +420,6 @@ object enemigosNivel3 inherits EnemigosNivel {
 		enemigoConLlaveCofre4Nivel3.vida(2)
 		enemigoConLlaveCofre5Nivel3.vida(4)
 		enemigoFinalNivel3.vida(12)
-		
-		
 	}
 
 }
@@ -595,16 +612,16 @@ object enemigoConLlaveCofre5Nivel3 inherits Enemigo(vida = 4, ataque = 2, positi
 }
 
 object enemigoFinalNivel3 inherits Enemigo(vida = 12, ataque = 2, position = game.at(9, 12), orientacion = abajo, imagen = "enemigo/enemigoFinalDerecha.png", categoria = 'enemigo', posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3()) {
+
 	var property estaMuertoEnemigoFinal = false
-	
+
 	override method estaMuerto() {
 		if (self.vida() <= 0 and !estaMuertoEnemigoFinal) {
 			estaMuertoEnemigoFinal = true
-			game.schedule(2500, { super() })
+			game.schedule(2500, { super()})
 			audio.parar()
 			audio.reproducirSonido("muerteEnemigoFinal")
 			game.removeTickEvent("perseguir" + self)
-
 		}
 	}
 
