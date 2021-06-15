@@ -143,10 +143,7 @@ object pantallaJuego inherits Pantalla {
 
 }
 
-object pantallaPensasteQueEraTanFacil inherits Pantalla(imagen = "pantallas/cargando.jpg") {
-
-	override method teEncontro() {
-	}
+object pantallaPensasteQueEraTanFacil inherits Pantalla(imagen = "pantallas/pensasteQueIbaASerTanFacil.jpg") {
 
 }
 

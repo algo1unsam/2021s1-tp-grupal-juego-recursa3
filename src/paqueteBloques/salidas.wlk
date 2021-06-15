@@ -43,7 +43,7 @@ object salidas {
 
 object salidaPelea inherits Salida(position = game.at(1, 13), imagen = "puerta/puerta.png") {
 
-	var yaEntro = false
+	var property yaEntro = false
 
 	override method teEncontro() {
 		if (!yaEntro) {

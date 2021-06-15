@@ -36,11 +36,11 @@ class Escudo inherits Objeto {
 
 }
 
-object escudoChico inherits Escudo(categoria = "escudo", peso = 5, defensa = 1, imagen = "objetos/escudoChico.png", position = menu.posicionEscudoChico()) {
+object escudoChico inherits Escudo(categoria = "escudo", peso = 5, defensa = 2, imagen = "objetos/escudoChico.png", position = menu.posicionEscudoChico()) {
 
 }
 
-object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, defensa = 3, imagen = "objetos/escudoGrande.png", position = menu.posicionEscudoGrande()) {
+object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, defensa = 4, imagen = "objetos/escudoGrande.png", position = menu.posicionEscudoGrande()) {
 
 }
 
@@ -103,11 +103,6 @@ class Mochila inherits Objeto {
 			// Agrega la visual del objeto a la zona donde se muestran los objetos que tenes a la derecha de todo
 		game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))
 	}
-
-	// Esta de mas este metodo porque ya lo hereda de Objeto. 
-	// override method interactuarConObjeto() {
-	// 	return self
-	// }
 
 	method desecharObjeto(unObjeto) {
 		objetosGuardados.remove(unObjeto)
