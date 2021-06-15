@@ -107,25 +107,15 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	method agregarObjeto(unObjeto) {
-		const mochilas= [mochilaChica,mochilaGrande]
-		if (unObjeto != null and mochilas.any({unaMochila=>unaMochila==unObjeto})) {
+		const mochilas = [ mochilaChica, mochilaGrande ]
+		if (unObjeto != null and mochilas.any({ unaMochila => unaMochila == unObjeto })) {
 			if (game.hasVisual(unObjeto)) {
 				game.removeVisual(unObjeto)
 			}
 			if (mochila != null) {
 				unObjeto.objetosGuardados(mochila.objetosGuardados())
 			}
-			console.println(unObjeto.categoria())
-			if(mochila != null){
-				console.println(mochila.categoria())
-			}
-
-			
 			self.mochila(unObjeto)
-			
-			console.println(unObjeto.categoria())
-			console.println(mochila.categoria())
-			
 			self.mochila().agregarObjeto(unObjeto)
 		} else if (mochila != null and unObjeto.categoria() != "mochilaChica") {
 			if (mochila != null and unObjeto != null) {
