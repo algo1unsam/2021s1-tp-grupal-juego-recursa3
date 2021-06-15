@@ -1,6 +1,7 @@
 import wollok.game.*
 import paquetePrimario.imagen.*
 import paqueteSecundario.objetos.*
+import paqueteSecundario.individuos.*
 
 class Menu inherits Imagen {
 
@@ -16,8 +17,8 @@ class Menu inherits Imagen {
 	const property posicionMochilaGrande = game.at(23, 5)
 	const property posicionLlaveCofre = game.at(25, 5)
 	const property posicionLlaveAzul = game.at(22, 4)
-	const property posicionLlaveRoja = game.at(23, 4)
-	const property posicionLlaveVerde = game.at(24, 4)
+	const property posicionLlaveVerde = game.at(23, 4)
+	const property posicionLlaveRoja = game.at(24, 4)
 	const property posicionEspadaChica = game.at(22, 3)
 	const property posicionEspadaGrande = game.at(23, 3)
 	const property posicionEscudoChico = game.at(22, 2)
@@ -25,40 +26,70 @@ class Menu inherits Imagen {
 
 	method mostrarVida(posicionCorazon1, posicionCorazon2, posicionCorazon3, vida) {
 		self.removeVida(posicionCorazon1, posicionCorazon2, posicionCorazon3)
+		if (vida == 12) {
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompletoOro.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompletoOro.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompletoOro.png"), posicionCorazon3)
+		}
+		if (vida == 11) {
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompletoOro.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompletoOro.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonMitadOro.png"), posicionCorazon3)
+		}
+		if (vida == 10) {
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/CorazonCompletoOro.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompletoOro.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon3)
+		}
+		if (vida == 9) {
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompletoOro.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonMitadOro.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon3)
+		}
+		if (vida == 8) {
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompletoOro.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon3)
+		}
+		if (vida == 7) {
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonMitadOro.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon3)
+		}
 		if (vida == 6) {
-			game.addVisualIn(new CorazonCompleto(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon1)
-			game.addVisualIn(new CorazonCompleto(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon2)
-			game.addVisualIn(new CorazonCompleto(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon3)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon3)
 		}
 		if (vida == 5) {
-			game.addVisualIn(new CorazonCompleto(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon1)
-			game.addVisualIn(new CorazonCompleto(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon2)
-			game.addVisualIn(new CorazonMitad(categoria = "corazon", peso = 0, imagen = "corazones/corazonMitad.png"), posicionCorazon3)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonMitad.png"), posicionCorazon3)
 		}
 		if (vida == 4) {
-			game.addVisualIn(new CorazonCompleto(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon1)
-			game.addVisualIn(new CorazonCompleto(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon2)
-			game.addVisualIn(new CorazonVacio(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon3)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon3)
 		}
 		if (vida == 3) {
-			game.addVisualIn(new CorazonCompleto(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon1)
-			game.addVisualIn(new CorazonMitad(categoria = "corazon", peso = 0, imagen = "corazones/corazonMitad.png"), posicionCorazon2)
-			game.addVisualIn(new CorazonVacio(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon3)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonMitad.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon3)
 		}
 		if (vida == 2) {
-			game.addVisualIn(new CorazonCompleto(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon1)
-			game.addVisualIn(new CorazonVacio(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon2)
-			game.addVisualIn(new CorazonVacio(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon3)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonCompleto.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon3)
 		}
 		if (vida == 1) {
-			game.addVisualIn(new CorazonMitad(categoria = "corazon", peso = 0, imagen = "corazones/corazonMitad.png"), posicionCorazon1)
-			game.addVisualIn(new CorazonVacio(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon2)
-			game.addVisualIn(new CorazonVacio(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon3)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonMitad.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon3)
 		}
 		if (vida == 0) {
-			game.addVisualIn(new CorazonVacio(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon1)
-			game.addVisualIn(new CorazonVacio(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon2)
-			game.addVisualIn(new CorazonVacio(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon3)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon1)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon2)
+			game.addVisualIn(new Corazon(categoria = "corazon", peso = 0, imagen = "corazones/corazonVacio.png"), posicionCorazon3)
 		}
 	}
 
@@ -68,12 +99,24 @@ class Menu inherits Imagen {
 		game.getObjectsIn(posicionCorazon3).forEach({ visual => game.removeVisual(visual)})
 	}
 
+	method removeLlaveCofre() {
+		game.getObjectsIn(posicionLlaveCofre).forEach({ visual => game.removeVisual(visual)})
+	}
+
 }
 
 object menu inherits Menu {
 
 	method agregarMenu() {
 		game.addVisual(new Menu(position = self.posicionMenu(), imagen = "menu/menu.jpg"))
+		self.agregarObjetosAlMenu()
+	}
+
+	method agregarObjetosAlMenu() {
+		if (personaje.mochila() != null) {
+			game.addVisualIn(personaje.mochila(), game.at(personaje.mochila().position().x(), personaje.mochila().position().y()))
+			personaje.mochila().objetosGuardados().forEach({ unObjeto => game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))})
+		}
 	}
 
 }

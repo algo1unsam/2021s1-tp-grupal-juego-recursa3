@@ -10,84 +10,105 @@
 
 <br><br>
 
+# ```EXPLICACION DEL JUEGO```
+### El juego consiste en poder atravesar los <b>```3 laberintos```</b> para poder enfrentar al guardián de la mazmorra, pero no va a ser tan fácil.
+### <b>```Los laberintos cuentan con zonas, identificadas por colores```</b>, que son vigiladas por los súbditos del guardián, quienes al sentir que estás cerca empezaran a perseguirte hasta que logres acabar con ellos.
+### Presta mucha atención a los cofres, que nos proporcionaran objetos para poder defendernos de la amenaza, estos cofres nos pueden dar Espadas, Escudos o Vida.
+### <b>```Al eliminar a los enemigos dropearas llaves que te permitirán acceder a las zonas```</b>, así que no intentes avanzar sin desafiar a los súbditos si no nunca saldrás. 
+# <b>```Nivel 1:```</b>
+<img src="picture\presentacion\Nivel1.jpeg">
+<br>
+
+# <b>```Nivel 2:```</b>
+<img src="picture\presentacion\Nivel2.jpeg">
+
+# <b>```Nivel 3:```</b>
+<img src="picture\presentacion\Nivel3.jpeg">
+<br><br>
+
 #   ```DIAGRAMA DE ARQUITECTURA```
 <img src="picture\presentacion\tp_algo1.drawio.png">
 <br><br>
 
 # ```CONCEPTOS DE LOS METODOS```
+
+# imagen.wlk:
+*   ### Clase Imagen:
+    ```python
+        1.  esAtravesable() # Nos dira si un objeto puede o no ser atravesable. 
+        2.  teEncontro()    # Dependera de cada objeto 
+        3.  interactuarConObjeto()  # Se utiliza para interactuar con los objetos del juego apretando la letra E
+    ```
+
 # objetos.wlk:
-*   ### Clase Objeto:
+*   ### Clase Objeto inherits Imagen:
     ```python
         1.  interactuarConObjeto() # Dependera de cada objeto
         2.  utilizarObjeto()    # Dependera de cada objeto
     ```
-*   ### Clase Espada:
+<!-- *   ### Clase Espada:
     ```python
         1.  utilizarObjeto()    # Se utiliza para realizar el ataque con el objeto
-    ```
-*   ### Clase Mochila:
+    ``` -->
+*   ### Clase Mochila inherits Objeto:
     ```python
-        1.  controlarPeso() # Controla si la suma de los objetos que contiene es mayor que 0, en caso de ser mayor devolvera false. 
-        2.  agregarObjeto(unObjeto) # Este metodo revisara el objeto que intenta agarra y procedera a desechar en caso de ya tener el objeto para agarra el nuevo. 
-        3.  interactuarConObjeto()  # Pendiente
-        4.  desecharObjeto(unObjeto) # Se utiliza para remover un objeto de la mochila
-        5.  usarLlave() # Utiliza una llave de la mochila -1
-        6.  objetosGuardados() # Devuelve la coleccion de los objetos guardados
+        1.  agregarObjeto(unObjeto) # Este metodo servira para recoger los objetos del juego. En caso de las espadas y de los escudos procedera tambien a equiparselo en las manos del personaje.
+        2.  desecharObjeto(unObjeto) # Se utiliza para remover un objeto de la mochila
+        3.  objetosGuardados() # Devuelve la coleccion de los objetos guardados
+        4.  llaves() # Devuelve la coleccion de las llaves. 
     ```
-*   ### Clase Cofres:
+*   ### Clase Cofres inherits Objeto:
     ```python
-        1.  interactuarConObjeto() # Procederá a validar que el cofre no este vacío y que el personaje tenga algún objeto guardado y que tenga una llave. Luego de validar utilizara la llave o saldrá un mensaje de advertencia 
+        1.  interactuarConObjeto() # Procederá a validar que el cofre no este vacío y que el personaje tenga una mochila. Una vez validado el punto anterior mirara si tiene llaves. Luego de validar utilizara la llave o saldrá un mensaje de advertencia 
     ```
-*   ### Objeto llave:
+*   ### Clase Llave inherits Objeto:
     ```python
-        1.  utilizarObjeto() # Utilizara el methodo usarLlave de la clase Mochila y luego validara si no hay mas llaves en la mochila para remover la imagen
+        1.  utilizarObjeto() # Procedera a desechar la llave y remover la imagen en el juego
     ```
+*   ### Clase Corazon inherits Objeto:
+    ```python
+        1.  utilizarObjeto() # Le dara vida al personaje utilizando el metodo recibirVida del personaje.
+    ```    
 <br><br>
 
 # individuos.wlk:
-*   ### Clase Individuo:
+*   ### Clase Individuo inherits Imagen:
     ```python
         1.  moverse(direccion) # Controla el movimiento y direccion del personaje
         2.  moverHaciaSiSePuede(personaje, direccion) # Controlara si puede atravezar un obstaculo
         3.  puedeMoverse(posicion) # Hace el llamado de moverHaciaSiSePuede para controlar que pueda moverse
         4.  moverHacia(personaje, direccion) # Se ultiliza para mover de posicion al personaje
         5.  atacar() # Depende del individuo
-        6.  recibirDanio(danio) # Al individuo se le restara vida dependiendo el objeto con que se lo ataque.
+        6.  recibirDanio(danio) # El Individuo recibira daño y dependiendo si lleva escudo o no recibira mas o menos daño
         7.  estaMuerto() # Si al individuo se le agotaron la vida se removera la imagen de dicho individuo en el juego.
         8.  murio() # Depende del individuo
-        9.  mostrarVida() # Depende del individuo
-        10. removeVida() # Depende del individuo
+        9.  mostrarVida() # Mostrara la visa en el tablero del juego
     ```
-*   ### Objeto personaje:
+*   ### Objeto personaje inherits Individuo:
     ```python
         1.  equiparObjetoMano1(unObjeto) # Equipara un objeto a la mano 1
         2.  equiparObjetoMano2(unObjeto) # Equipara un objeto a la mano 2
         3.  utilizarObjeto(unObjeto) # Usara el metodo utilizarObjeto del objeto que tenga equipado
-        4.  interactuarConObjetos(variosObjetos) # Se utiliza para que el individuo pueda conocer otro objeto segun los criterios de interactuar del mismo
-        5.  agregarObjeto(unObjeto) # Revisara si el objeto que quiere agregar es una mochila le agregara la mochila como un atributo al personaje. En caso de querer agarrar un objeto distinto de la mochila, revisara si el personaje tiene una mochila y llamara al methodo de la mochila agregarObjeto. De lo contrario arrojara un mensaje.
+        4.  interactuarConObjetos() # El metodo permitira que el personaje pueda interactuar con otros objetos en el juego, ya se porque esta en la misma posicion o porque lo tiene delante del mismo. 
+        5.  agregarObjeto(unObjeto) # Revisara si el objeto que quiere agregar es una mochila, le agregara la mochila como un atributo al personaje. En caso de querer agarrar un objeto distinto de la mochila, revisara si el personaje tiene una mochila y llamara al methodo de la mochila agregarObjeto. De lo contrario arrojara un mensaje.
         6.  desecharObjeto(unObjeto) # Desechara el objeto que se le pase como parametro. 
-        7.  cantidadLlaves() # Devolvera la consutla a la mochila de las llaves()
-        8.  atacar() # Revisara si el personaje tiene algun objeto en la mano para poder atacar, en caso de haber un enemigo en frente, procede a quitarle vida. Sino sale un mensaje de que no se puede atacar por no tener un objeto en la mano. 
-        9.  image() # Segun la accion que realiza el personaje realizara una accion. 
-        10.  murio() # Mostrara la pantalal de Game Over
-        11. mostrarVida() # Mostrara en pantalla la vida del personaje, la cual a medida que pierda vida se ira modificando. 
-        12. removeVida() # Quitara el visual de la vida cuando reciba daño
+        7.  cantidadLlaves() # Devolvera el resultado del metodo llaves() de la mochila, por lo que obtendremos la cantidad de llaves que tiene el personaje
+        8.  atacar() # Revisara si el personaje tiene algun objeto en la mano para poder atacar, en caso de tener el objeto para atacar, procede a realizar el ataque y si el enemigo esta en frente dicho enemigo recibira daño. Si no tiene un objeto se mostrara un mensaje por pantalla.  
+        9.  image() # Segun la accion que realiza el personaje se mostrara su animacion
+        10. murio() # Mostrara la pantalal de Game Over
+        11. recibirVida() # El personaje recibe vida y se refleja en el panel del juego
     ```
-*   ### Objeto enemigo:
+*   ### Objeto enemigo inherits Individuo:
     ```python
-        1.  atacar() # Hace el llamado al personaje para ejecutar el metodo de recibirDanio()
-        2.  agregarEnemigoNivel1() # Cargara los atributos del enemigo para la pantalla del nivel 1
-        3.  agregarEnemigoNivel2() # Cargara los atributos del enemigo para la pantalla del nivel 2
-        4.  agregarEnemigoNivel3() # Cargara los atributos del enemigo para la pantalla del nivel 3
-        5.  teEncontro() # Si te encontro procede a utilizar el metodo atacar()
-        6.  moverse() # Metodo para automatizar el movimiento del enemigo cada 1 segundo moviendose hacia el enemigo
-        7.  direccionMasConveniente() # Dada la diferencia entre las posiciones del enemigo y del personaje establecera la mejor direccion para perseguir al personaje.
-        8.  moverseHaciaJugador() # Hace el llamado a direccionMasConveniente() y a moverHaciaSiSePuede() con el fin de que el enemigo pueda o no moverse hacia el personaje. 
-        9.  direccionesAtravesables()
-        10. image() # establece la imagen del enemigo en el juego
-        11. murio() # Se remueve la imagen del enemigo al morir
-        12. mostrarVida() # Mostrara en pantalla la vida del personaje, la cual a medida que pierda vida se ira modificando. 
-        13. removeVida() # Quitara el visual de la vida cuando reciba daño
+        1. atacar() # Hace el llamado al personaje para ejecutar el metodo de recibirDanio()
+        2. teEncontro() # Si te encontro procede a utilizar el metodo atacar()
+        3. moverse() # Metodo para automatizar el movimiento del enemigo cada 1 segundo moviendose hacia el enemigo
+        4. direccionMasConveniente() # Dada la diferencia entre las posiciones del enemigo y del personaje establecera la mejor direccion para perseguir al personaje.
+        5. moverseHaciaJugador() # Hace el llamado a direccionMasConveniente() y a moverHaciaSiSePuede() con el fin de que el enemigo pueda o no moverse hacia el personaje. 
+        6. direccionesAtravesables()
+        7. image() # establece la imagen del enemigo en el juego
+        8. murio() # Se remueve la imagen del enemigo al morir
+        9. recibirDanio() # Quitara el visual de la vida cuando reciba daño
     ```
     <br><br>
     # ```COMPORTAMIENTO DE LOS BLOQUES GRAFICOS```
@@ -121,7 +142,7 @@
                 personaje.agregarObjeto(mochilaGrande)
                 personaje.agregarObjeto(espadaChica)
                 personaje.agregarObjeto(escudoGrande)
-                game.onTick(1000, "Perseguir1", { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
+                game.onTick(1000, "perseguir" + self, { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
                 
             }
 
@@ -169,3 +190,5 @@
 
         }
     ```
+
+    

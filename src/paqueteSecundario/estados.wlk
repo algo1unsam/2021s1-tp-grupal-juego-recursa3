@@ -4,6 +4,8 @@ import objetos.*
 import wollok.game.*
 import paqueteSecundario.pantallas.*
 import paqueteSecundario.niveles.*
+import paqueteVisuales.presionarEnter.*
+import paquetePrimario.audio.*
 
 class Estado {
 
@@ -23,6 +25,7 @@ class Estado {
 	}
 
 	method alPresionarEnter() {
+		game.schedule(1, { audio.reproducirSonido("presionarEnter")})
 	}
 
 	method alPresionar1() {
@@ -58,7 +61,7 @@ object juego inherits Estado {
 	}
 
 	override method alPresionarE() {
-		personaje.interactuarConObjetos(game.getObjectsIn(game.at(personaje.position().x(), personaje.position().y())))
+		personaje.interactuarConObjetos()
 	}
 
 	override method alPresionarSpace() {
@@ -70,6 +73,7 @@ object juego inherits Estado {
 object estadoInicio inherits Estado {
 
 	override method alPresionarEnter() {
+		super()
 		pantallaTutorial.iniciar()
 	}
 
@@ -78,6 +82,7 @@ object estadoInicio inherits Estado {
 object estadoTutorial inherits Estado {
 
 	override method alPresionarEnter() {
+		super()
 		pantallaObjetos.iniciar()
 	}
 
@@ -86,6 +91,7 @@ object estadoTutorial inherits Estado {
 object estadoObjetos inherits Estado {
 
 	override method alPresionarEnter() {
+		super()
 		pantallaEnemigos.iniciar()
 	}
 
@@ -94,19 +100,21 @@ object estadoObjetos inherits Estado {
 object estadoEnemigos inherits Estado {
 
 	override method alPresionarEnter() {
-		pantallaCargando.iniciar()
+		super()
+		pantallaNivel1.iniciar()
 	}
 
 }
 
-object estadoCargando inherits Estado {
+object estadoNivel inherits Estado {
 
 }
 
 object estadoGameOver inherits Estado {
 
 	override method alPresionarEnter() {
-		pantallaGameOver.cerrar()
+		super()
+		visualPresionaEnterParaVolver.cerrar()
 		pantallaInicio.iniciar()
 	}
 
@@ -115,7 +123,8 @@ object estadoGameOver inherits Estado {
 object estadoGanaste inherits Estado {
 
 	override method alPresionarEnter() {
-		pantallaGanaste.cerrar()
+		super()
+		visualPresionaEnterParaVolver.cerrar()
 		pantallaInicio.iniciar()
 	}
 
