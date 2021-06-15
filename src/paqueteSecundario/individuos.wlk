@@ -73,6 +73,7 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	var property energia = 100
 	var property mochila = null
 	var property ataque = false
+	var property defensa = 0
 
 	method equiparObjetoMano1(unObjeto) {
 		self.mano1(unObjeto)

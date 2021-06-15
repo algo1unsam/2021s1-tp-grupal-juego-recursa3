@@ -72,7 +72,7 @@ class Mochila inherits Objeto {
 			objetosGuardados.add(unObjeto)
 			personaje.equiparObjetoMano2(unObjeto)
 			game.schedule(100, { audio.reproducirSonido("agarrar")})
-			game.say(self, "Defensa: " + unObjeto.defensa().toString())
+			self.defensa(unObjeto)
 		}
 			// Al encontrar una mochila la cambia por la que ya tiene
 		if (unObjeto.categoria() == "mochila") {
@@ -111,6 +111,11 @@ class Mochila inherits Objeto {
 	method objetosGuardados() = objetosGuardados
 
 	method llaves() = objetosGuardados.filter({ objeto => objeto.categoria() == 'llave' }).size()
+	
+	method defensa(unObjeto) {
+		personaje.defensa(personaje.defensa() + unObjeto.defensa())
+		game.say(self, "Defensa: " + personaje.defensa().toString())
+	}
 
 }
 
