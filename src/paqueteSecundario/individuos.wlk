@@ -111,8 +111,12 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 			if (game.hasVisual(unObjeto)) {
 				game.removeVisual(unObjeto)
 			}
+			
+			
+			if (mochila != null){
+			unObjeto.objetosGuardados(mochila.objetosGuardados())}
 			self.mochila(unObjeto)
-			mochila.agregarObjeto(unObjeto)
+			self.mochila().agregarObjeto(unObjeto)
 		}else if (mochila != null and unObjeto.categoria() != "mochilaChica") {
 			if (mochila != null and unObjeto != null) {
 				if (game.hasVisual(unObjeto)) {
