@@ -127,68 +127,99 @@
         import paqueteSecundario.objetos.*
         import wollok.game.*
         import paquetePrimario.configuracion.*
+        import paquetePrimario.menu.*
         import paqueteSecundario.direcciones.*
         import paqueteSecundario.estados.*
         describe "TEST DE INDIVIDUO" {
 
-            const enemigo1 = new Enemigo(vida = 2, ataque = 1, position = game.at(5, 6), orientacion = arriba, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo')
-
+            const enemigo0 = new Enemigo(vida = 2, ataque = 1, position = game.at(5, 6), orientacion = arriba, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo',posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3())
+            const enemigo1 = new Enemigo(vida = 2, ataque = 2, position = game.at(5, 6), orientacion = arriba, imagen = "enemigo/enemigoZombieChicoDerecha.png", categoria = 'enemigo',posicionCorazon1 = menu.posicionCorazonEnemigo1(), posicionCorazon2 = menu.posicionCorazonEnemigo2(), posicionCorazon3 = menu.posicionCorazonEnemigo3())
+            
+            const llaveCofre = new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre())
+            const llaveCofre2 = new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre())
+            
             fixture {
                 personaje.position(game.at(5, 5))
                 personaje.orientacion(arriba)
-                game.addVisual(enemigo1)
+                game.addVisual(enemigo0)
                 game.addVisual(personaje)
-                configuraciones.configurarColisiones()
-                personaje.agregarObjeto(mochilaGrande)
+                personaje.agregarObjeto(mochilaChica)
                 personaje.agregarObjeto(espadaChica)
-                personaje.agregarObjeto(escudoGrande)
-                game.onTick(1000, "perseguir" + self, { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
+                personaje.agregarObjeto(llaveCofre2)
+                personaje.agregarObjeto(llaveCofre)
+                game.onTick(1000, "perseguir" + enemigo0, { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
+                configuraciones.configurarColisiones()
+                
                 
             }
 
-            test "EL INDIVIDUO TIENE MOCHILA GRANDE Y DENTRO DE LA MOCHILA TIENE UNA ESPADA CHICA Y UN ESCUDO GRANDE" {
+            test "EL INDIVIDUO TIENE MOCHILA CHICA Y DENTRO DE LA MOCHILA TIENE UNA ESPADA CHICA Y DOS LLAVES" {
+                assert.equals(mochilaChica, personaje.mochila())
+                assert.equals([ mochilaChica,espadaChica, llaveCofre2,llaveCofre], mochilaChica.objetosGuardados())
+            }
+            test "EL INDIVIDUO TIENE MOCHILA GRANDE Y DENTRO DE LA MOCHILA TIENE UNA ESPADA CHICA Y UN ESCUDO GRANDE Y DOS LLAVES" {
+                personaje.agregarObjeto(mochilaGrande)
+                personaje.agregarObjeto(escudoGrande)
                 assert.equals(mochilaGrande, personaje.mochila())
-                assert.equals([ espadaChica, escudoGrande ], mochilaGrande.objetosGuardados())
+                assert.equals([mochilaChica,espadaChica, llaveCofre2,llaveCofre,mochilaGrande,escudoGrande], mochilaGrande.objetosGuardados())
             }
 
             test "EL INDIVIDUO DECIDE DEJAR UN OBJETO PORQUE LE OCUPA ESPACIO" {
                 personaje.desecharObjeto(espadaChica)
-                assert.equals([ escudoGrande ], mochilaGrande.objetosGuardados())
+                assert.equals([mochilaChica,llaveCofre2,llaveCofre], mochilaChica.objetosGuardados())
             }
 
-            test "EL INDIVIDUO AL AGARRAR LA ESPADA GRANDE DESECHA LA ESPADA CHICA." {
+            test "EL INDIVIDUO AL AGARRAR LA ESPADA GRANDE Y MANTIENE AMBAS ESPADAS PERO OCUPA LA ESPADAGRANDE." {
+                personaje.agregarObjeto(mochilaGrande)
                 personaje.agregarObjeto(espadaGrande)
-                assert.notThat(mochilaGrande.objetosGuardados().any({ objeto => objeto == espadaChica}))
+                assert.that(mochilaGrande.objetosGuardados().any({ objeto => objeto == espadaChica}))
                 assert.notThat(personaje.mano1() == espadaChica)
                 assert.that(mochilaGrande.objetosGuardados().any({ objeto => objeto == espadaGrande}))
                 assert.that(personaje.mano1() == espadaGrande)
             }
 
-            test "EL personaje AGARRA 3 LLAVES Y UTILIZA UNA, LE QUEDAN 2" {
+            test "EL personaje AGARRA 3 LLAVES MAS Y UTILIZA UNA, LE QUEDAN 4" {
                 3.times({ i => personaje.agregarObjeto(llaveCofre)})
                 personaje.utilizarObjeto(llaveCofre)
-                assert.equals(2, personaje.cantidadLlaves())
+                assert.equals(4, personaje.cantidadLlaves())
             }
 
-            test "EL personaje ATACA A UN RIVAL HASTA DEJARLO CON 50 VIDA" {
+            test "EL personaje ATACA A UN RIVAL HASTA DEJARLO CON 1 VIDA" {
                 personaje.atacar()
-                assert.equals(1, enemigo1.vida())
+                assert.equals(1, enemigo0.vida())
             }
 
-            test "EL personaje ATACA AL enemigo1 HASTA MATARLO" {
+            test "EL personaje ATACA AL enemigo0 HASTA MATARLO" {
                 2.times({ i => personaje.atacar()})
-                assert.equals(0, enemigo1.vida())
-                assert.notThat(game.hasVisual(enemigo1))
+                assert.equals(0, enemigo0.vida())
+                assert.notThat(game.hasVisual(enemigo0))
             }
 
-            test "EL ENEMIGO ATACA personaje, Y ESTE QUEDA CON 5 PUNTOS DE VIDA." {
-                personaje.moverse(arriba)
-                enemigo1.teEncontro()
-                assert.equals(personaje.position(), enemigo1.position())
+            test "EL ENEMIGO ATACA AL PERSONAJE 5 VECES, Y ESTE QUEDA CON 5 PUNTOS DE VIDA GRACIAS A LA PROTECCION DEL ESCUDO." {
+                personaje.agregarObjeto(mochilaGrande)
+                personaje.agregarObjeto(escudoGrande)
+                enemigo0.teEncontro()
+                enemigo0.teEncontro()
+                enemigo0.teEncontro()
+                enemigo0.teEncontro()
+                enemigo0.teEncontro()
                 assert.equals(5, personaje.vida())
             }
-
+            test "EL ENEMIGO2 ATACA AL PERSONAJE 2 VECES, Y ESTE QUEDA CON 5 PUNTOS DE VIDA GRACIAS A LA PROTECCION DEL ESCUDO." {
+                personaje.agregarObjeto(mochilaGrande)
+                personaje.agregarObjeto(escudoGrande)
+                enemigo1.teEncontro()
+                enemigo1.teEncontro()
+                enemigo1.teEncontro()
+                assert.equals(4, personaje.vida())
+            }
+            test "Me devuelve una llave"{
+                assert.equals(llaveCofre2,personaje.mochila().objetosGuardados().find({objeto => objeto.categoria()=='llave'}))
+                
+            }
         }
+
+
     ```
 
     
