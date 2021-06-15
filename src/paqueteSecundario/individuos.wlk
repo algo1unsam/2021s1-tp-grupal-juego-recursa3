@@ -107,17 +107,17 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	method agregarObjeto(unObjeto) {
-		if (unObjeto != null and unObjeto.categoria() == "mochilaChica" and (mochila == null or unObjeto.categoria() == mochilaChica.categoria())) {
+		const mochilas = [ mochilaChica, mochilaGrande ]
+		if (unObjeto != null and mochilas.any({ unaMochila => unaMochila == unObjeto })) {
 			if (game.hasVisual(unObjeto)) {
 				game.removeVisual(unObjeto)
 			}
-			
-			
-			if (mochila != null){
-			unObjeto.objetosGuardados(mochila.objetosGuardados())}
+			if (mochila != null) {
+				unObjeto.objetosGuardados(mochila.objetosGuardados())
+			}
 			self.mochila(unObjeto)
 			self.mochila().agregarObjeto(unObjeto)
-		}else if (mochila != null and unObjeto.categoria() != "mochilaChica") {
+		} else if (mochila != null and unObjeto.categoria() != "mochilaChica") {
 			if (mochila != null and unObjeto != null) {
 				if (game.hasVisual(unObjeto)) {
 					game.removeVisual(unObjeto)
@@ -192,6 +192,7 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 		vida = (vida + unaVida).min(12)
 		self.mostrarVida()
 	}
+
 	method armaduraEnMano2() {
 		if (armadura == 0) {
 			mano2 = null
