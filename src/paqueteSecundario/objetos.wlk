@@ -135,7 +135,7 @@ class Cofre inherits Objeto {
 					}
 					return objetoGuardado
 				}
-				game.say(personaje, "Necesitas una mochila grande para llevar este objeto")
+				game.say(personaje, "Necesitas una mochila grande")
 				return null
 			}
 			game.say(personaje, "Necesitas una llave para abrir el cofre")

@@ -64,6 +64,7 @@ object nivel1 inherits Nivel {
 		personaje.mano1(null)
 		personaje.mano2(null)
 		mochilaChica.objetosGuardados().clear()
+		mochilaGrande.objetosGuardados().clear()
 	}
 
 	override method pantallaProximoNivel() {
