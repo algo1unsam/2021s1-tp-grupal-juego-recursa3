@@ -25,6 +25,8 @@ class Nivel {
 
 	method reiniciarPersonaje()
 
+	method pantallaProximoNivel()
+
 }
 
 object nivel1 inherits Nivel {
@@ -63,6 +65,10 @@ object nivel1 inherits Nivel {
 		mochilaChica.objetosGuardados().clear()
 	}
 
+	override method pantallaProximoNivel() {
+		return pantallaNivel2
+	}
+
 }
 
 object nivel2 inherits Nivel {
@@ -94,6 +100,10 @@ object nivel2 inherits Nivel {
 		personaje.position(game.at(19, 1))
 	}
 
+	override method pantallaProximoNivel() {
+		return pantallaNivel3
+	}
+
 }
 
 object nivel3 inherits Nivel {
@@ -110,8 +120,6 @@ object nivel3 inherits Nivel {
 		menu.agregarMenu()
 		game.addVisual(personaje)
 		personaje.mostrarVida()
-//		personaje.mochila(mochilaGrande)
-//		personaje.agregarObjeto(espadaGrande)
 		enemigosNivel3.reiniciarPosicion()
 		enemigosNivel3.agregarEnemigosZonaInicio()
 		sombras.agregarSombra1Nivel3()
@@ -125,14 +133,19 @@ object nivel3 inherits Nivel {
 
 	override method reiniciarPersonaje() {
 		personaje.position(game.at(11, 1))
+		salidaPelea.yaEntro(false)
+		enemigoFinalNivel3.estaMuertoEnemigoFinal(false)
 	}
-	
-	method batallaFinal(){
+
+	method batallaFinal() {
 		audio.reproducirCancionEnLoop("peleaFinal")
 		sombras.removerSombra4Nivel3()
 		personaje.position(game.at(11, 9))
 		enemigosNivel3.agregarEnemigosZonaRoja()
 	}
 
+	override method pantallaProximoNivel() {
+		return pantallaNivel3
+	}
 }
 
