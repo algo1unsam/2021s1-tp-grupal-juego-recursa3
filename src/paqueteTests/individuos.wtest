@@ -18,9 +18,8 @@ describe "TEST DE INDIVIDUO" {
 		personaje.orientacion(arriba)
 		game.addVisual(enemigo0)
 		game.addVisual(personaje)
-		personaje.agregarObjeto(mochilaGrande)
+		personaje.agregarObjeto(mochilaChica)
 		personaje.agregarObjeto(espadaChica)
-		personaje.agregarObjeto(escudoGrande)
 		personaje.agregarObjeto(llaveCofre2)
 		personaje.agregarObjeto(llaveCofre)
 		game.onTick(1000, "perseguir" + enemigo0, { true}) // Se hardcodea porque el enemigo en el juego se mueve y es necesario para testear.
@@ -29,17 +28,24 @@ describe "TEST DE INDIVIDUO" {
 		
 	}
 
+	test "EL INDIVIDUO TIENE MOCHILA CHICA Y DENTRO DE LA MOCHILA TIENE UNA ESPADA CHICA Y DOS LLAVES" {
+		assert.equals(mochilaChica, personaje.mochila())
+		assert.equals([ mochilaChica,espadaChica, llaveCofre2,llaveCofre], mochilaChica.objetosGuardados())
+	}
 	test "EL INDIVIDUO TIENE MOCHILA GRANDE Y DENTRO DE LA MOCHILA TIENE UNA ESPADA CHICA Y UN ESCUDO GRANDE Y DOS LLAVES" {
+		personaje.agregarObjeto(mochilaGrande)
+		personaje.agregarObjeto(escudoGrande)
 		assert.equals(mochilaGrande, personaje.mochila())
-		assert.equals([ espadaChica, escudoGrande, llaveCofre2,llaveCofre], mochilaGrande.objetosGuardados())
+		assert.equals([mochilaChica,espadaChica, llaveCofre2,llaveCofre,mochilaGrande,escudoGrande], mochilaGrande.objetosGuardados())
 	}
 
 	test "EL INDIVIDUO DECIDE DEJAR UN OBJETO PORQUE LE OCUPA ESPACIO" {
 		personaje.desecharObjeto(espadaChica)
-		assert.equals([ escudoGrande,llaveCofre2,llaveCofre], mochilaGrande.objetosGuardados())
+		assert.equals([mochilaChica,llaveCofre2,llaveCofre], mochilaChica.objetosGuardados())
 	}
 
 	test "EL INDIVIDUO AL AGARRAR LA ESPADA GRANDE Y MANTIENE AMBAS ESPADAS PERO OCUPA LA ESPADAGRANDE." {
+		personaje.agregarObjeto(mochilaGrande)
 		personaje.agregarObjeto(espadaGrande)
 		assert.that(mochilaGrande.objetosGuardados().any({ objeto => objeto == espadaChica}))
 		assert.notThat(personaje.mano1() == espadaChica)
@@ -64,7 +70,10 @@ describe "TEST DE INDIVIDUO" {
 		assert.notThat(game.hasVisual(enemigo0))
 	}
 
-	test "EL ENEMIGO ATACA AL PERSONAJE 4 VECES, Y ESTE QUEDA CON 5 PUNTOS DE VIDA GRACIAS A LA PROTECCION DEL ESCUDO." {
+	test "EL ENEMIGO ATACA AL PERSONAJE 5 VECES, Y ESTE QUEDA CON 5 PUNTOS DE VIDA GRACIAS A LA PROTECCION DEL ESCUDO." {
+		personaje.agregarObjeto(mochilaGrande)
+		personaje.agregarObjeto(escudoGrande)
+		enemigo0.teEncontro()
 		enemigo0.teEncontro()
 		enemigo0.teEncontro()
 		enemigo0.teEncontro()
@@ -72,9 +81,12 @@ describe "TEST DE INDIVIDUO" {
 		assert.equals(5, personaje.vida())
 	}
 	test "EL ENEMIGO2 ATACA AL PERSONAJE 2 VECES, Y ESTE QUEDA CON 5 PUNTOS DE VIDA GRACIAS A LA PROTECCION DEL ESCUDO." {
+		personaje.agregarObjeto(mochilaGrande)
+		personaje.agregarObjeto(escudoGrande)
 		enemigo1.teEncontro()
 		enemigo1.teEncontro()
-		assert.equals(5, personaje.vida())
+		enemigo1.teEncontro()
+		assert.equals(4, personaje.vida())
 	}
 	test "Me devuelve una llave"{
 		assert.equals(llaveCofre2,personaje.mochila().objetosGuardados().find({objeto => objeto.categoria()=='llave'}))
