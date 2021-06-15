@@ -41,7 +41,8 @@ class Escudo inherits Objeto {
 	var property armadura
 
 	override method equiparObjeto() {
-		personaje.recibirArmadura(self.armadura())
+		personaje.recibirArmadura(self.armadura())	
+		personaje.armaduraEnMano2()
 	}
 
 }
@@ -82,7 +83,9 @@ class Mochila inherits Objeto {
 		const mochilaAcepta =  puedeGuardar + guardaEnComun
 		if (mochilaAcepta.any({ objetoQueAcepta => objetoQueAcepta == unObjeto}) or unObjeto.categoria() == "llave") {
 			unObjeto.sonidoAlAgarrar()
-			objetosGuardados.add(unObjeto)
+			if(unObjeto.categoria() != "corazonCompleto"){
+				objetosGuardados.add(unObjeto)
+			}
 			unObjeto.equiparObjeto()
 				// Agrega la visual del objeto a la zona donde se muestran los objetos que tenes a la derecha de todo
 			game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))
@@ -104,11 +107,11 @@ class Mochila inherits Objeto {
 
 }
 
-object mochilaChica inherits Mochila(puedeGuardar = [ escudoChico, espadaChica ], categoria = "mochila", peso = -15, imagen = "objetos/mochilaChica.png", position = menu.posicionMochilaChica()) {
+object mochilaChica inherits Mochila(puedeGuardar = [ escudoChico, espadaChica ], categoria = "mochilaChica", peso = -15, imagen = "objetos/mochilaChica.png", position = menu.posicionMochilaChica()) {
 
 }
 
-object mochilaGrande inherits Mochila(puedeGuardar = [ escudoGrande, espadaGrande, escudoChico, espadaChica ], categoria = "mochila", peso = -20, imagen = "objetos/mochilaGrande.png", position = menu.posicionMochilaGrande()) {
+object mochilaGrande inherits Mochila(puedeGuardar = [ escudoGrande, espadaGrande, escudoChico, espadaChica ], categoria = "mochilaGrande", peso = -20, imagen = "objetos/mochilaGrande.png", position = menu.posicionMochilaGrande()) {
 
 }
 

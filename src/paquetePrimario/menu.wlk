@@ -123,7 +123,6 @@ object menu inherits Menu {
 
 	method agregarObjetosAlMenu() {
 		if (personaje.mochila() != null) {
-			game.addVisualIn(personaje.mochila(), game.at(personaje.mochila().position().x(), personaje.mochila().position().y()))
 			personaje.mochila().objetosGuardados().forEach({ unObjeto => game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))})
 		}
 	}
