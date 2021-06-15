@@ -17,12 +17,19 @@ class Objeto inherits Imagen {
 	// Realiza la accion de dicho objeto
 	}
 
+	method sonidoAlAgarrar() {
+		game.schedule(100, { audio.reproducirSonido("agarrar")})
+	}
+
+	method equiparObjeto() {
+	}
+
 }
 
 object objetos {
 
 	method agregarObjetosNivel1() {
-		game.addVisualIn(new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()), game.at(5, 8))
+		game.addVisualIn(new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()) , game.at(5, 8))
 		game.addVisualIn(mochilaChica, game.at(3, 1))
 		game.addVisualIn(llaveAzul, game.at(11, 2))
 	}
@@ -33,74 +40,55 @@ class Escudo inherits Objeto {
 
 	var property armadura
 
+	override method equiparObjeto() {
+		personaje.recibirArmadura(self.armadura())
+	}
+
 }
 
-object escudoChico inherits Escudo(categoria = "escudo", peso = 5, armadura = 2, imagen = "objetos/escudoChico.png", position = menu.posicionEscudoChico()) {
-
+object escudoChico inherits Escudo(categoria = "escudo", peso = 5, armadura = 2, imagen = "objetos/escudoChico.png", position = menu.posicionEscudoChico()){
+	
 }
 
-object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, armadura = 4, imagen = "objetos/escudoGrande.png", position = menu.posicionEscudoGrande()) {
-
+object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, armadura = 4, imagen = "objetos/escudoGrande.png", position = menu.posicionEscudoGrande()){
+	
 }
 
 class Espada inherits Objeto {
 
 	var property danio
 
+	override method equiparObjeto() {
+		personaje.equiparObjetoMano1(self)
+	}
+
 }
 
-object espadaChica inherits Espada(categoria = "espada", peso = 5, danio = 1, imagen = "objetos/espadaChica.png", position = menu.posicionEspadaChica()) {
-
+object espadaChica inherits Espada(categoria = "espada", peso = 5, danio = 1, imagen = "objetos/espadaChica.png", position = menu.posicionEspadaChica()){
+	
 }
 
-object espadaGrande inherits Espada(categoria = "espada", peso = 10, danio = 2, imagen = "objetos/espadaGrande.png", position = menu.posicionEspadaGrande()) {
-
+object espadaGrande inherits Espada(categoria = "espada", peso = 10, danio = 2, imagen = "objetos/espadaGrande.png", position = menu.posicionEspadaGrande()){
+	
 }
 
 class Mochila inherits Objeto {
 
+	const puedeGuardar = []
+	const guardaEnComun = [ llaveAzul, llaveVerde, llaveRoja, corazonCompleto, mochilaChica, mochilaGrande ]
 	const objetosGuardados = []
 
 	method agregarObjeto(unObjeto) {
-		if (unObjeto.categoria() == "espada") {
+		const mochilaAcepta =  puedeGuardar + guardaEnComun
+		if (mochilaAcepta.any({ objetoQueAcepta => objetoQueAcepta == unObjeto}) or unObjeto.categoria() == "llave") {
+			unObjeto.sonidoAlAgarrar()
 			objetosGuardados.add(unObjeto)
-			personaje.equiparObjetoMano1(unObjeto)
-			game.schedule(100, { audio.reproducirSonido("agarrar")})
+			unObjeto.equiparObjeto()
+				// Agrega la visual del objeto a la zona donde se muestran los objetos que tenes a la derecha de todo
+			game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))
+		} else {
+			game.say(self, "Necesitas una mochila Grande Para este objeto")
 		}
-		if (unObjeto.categoria() == "escudo") {
-			objetosGuardados.add(unObjeto)
-			personaje.equiparObjetoMano2(unObjeto)
-			game.schedule(100, { audio.reproducirSonido("agarrar")})
-			personaje.recibirArmadura(unObjeto.armadura())
-		}
-			// Al encontrar una mochila la cambia por la que ya tiene
-		if (unObjeto.categoria() == "mochila") {
-			peso = unObjeto.peso()
-			imagen = unObjeto.imagen()
-			game.schedule(1, { audio.reproducirSonido("agarrar")})
-		}
-		if (unObjeto.categoria() == "llave") {
-			objetosGuardados.add(unObjeto)
-			game.schedule(1, { audio.reproducirSonido("llave")})
-		}
-		if (unObjeto.categoria() == "llaveAzul") {
-			objetosGuardados.add(unObjeto)
-			game.schedule(1, { audio.reproducirSonido("llave")})
-		}
-		if (unObjeto.categoria() == "llaveVerde") {
-			objetosGuardados.add(unObjeto)
-			game.schedule(1, { audio.reproducirSonido("llave")})
-		}
-		if (unObjeto.categoria() == "llaveRoja") {
-			objetosGuardados.add(unObjeto)
-			game.schedule(1, { audio.reproducirSonido("llave")})
-		}
-		if (unObjeto.categoria() == "corazonCompleto") {
-			unObjeto.utilizarObjeto()
-			game.schedule(1, { audio.reproducirSonido("vida")})
-		}
-			// Agrega la visual del objeto a la zona donde se muestran los objetos que tenes a la derecha de todo
-		game.addVisualIn(unObjeto, game.at(unObjeto.position().x(), unObjeto.position().y()))
 	}
 
 	method desecharObjeto(unObjeto) {
@@ -111,13 +99,16 @@ class Mochila inherits Objeto {
 
 	method llaves() = objetosGuardados.filter({ objeto => objeto.categoria() == 'llave' }).size()
 
+	override method equiparObjeto() {
+	}
+
 }
 
-object mochilaChica inherits Mochila(categoria = "mochila", peso = -15, imagen = "objetos/mochilaChica.png", position = menu.posicionMochilaChica()) {
+object mochilaChica inherits Mochila(puedeGuardar = [ escudoChico, espadaChica ], categoria = "mochila", peso = -15, imagen = "objetos/mochilaChica.png", position = menu.posicionMochilaChica()) {
 
 }
 
-object mochilaGrande inherits Mochila(categoria = "mochila", peso = -20, imagen = "objetos/mochilaGrande.png", position = menu.posicionMochilaGrande()) {
+object mochilaGrande inherits Mochila(puedeGuardar = [ escudoGrande, espadaGrande, escudoChico, espadaChica ], categoria = "mochila", peso = -20, imagen = "objetos/mochilaGrande.png", position = menu.posicionMochilaGrande()) {
 
 }
 
@@ -244,6 +235,10 @@ class Llave inherits Objeto {
 		}
 	}
 
+	override method sonidoAlAgarrar() {
+		game.schedule(1, { audio.reproducirSonido("llave")})
+	}
+
 }
 
 object llaveAzul inherits Llave(categoria = "llaveAzul", peso = 0, imagen = "llave/llaveAzul.png", position = menu.posicionLlaveAzul()) {
@@ -260,8 +255,16 @@ object llaveRoja inherits Llave(categoria = "llaveRoja", peso = 0, imagen = "lla
 
 class Corazon inherits Objeto {
 
+	override method equiparObjeto() {
+		self.utilizarObjeto()
+	}
+
 	override method utilizarObjeto() {
 		personaje.recibirVida(2)
+	}
+
+	override method sonidoAlAgarrar() {
+		game.schedule(1, { audio.reproducirSonido("vida")})
 	}
 
 }
@@ -269,4 +272,3 @@ class Corazon inherits Objeto {
 object corazonCompleto inherits Corazon(categoria = "corazonCompleto", peso = 0) {
 
 }
-
