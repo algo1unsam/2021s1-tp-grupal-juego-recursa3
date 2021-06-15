@@ -77,7 +77,7 @@ class Mochila inherits Objeto {
 
 	const puedeGuardar = []
 	const guardaEnComun = [ llaveAzul, llaveVerde, llaveRoja, corazonCompleto, mochilaChica, mochilaGrande ]
-	const objetosGuardados = []
+	var property objetosGuardados = []
 
 	method agregarObjeto(unObjeto) {
 		const mochilaAcepta = puedeGuardar + guardaEnComun
@@ -97,8 +97,6 @@ class Mochila inherits Objeto {
 	method desecharObjeto(unObjeto) {
 		objetosGuardados.remove(unObjeto)
 	}
-
-	method objetosGuardados() = objetosGuardados
 
 	method llaves() = objetosGuardados.filter({ objeto => objeto.categoria() == 'llave' }).size()
 
@@ -126,8 +124,6 @@ class Cofre inherits Objeto {
 	override method interactuarConObjeto() {
 		if (objetoGuardado != null and personaje.mochila() != null) {
 			if (personaje.cantidadLlaves() > 0) {
-				console.println(objetoGuardado.categoria())
-				console.println(personaje.mochila().categoria())
 				if (objetoGuardado.categoria() == "chico" or objetoGuardado.categoria() == "corazonCompleto" or objetoGuardado.categoria() == "mochilaGrande" or (objetoGuardado.categoria() == "grande" and personaje.mochila().categoria() == "mochilaGrande")) {
 					const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == 'llave' })
 					personaje.utilizarObjeto(miLlave)
