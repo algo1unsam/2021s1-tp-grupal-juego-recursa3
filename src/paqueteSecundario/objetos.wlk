@@ -29,7 +29,7 @@ class Objeto inherits Imagen {
 object objetos {
 
 	method agregarObjetosNivel1() {
-		game.addVisualIn(new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()) , game.at(5, 8))
+		game.addVisualIn(new Llave(categoria = "llave", peso = 0, imagen = "llave/llaveCofre.png", position = menu.posicionLlaveCofre()), game.at(5, 8))
 		game.addVisualIn(mochilaChica, game.at(3, 1))
 		game.addVisualIn(llaveAzul, game.at(11, 2))
 	}
@@ -41,18 +41,18 @@ class Escudo inherits Objeto {
 	var property armadura
 
 	override method equiparObjeto() {
-		personaje.recibirArmadura(self.armadura())	
+		personaje.recibirArmadura(self.armadura())
 		personaje.armaduraEnMano2()
 	}
 
 }
 
-object escudoChico inherits Escudo(categoria = "escudo", peso = 5, armadura = 2, imagen = "objetos/escudoChico.png", position = menu.posicionEscudoChico()){
-	
+object escudoChico inherits Escudo(categoria = "chico", peso = 5, armadura = 2, imagen = "objetos/escudoChico.png", position = menu.posicionEscudoChico()) {
+
 }
 
-object escudoGrande inherits Escudo(categoria = "escudo", peso = 10, armadura = 4, imagen = "objetos/escudoGrande.png", position = menu.posicionEscudoGrande()){
-	
+object escudoGrande inherits Escudo(categoria = "grande", peso = 10, armadura = 4, imagen = "objetos/escudoGrande.png", position = menu.posicionEscudoGrande()) {
+
 }
 
 class Espada inherits Objeto {
@@ -65,12 +65,12 @@ class Espada inherits Objeto {
 
 }
 
-object espadaChica inherits Espada(categoria = "espada", peso = 5, danio = 1, imagen = "objetos/espadaChica.png", position = menu.posicionEspadaChica()){
-	
+object espadaChica inherits Espada(categoria = "chico", peso = 5, danio = 1, imagen = "objetos/espadaChica.png", position = menu.posicionEspadaChica()) {
+
 }
 
-object espadaGrande inherits Espada(categoria = "espada", peso = 10, danio = 2, imagen = "objetos/espadaGrande.png", position = menu.posicionEspadaGrande()){
-	
+object espadaGrande inherits Espada(categoria = "grande", peso = 10, danio = 2, imagen = "objetos/espadaGrande.png", position = menu.posicionEspadaGrande()) {
+
 }
 
 class Mochila inherits Objeto {
@@ -80,10 +80,10 @@ class Mochila inherits Objeto {
 	const objetosGuardados = []
 
 	method agregarObjeto(unObjeto) {
-		const mochilaAcepta =  puedeGuardar + guardaEnComun
-		if (mochilaAcepta.any({ objetoQueAcepta => objetoQueAcepta == unObjeto}) or unObjeto.categoria() == "llave") {
+		const mochilaAcepta = puedeGuardar + guardaEnComun
+		if (mochilaAcepta.any({ objetoQueAcepta => objetoQueAcepta == unObjeto }) or unObjeto.categoria() == "llave") {
 			unObjeto.sonidoAlAgarrar()
-			if(unObjeto.categoria() != "corazonCompleto"){
+			if (unObjeto.categoria() != "corazonCompleto") {
 				objetosGuardados.add(unObjeto)
 			}
 			unObjeto.equiparObjeto()
@@ -124,20 +124,27 @@ class Cofre inherits Objeto {
 	}
 
 	override method interactuarConObjeto() {
-		if (objetoGuardado != null && personaje.mochila() != null) {
+		if (objetoGuardado != null and personaje.mochila() != null) {
 			if (personaje.cantidadLlaves() > 0) {
-				const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == 'llave' })
-				personaje.utilizarObjeto(miLlave)
-				game.addVisualIn(new CofreAbierto(imagen = "cofres/cofreAbierto.png"), game.at(self.position().x(), self.position().y()))
-				game.schedule(1, { audio.reproducirSonido("cofre")})
-				game.removeVisual(self)
-				if (personaje.cantidadLlaves() == 0) {
-					menu.removeLlaveCofre()
+				console.println(objetoGuardado.categoria())
+				console.println(personaje.mochila().categoria())
+				if (objetoGuardado.categoria() == "chico" or objetoGuardado.categoria() == "corazonCompleto" or objetoGuardado.categoria() == "mochilaGrande" or (objetoGuardado.categoria() == "grande" and personaje.mochila().categoria() == "mochilaGrande")) {
+					const miLlave = personaje.mochila().objetosGuardados().find({ objeto => objeto.categoria() == 'llave' })
+					personaje.utilizarObjeto(miLlave)
+					game.addVisualIn(new CofreAbierto(imagen = "cofres/cofreAbierto.png"), game.at(self.position().x(), self.position().y()))
+					game.schedule(1, { audio.reproducirSonido("cofre")})
+					game.removeVisual(self)
+					if (personaje.cantidadLlaves() == 0) {
+						menu.removeLlaveCofre()
+					}
+					return objetoGuardado
 				}
-				return objetoGuardado
+				game.say(personaje, "Necesitas una mochila grande para llevar este objeto")
+				return null
 			}
+			game.say(personaje, "Necesitas una llave para abrir el cofre")
 		}
-		game.say(personaje, "Necesitas una llave para abrir el cofre")
+		
 		return null
 	}
 
@@ -275,3 +282,4 @@ class Corazon inherits Objeto {
 object corazonCompleto inherits Corazon(categoria = "corazonCompleto", peso = 0) {
 
 }
+
