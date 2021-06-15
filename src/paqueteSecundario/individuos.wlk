@@ -231,6 +231,7 @@ class EnemigosNivel {
 
 	method agregarEnemigosZonaInicio() {
 		self.reiniciarPosicion()
+		self.reinciarVida()
 	}
 
 	method agregarEnemigosZonaAzul()
@@ -240,6 +241,8 @@ class EnemigosNivel {
 	method agregarEnemigosZonaRoja()
 
 	method reiniciarPosicion()
+	
+	method reinciarVida()
 
 }
 
@@ -277,6 +280,16 @@ object enemigosNivel1 inherits EnemigosNivel {
 		enemigoConLlaveCofre2Nivel1.position(game.at(10, 4))
 		enemigoConLlaveCofre3Nivel1.position(game.at(19, 12))
 		enemigoNadaNivel1.position(game.at(16, 6))
+	}
+	
+	override method reinciarVida(){
+		enemigoConLLaveVerdeNivel1.vida(2)
+		enemigoConLlaveRojaNivel1.vida(2)
+		enemigoConLlaveCofre1Nivel1.vida(2)
+		enemigoConLlaveCofre2Nivel1.vida(2)
+		enemigoConLlaveCofre3Nivel1.vida(2)
+		enemigoNadaNivel1.vida(2)
+		
 	}
 
 }
@@ -317,6 +330,18 @@ object enemigosNivel2 inherits EnemigosNivel {
 		enemigoConLlaveCofre1Nivel2.position(game.at(10, 7))
 		enemigoConLlaveCofre2Nivel2.position(game.at(1, 9))
 		enemigoConLlaveCofre3Nivel2.position(game.at(6, 12))
+	}
+	
+	override method reinciarVida(){
+		enemigoConLlaveAzulNivel2.vida(2)
+		enemigoConLlaveVerdeNivel2.vida(4)
+		enemigoConLlaveRojaNivel2.vida(4)
+		enemigoConLlaveCofre1Nivel2.vida(4)
+		enemigoConLlaveCofre2Nivel2.vida(2)
+		enemigoConLlaveCofre3Nivel2.vida(4)
+		enemigoConLlaveCofre4Nivel2.vida(2)
+		
+		
 	}
 
 }
@@ -364,6 +389,20 @@ object enemigosNivel3 inherits EnemigosNivel {
 		enemigoConLlaveCofre4Nivel3.position(game.at(13, 7))
 		enemigoConLlaveCofre5Nivel3.position(game.at(14, 12))
 		enemigoFinalNivel3.position(game.at(9, 12))
+	}
+
+	override method reinciarVida(){
+		enemigoConLlaveAzulNivel3.vida(4)
+		enemigoConLlaveVerdeNivel3.vida(4)
+		enemigoConLlaveRojaNivel3.vida(4)
+		enemigoConLlaveCofre1Nivel3.vida(4)
+		enemigoConLlaveCofre2Nivel3.vida(4)
+		enemigoConLlaveCofre3Nivel3.vida(2)
+		enemigoConLlaveCofre4Nivel3.vida(2)
+		enemigoConLlaveCofre5Nivel3.vida(4)
+		enemigoFinalNivel3.vida(12)
+		
+		
 	}
 
 }
