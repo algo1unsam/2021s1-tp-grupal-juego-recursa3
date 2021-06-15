@@ -98,6 +98,15 @@ class Menu inherits Imagen {
 		game.getObjectsIn(posicionCorazon2).forEach({ visual => game.removeVisual(visual)})
 		game.getObjectsIn(posicionCorazon3).forEach({ visual => game.removeVisual(visual)})
 	}
+	
+	method mostrarArmadura(armaduraNumero) {
+		self.removeArmadura()
+		game.addVisualIn(new Imagen(categoria = "numero", imagen = "armaduraNumeros/" + armaduraNumero.toString() + ".jpg"), posicionArmaduraPersonaje)
+	}
+	
+	method removeArmadura() {
+		game.getObjectsIn(posicionArmaduraPersonaje).forEach({ visual => game.removeVisual(visual)})
+	}
 
 	method removeLlaveCofre() {
 		game.getObjectsIn(posicionLlaveCofre).forEach({ visual => game.removeVisual(visual)})
