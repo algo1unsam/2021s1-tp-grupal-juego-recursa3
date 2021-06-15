@@ -1,7 +1,6 @@
 import wollok.game.*
 import configuracion.*
 import paqueteSecundario.pantallas.*
-import paqueteSecundario.niveles.*
 
 program juego {
 	game.title("Juego Base de los RECURSA3")
@@ -9,7 +8,5 @@ program juego {
 	game.width(configuraciones.ancho())
 	configuraciones.configurarTeclas()
 	pantallaInicio.iniciar()
-	//Para test de nivel 3 final
-//	pantallaJuego.avanzarNivel(nivel3)
 	game.start()
 }
