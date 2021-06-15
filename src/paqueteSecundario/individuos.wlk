@@ -172,20 +172,14 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	}
 
 	override method recibirDanio(danio) {
-		if (danio < armadura) {
-		} else {
-			vida -= danio - armadura
-		}
-		if (armadura != 0) {
+		const danioFinal = danio - armadura
+		if (armadura > 0) {
 			self.perderArmadura(danio)
 		}
-		if (armadura == 0) {
-			mano2 = null
-		} else if (armadura.between(1, 3)) {
-			mano2 = escudoChico
-		} else if (armadura > 3) {
-			mano2 = escudoGrande
+		if (danioFinal > 0) {
+			vida -= danioFinal
 		}
+		self.armaduraEnMano2()
 		self.mostrarVida()
 		self.estaMuerto()
 		game.schedule(1, { audio.reproducirSonido("danioPersonaje")})
@@ -194,6 +188,15 @@ object personaje inherits Individuo (position = game.at(1, 1), imagen = "individ
 	method recibirVida(unaVida) {
 		vida = (vida + unaVida).min(12)
 		self.mostrarVida()
+	}
+	method armaduraEnMano2() {
+		if (armadura == 0) {
+			mano2 = null
+		} else if (armadura.between(1, 3)) {
+			mano2 = escudoChico
+		} else if (armadura > 3) {
+			mano2 = escudoGrande
+		}
 	}
 
 }
@@ -218,7 +221,6 @@ class Enemigo inherits Individuo {
 
 	method moverHaciaJugador() {
 		var direccionMasConveniente = self.direccionMasConveniente(self.direccionesAtravesables())
-			// console.println(direccionMasConveniente.toString())
 		self.moverHaciaSiSePuede(self, direccionMasConveniente)
 	}
 
