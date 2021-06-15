@@ -101,7 +101,7 @@ class Menu inherits Imagen {
 	
 	method mostrarArmadura(armaduraNumero) {
 		self.removeArmadura()
-		game.addVisualIn(new Imagen(categoria = "numero", imagen = "armaduraNumeros/" + armaduraNumero.toString() + ".jpg"), posicionArmaduraPersonaje)
+		game.addVisualIn(new Imagen(categoria = "numero", imagen = "armaduraNumeros/" + armaduraNumero.toString() + ".png"), posicionArmaduraPersonaje)
 	}
 	
 	method removeArmadura() {
